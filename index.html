@@ -108,6 +108,92 @@
   .sk.d1{animation-delay:.2s} .sk.d2{animation-delay:.6s} .sk.d3{animation-delay:1s}
   .sk.d4{animation-delay:1.4s} .sk.d5{animation-delay:1.8s} .sk.d6{animation-delay:2.2s}
 
+  /* ── SECTION EDGE FADES (parallax blending) ── */
+  /*
+    Each section bleeds a soft gradient into the next via a ::after pseudo-element.
+    This makes the colour shift feel like a slow wash rather than a hard cut.
+  */
+  section::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* sections on parch bleed toward parch-alt */
+  section:not(.alt)::after {
+    background: linear-gradient(to bottom,
+      rgba(245,240,232,0) 0%,
+      rgba(237,231,214,0.55) 100%);
+  }
+  /* alt sections bleed toward parch */
+  section.alt::after {
+    background: linear-gradient(to bottom,
+      rgba(237,231,214,0) 0%,
+      rgba(245,240,232,0.55) 100%);
+  }
+  /* hero bleeds into finca (alt) */
+  section.hero::after {
+    height: 180px;
+    background: linear-gradient(to bottom,
+      rgba(245,240,232,0) 0%,
+      rgba(237,231,214,0.7) 100%);
+  }
+  /* section top fade-in from previous */
+  section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  section:not(.alt)::before {
+    background: linear-gradient(to top,
+      rgba(245,240,232,0) 0%,
+      rgba(237,231,214,0.3) 100%);
+  }
+  section.alt::before {
+    background: linear-gradient(to top,
+      rgba(237,231,214,0) 0%,
+      rgba(245,240,232,0.3) 100%);
+  }
+  /* hero has no top fade (it's first) */
+  section.hero::before { display: none; }
+
+  /* ── PARALLAX ── */
+  /* Each section gets a fixed-position decorative layer that moves slower than scroll */
+  .plx-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .plx-layer svg {
+    position: absolute;
+    width: 100%; height: 140%;  /* taller than section so it can drift */
+    top: -20%;
+    will-change: transform;
+  }
+  /* All direct children of section sit above parallax */
+  section > *:not(.plx-layer) { position: relative; z-index: 1; }
+
+  /* Divider wave between sections */
+  .wave-divider {
+    position: relative; z-index: 10;
+    height: 0; overflow: visible;
+    pointer-events: none;
+  }
+  .wave-divider svg {
+    position: absolute;
+    left: 0; right: 0;
+    width: 100%;
+    bottom: 0;
+    display: block;
+  }
+
   /* SECTIONS */
   section { padding:96px 72px; position:relative; overflow:hidden; }
   section.alt { background:var(--parch-alt); }
@@ -159,19 +245,29 @@
   .dd-col li::before { content:'—'; position:absolute; left:0; color:var(--ink-pale); }
 
   /* FORM */
-  .form-wrap { max-width:660px; margin:0 auto; text-align:center; }
-  .form-intro { font-size:18px; font-style:italic; color:var(--text-mid); margin-bottom:44px; line-height:1.75; }
-  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; text-align:left; }
-  .fg { display:flex; flex-direction:column; gap:8px; }
-  .fg.full { grid-column:1/-1; }
-  .fg label { font-family:'Caveat', cursive; font-size:15px; color:var(--ink); letter-spacing:.07em; }
-  .fg input,.fg select,.fg textarea { background:transparent; border:none; border-bottom:1px solid rgba(26,30,143,.22); padding:9px 0; font-family:'EB Garamond',serif; font-size:17px; color:var(--text); outline:none; transition:border-color .3s; width:100%; }
-  .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--ink); }
-  .fg textarea { resize:vertical; min-height:78px; }
-  .fg select { appearance:none; cursor:pointer; }
-  .r-row { display:flex; gap:28px; margin-top:4px; flex-wrap:wrap; }
-  .r-opt { display:flex; align-items:center; gap:9px; cursor:pointer; font-size:16px; color:var(--text-mid); }
-  .r-opt input[type="radio"] { width:15px; height:15px; appearance:none; cursor:pointer; border:1px solid var(--ink-pale); border-radius:50%; position:relative; flex-shrink:0; padding:0; border-bottom:1px solid var(--ink-pale); }
+  .form-wrap { max-width:720px; margin:0 auto; text-align:center; }
+  .form-intro { font-size:18px; font-style:italic; color:var(--text-mid); margin-bottom:40px; line-height:1.75; }
+  .gform-wrap {
+    border: 1px solid var(--ink-ghost);
+    background: var(--cream);
+    padding: 4px;
+    position: relative;
+  }
+  .gform-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -7px; right: -7px;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(26,30,143,0.12);
+    pointer-events: none;
+  }
+  .gform-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 860px;
+    border: none;
+    background: transparent;
+  }
   .r-opt input[type="radio"]:checked::after { content:''; position:absolute; inset:3px; background:var(--ink); border-radius:50%; }
   .form-btn { margin-top:44px; background:transparent; border:1.5px solid var(--ink); padding:15px 56px; font-family:'Caveat',cursive; font-size:22px; color:var(--ink); cursor:pointer; position:relative; overflow:hidden; transition:color .3s,transform .2s; }
   .form-btn::before { content:''; position:absolute; inset:0; background:var(--ink); transform:translateX(-101%); transition:transform .3s ease; z-index:0; }
@@ -235,6 +331,30 @@
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="inicio">
+  <div class="plx-layer" data-speed="0.14">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- faint ink-wash tonal band at bottom -->
+      <path d="M0,780 C240,760 480,772 720,764 C960,756 1200,768 1440,762 L1440,900 L0,900Z"
+            stroke="#1a1e8f" stroke-width="80" stroke-linecap="round" opacity="0.022"/>
+      <!-- large sweeping branch top-left -->
+      <path d="M0,60 C80,120 180,160 240,240 C300,320 290,400 270,480"
+            stroke="#1a1e8f" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+      <path d="M110,140 C90,122 68,120 64,136 C60,152 76,168 98,162 C120,156 124,140 112,132Z"
+            stroke="#1a1e8f" stroke-width="1.4" opacity="0.09"/>
+      <path d="M170,210 C148,192 124,192 122,208 C120,224 138,238 162,232 C186,226 188,210 174,202Z"
+            stroke="#1a1e8f" stroke-width="1.4" opacity="0.09"/>
+      <path d="M212,298 C190,280 164,282 162,300 C160,318 180,332 204,324 C228,316 228,300 214,292Z"
+            stroke="#1a1e8f" stroke-width="1.4" opacity="0.09"/>
+      <!-- olive dots on branch -->
+      <path d="M98,148 L98,138 M96,138 Q98,134 100,138" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round" opacity="0.1"/>
+      <path d="M162,218 L162,208 M160,208 Q162,204 164,208" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round" opacity="0.1"/>
+      <!-- faint scattered dots -->
+      <circle cx="900" cy="120" r="2.8" fill="#1a1e8f" opacity="0.05"/>
+      <circle cx="1100" cy="260" r="2" fill="#1a1e8f" opacity="0.04"/>
+      <circle cx="1320" cy="180" r="3.2" fill="#1a1e8f" opacity="0.04"/>
+      <circle cx="1400" cy="380" r="1.8" fill="#1a1e8f" opacity="0.035"/>
+    </svg>
+  </div>
   <div class="hero-l">
     <p class="hero-eyebrow">os invitamos a nuestra boda</p>
     <h1 class="hero-names">sofía<span class="hero-amp">&</span>alfredo</h1>
@@ -367,6 +487,21 @@
 
 <!-- ══ FINCA ══ -->
 <section id="finca" class="alt">
+  <div class="plx-layer" data-speed="0.22">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- rolling hills low -->
+      <path d="M0,760 C180,720 360,740 540,728 C720,716 900,748 1080,730 C1260,712 1380,736 1440,740 L1440,900 L0,900Z" stroke="#1a1e8f" stroke-width="1.5" opacity="0.07"/>
+      <path d="M0,800 C240,778 480,792 720,782 C960,772 1200,788 1440,780 L1440,900 L0,900Z" stroke="#1a1e8f" stroke-width="1" opacity="0.05"/>
+      <!-- branch top left -->
+      <path d="M0,100 C60,160 140,180 180,260 C220,340 200,420 180,480" stroke="#1a1e8f" stroke-width="1.6" stroke-linecap="round" opacity="0.08"/>
+      <path d="M80,170 C62,154 48,148 44,160 C40,172 54,186 72,184 C90,182 96,168 88,160Z" stroke="#1a1e8f" stroke-width="1.2" opacity="0.07"/>
+      <path d="M120,230 C100,214 84,212 80,226 C76,240 90,254 110,250 C130,246 136,232 124,222Z" stroke="#1a1e8f" stroke-width="1.2" opacity="0.07"/>
+      <!-- scattered dots right -->
+      <circle cx="1300" cy="180" r="3" fill="#1a1e8f" opacity="0.05"/>
+      <circle cx="1380" cy="320" r="2" fill="#1a1e8f" opacity="0.04"/>
+      <circle cx="1240" cy="440" r="2.5" fill="#1a1e8f" opacity="0.05"/>
+    </svg>
+  </div>
   <div class="finca-grid">
     <div class="finca-text reveal">
       <p class="s-tag">el lugar</p>
@@ -421,6 +556,19 @@
 
 <!-- ══ ALOJAMIENTO ══ -->
 <section id="alojamiento">
+  <div class="plx-layer" data-speed="0.28">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- cypress silhouettes right side -->
+      <path d="M1380,900 C1380,760 1378,640 1382,540 C1385,480 1380,440 1382,400" stroke="#1a1e8f" stroke-width="2.5" stroke-linecap="round" opacity="0.06"/>
+      <path d="M1360,400 C1354,370 1360,338 1382,328 C1404,318 1414,344 1412,372 C1410,400 1396,430 1390,460 C1386,444 1378,414 1374,386 C1370,358 1374,332 1380,400Z" stroke="#1a1e8f" stroke-width="1.8" opacity="0.06"/>
+      <path d="M1410,900 C1410,780 1412,660 1412,560" stroke="#1a1e8f" stroke-width="2" stroke-linecap="round" opacity="0.04"/>
+      <!-- large ink wash at bottom -->
+      <path d="M0,850 C300,830 600,845 900,836 C1100,830 1300,840 1440,836 L1440,900 L0,900Z" stroke="#1a1e8f" stroke-width="60" stroke-linecap="round" opacity="0.02"/>
+      <!-- faint horizontal field lines -->
+      <path d="M0,700 C200,692 400,700 600,695 C800,690 1000,698 1200,694 C1320,692 1400,695 1440,694" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.05"/>
+      <path d="M0,740 C240,732 480,740 720,735 C960,730 1200,738 1440,735" stroke="#1a1e8f" stroke-width=".8" stroke-linecap="round" opacity="0.04"/>
+    </svg>
+  </div>
   <p class="s-tag reveal">descansar</p>
   <h2 class="s-title reveal">Alojamiento</h2>
   <span class="s-rule reveal"></span>
@@ -429,11 +577,26 @@
     <div class="hotel reveal" style="transition-delay:.15s"><p class="hotel-km">~15 min · coche</p><h3 class="hotel-name">Hotel Nelva Murcia</h3><p class="hotel-desc">Hotel moderno a las afueras de Murcia capital. Gran aparcamiento y posibilidad de lanzadera a la finca para el bloque reservado.</p><a href="#" class="hotel-lnk">Ver hotel →</a></div>
     <div class="hotel reveal" style="transition-delay:.3s"><p class="hotel-km">~25 min · coche</p><h3 class="hotel-name">NH Collection Murcia</h3><p class="hotel-desc">En pleno centro histórico de Murcia, junto a la catedral. Ideal para quienes quieran aprovechar el viaje para visitar la ciudad.</p><a href="#" class="hotel-lnk">Ver hotel →</a></div>
   </div>
-  <p class="hotels-note reveal">Para información sobre tarifas especiales escríbenos a <strong style="font-style:normal">hola@sofiayalfredo.es</strong></p>
+  <p class="hotels-note reveal">Para información sobre tarifas especiales escríbenos a <strong style="font-style:normal"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97fff8fbf6d7e4f8f1fef6eef6fbf1e5f2f3f8b9f2e4">[email&#160;protected]</a></strong></p>
 </section>
 
 <!-- ══ VESTIMENTA ══ -->
 <section id="vestimenta" class="alt">
+  <div class="plx-layer" data-speed="0.20">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- olive branch sweeping bottom-right -->
+      <path d="M1440,900 C1380,820 1300,760 1260,680 C1220,600 1240,520 1220,440" stroke="#1a1e8f" stroke-width="2" stroke-linecap="round" opacity="0.09"/>
+      <path d="M1310,780 C1290,762 1268,760 1264,774 C1260,788 1276,804 1298,800 C1320,796 1326,778 1316,770Z" stroke="#1a1e8f" stroke-width="1.4" opacity="0.08"/>
+      <path d="M1276,700 C1254,684 1230,684 1228,700 C1226,716 1244,730 1268,724 C1292,718 1296,702 1280,694Z" stroke="#1a1e8f" stroke-width="1.4" opacity="0.08"/>
+      <path d="M1250,622 C1228,606 1204,608 1202,624 C1200,640 1220,654 1244,646 C1268,638 1270,622 1252,614Z" stroke="#1a1e8f" stroke-width="1.4" opacity="0.08"/>
+      <!-- top left scattered dots -->
+      <circle cx="60" cy="80" r="3" fill="#1a1e8f" opacity="0.05"/>
+      <circle cx="120" cy="160" r="2" fill="#1a1e8f" opacity="0.04"/>
+      <circle cx="40" cy="240" r="2.5" fill="#1a1e8f" opacity="0.04"/>
+      <!-- faint horizontal ink wash middle -->
+      <path d="M0,440 C400,428 800,438 1440,432" stroke="#1a1e8f" stroke-width="50" stroke-linecap="round" opacity="0.018"/>
+    </svg>
+  </div>
   <div class="dc-grid">
     <div class="dc-text reveal">
       <p class="s-tag">cómo venir</p>
@@ -531,34 +694,54 @@
 
 <!-- ══ CONFIRMACIÓN ══ -->
 <section id="confirmacion">
+  <div class="plx-layer" data-speed="0.25">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Large faint date watermark background -->
+      <text x="720" y="520" font-family="'Playfair Display', serif" font-style="italic" font-size="220" fill="#1a1e8f" text-anchor="middle" opacity="0.022">19·09</text>
+      <!-- branch top right -->
+      <path d="M1440,0 C1380,80 1300,140 1260,220" stroke="#1a1e8f" stroke-width="1.6" stroke-linecap="round" opacity="0.09"/>
+      <path d="M1360,70 C1342,54 1322,52 1318,66 C1314,80 1328,94 1348,90 C1368,86 1372,70 1362,62Z" stroke="#1a1e8f" stroke-width="1.2" opacity="0.08"/>
+      <!-- branch bottom left -->
+      <path d="M0,900 C60,820 120,760 160,680" stroke="#1a1e8f" stroke-width="1.6" stroke-linecap="round" opacity="0.07"/>
+      <path d="M70,840 C54,822 36,820 32,836 C28,852 44,864 64,858 C84,852 86,836 74,826Z" stroke="#1a1e8f" stroke-width="1.2" opacity="0.06"/>
+    </svg>
+  </div>
   <div class="form-wrap">
     <p class="s-tag reveal">¿vendrás?</p>
     <h2 class="s-title reveal">Confirmar Asistencia</h2>
     <span class="s-rule reveal" style="margin:18px auto 32px;"></span>
     <p class="form-intro reveal">Confírmanos tu asistencia antes del <strong>15 de julio de 2026</strong>.<br>Nos ayuda enormemente para organizar el día perfecto.</p>
-    <div id="theForm" class="reveal">
-      <div class="form-grid">
-        <div class="fg"><label>Nombre</label><input type="text" placeholder="tu nombre"></div>
-        <div class="fg"><label>Apellidos</label><input type="text" placeholder="tus apellidos"></div>
-        <div class="fg full"><label>Email</label><input type="email" placeholder="para enviarte todos los detalles"></div>
-        <div class="fg full"><label>¿Asistirás?</label><div class="r-row"><label class="r-opt"><input type="radio" name="asiste" value="si" checked><span>¡Allí estaré!</span></label><label class="r-opt"><input type="radio" name="asiste" value="no"><span>Lo siento, no podré</span></label></div></div>
-        <div class="fg"><label>Menú</label><select><option>Menú estándar</option><option>Vegetariano</option><option>Vegano</option><option>Sin gluten</option><option>Sin lactosa</option></select></div>
-        <div class="fg"><label>Acompañantes</label><select><option>Solo yo</option><option>+1 persona</option><option>+2 personas</option><option>+3 o más</option></select></div>
-        <div class="fg full"><label>Alergias o intolerancias</label><input type="text" placeholder="si tienes alguna, cuéntanos aquí"></div>
-        <div class="fg full"><label>¿Necesitas transporte a la finca?</label><div class="r-row"><label class="r-opt"><input type="radio" name="bus" value="si"><span>Sí, me vendría bien</span></label><label class="r-opt"><input type="radio" name="bus" value="no" checked><span>No, me organizo</span></label></div></div>
-        <div class="fg full"><label>Un mensaje para los novios</label><textarea placeholder="lo que sientas, lo que quieras contarnos..."></textarea></div>
-      </div>
-      <button class="form-btn" onclick="enviar()"><span>Enviar confirmación</span></button>
-    </div>
-    <div id="exito" class="exito">
-      <p class="exito-titulo">¡Te esperamos! 🌿</p>
-      <p>Hemos recibido tu confirmación. Pronto recibirás todos los detalles en tu correo.</p>
+    <div class="gform-wrap reveal">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLScblKA3U7mxbRSl7Z6MQ4hiYJ7dbRSvO530OKK-fHij_k3-Nw/viewform?embedded=true&usp=pp_url&entry.843994452=Alfredo+Torregrosa+Lloret&entry.616594321=S%C3%AD&entry.469737019=No&entry.143867804=No&entry.227169205=papaute&entry.1682650950=T%E2%80%99estime"
+        width="100%"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Confirmación de asistencia — Sofía & Alfredo">
+        Cargando formulario…
+      </iframe>
     </div>
   </div>
 </section>
 
 <!-- ══ REGALO ══ -->
 <section id="regalo" class="alt">
+  <div class="plx-layer" data-speed="0.18">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- large looping olive branch across -->
+      <path d="M0,500 C100,440 200,420 320,460 C440,500 520,520 600,480 C680,440 760,400 880,440 C1000,480 1100,500 1200,460 C1300,420 1380,400 1440,420" stroke="#1a1e8f" stroke-width="1.8" stroke-linecap="round" opacity="0.08"/>
+      <path d="M160,438 C144,420 122,418 118,434 C114,450 130,464 152,458 C174,452 176,438 162,430Z" stroke="#1a1e8f" stroke-width="1.3" opacity="0.07"/>
+      <path d="M360,470 C342,452 318,452 316,468 C314,484 332,498 354,492 C376,486 378,470 364,462Z" stroke="#1a1e8f" stroke-width="1.3" opacity="0.07"/>
+      <path d="M560,460 C542,444 520,444 518,460 C516,476 534,490 556,484 C578,478 578,462 562,454Z" stroke="#1a1e8f" stroke-width="1.3" opacity="0.07"/>
+      <!-- olives on branch -->
+      <path d="M160,436 L160,426 M158,426 Q160,422 162,426" stroke="#1a1e8f" stroke-width="1.1" stroke-linecap="round" opacity="0.08"/>
+      <path d="M358,468 L358,458 M356,458 Q358,454 360,458" stroke="#1a1e8f" stroke-width="1.1" stroke-linecap="round" opacity="0.08"/>
+      <!-- corner decorative cross-hatch -->
+      <path d="M0,0 L60,0 L0,60Z" stroke="#1a1e8f" stroke-width=".8" opacity="0.04"/>
+      <path d="M1440,900 L1380,900 L1440,840Z" stroke="#1a1e8f" stroke-width=".8" opacity="0.04"/>
+    </svg>
+  </div>
   <div class="regalo-grid">
     <div class="regalo-text reveal">
       <p class="s-tag">si quieres...</p>
@@ -626,24 +809,60 @@
   <div class="ft-info">19 de septiembre, 2026<br>Finca Cañada Honda · Librilla, Murcia</div>
 </footer>
 
-<script>
-  const items = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('vis'); }), {threshold:.07, rootMargin:'0px 0px -28px 0px'});
-  items.forEach(el => obs.observe(el));
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ── Scroll reveal ── */
+  const obs = new IntersectionObserver(
+    e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('vis'); }),
+    { threshold:.07, rootMargin:'0px 0px -28px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+  /* ── Parallax engine (rAF-driven, no jank) ── */
+  const plxLayers = [];
+  document.querySelectorAll('.plx-layer').forEach(layer => {
+    const speed   = parseFloat(layer.dataset.speed) || 0.2;
+    const section = layer.closest('section');
+    plxLayers.push({ el: layer, speed, section });
+  });
+
+  let ticking = false;
+  let currentY = window.scrollY;
+
+  function applyParallax() {
+    const vh = window.innerHeight;
+    plxLayers.forEach(({ el, speed, section }) => {
+      const rect   = section.getBoundingClientRect();
+      const centre = rect.top + rect.height / 2 - vh / 2;
+      const offset = centre * speed;
+      el.style.transform = `translateY(${offset}px)`;
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(applyParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  applyParallax(); // initial position
+
+  /* ── Form ── */
   function enviar() {
     const f = document.getElementById('theForm'), s = document.getElementById('exito');
-    f.style.transition='opacity .4s,transform .4s'; f.style.opacity='0'; f.style.transform='translateY(-10px)';
+    f.style.transition='opacity .4s,transform .4s';
+    f.style.opacity='0'; f.style.transform='translateY(-10px)';
     setTimeout(()=>{ f.style.display='none'; s.classList.add('show'); }, 420);
   }
 
+  /* ── Copy IBAN ── */
   function copiarIBAN() {
     navigator.clipboard.writeText('ES12 3456 7890 1234 5678 9012').then(()=>{
       const b = document.querySelector('.copy-btn'), o = b.textContent;
-      b.textContent='¡Copiado! ✓'; b.style.background='var(--ink)'; b.style.color='var(--parch)'; b.style.borderColor='var(--ink)';
-      setTimeout(()=>{ b.textContent=o; b.style.background=''; b.style.color=''; b.style.borderColor=''; }, 2200);
+      b.textContent='¡Copiado! ✓';
+      b.style.background='var(--ink)'; b.style.color='var(--parch)';
+      setTimeout(()=>{ b.textContent=o; b.style.background=''; b.style.color=''; }, 2200);
     });
   }
 </script>
-</body>
-</html>
