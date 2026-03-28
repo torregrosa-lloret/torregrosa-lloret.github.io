@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofía & Alfredo · 19 Sep 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:       #1a1e8f;
+    --ink-mid:   #2c34b0;
+    --ink-pale:  #6878cc;
+    --ink-ghost: #b0badf;
+    --ink-faint: #dde2f4;
+    --parch:     #f5f0e8;
+    --parch-alt: #ede7d6;
+    --parch-mid: #f0ead9;
+    --cream:     #faf8f2;
+    --text:      #181828;
+    --text-mid:  #3a3a5c;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--parch);
+    color: var(--text);
+    font-family: 'EB Garamond', serif;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:''; position:fixed; inset:0; z-index:999; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity:0.55;
+  }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    padding:16px 56px;
+    display:flex; justify-content:space-between; align-items:center;
+    background:rgba(245,240,232,0.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(26,30,143,0.08);
+  }
+  .nav-logo {
+    font-family:'Playfair Display', serif;
+    font-style:italic; font-size:22px; color:var(--ink);
+  }
+  nav ul { list-style:none; display:flex; gap:36px; }
+  nav a {
+    font-family:'EB Garamond', serif;
+    font-size:13px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--ink); text-decoration:none; opacity:0.55;
+    transition:opacity .2s;
+  }
+  nav a:hover { opacity:1; }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; display:grid; grid-template-columns:1fr 1fr;
+    padding-top:70px;
+  }
+  .hero-l {
+    display:flex; flex-direction:column; justify-content:center;
+    padding:80px 48px 80px 72px;
+  }
+  .hero-eyebrow {
+    font-family:'Caveat', cursive; font-size:19px; color:var(--ink-pale);
+    letter-spacing:0.05em; margin-bottom:18px;
+    animation:fadeUp .8s ease both;
+  }
+  .hero-names {
+    font-family:'Playfair Display', serif; font-style:italic;
+    font-size:clamp(60px, 7vw, 98px); line-height:.93; color:var(--ink);
+    animation:fadeUp .8s .1s ease both;
+  }
+  .hero-amp {
+    font-family:'Playfair Display', serif;
+    font-size:.56em; color:var(--ink-pale);
+    margin:0 8px; font-style:normal; display:inline-block; transform:translateY(-3px);
+  }
+  .hero-rule {
+    display:block; width:68px; height:1px; background:var(--ink-pale);
+    margin:28px 0; animation:growLine 1s .28s ease both;
+  }
+  @keyframes growLine { from{width:0;opacity:0} to{width:68px;opacity:1} }
+  .hero-date-row { display:flex; align-items:flex-end; gap:14px; animation:fadeUp .8s .22s ease both; }
+  .hero-day { font-family:'Playfair Display', serif; font-size:88px; color:var(--ink); line-height:1; }
+  .hero-date-stacked { display:flex; flex-direction:column; gap:3px; }
+  .hero-month { font-family:'Caveat', cursive; font-size:32px; color:var(--ink-mid); }
+  .hero-year { font-family:'Playfair Display', serif; font-size:24px; color:var(--ink-pale); }
+  .hero-place { margin-top:24px; font-family:'Caveat', cursive; font-size:20px; color:var(--text-mid); animation:fadeUp .8s .34s ease both; }
+  .hero-sub { margin-top:14px; max-width:360px; font-size:17.5px; font-style:italic; line-height:1.8; color:var(--text-mid); animation:fadeUp .8s .44s ease both; }
+  .hero-cta {
+    margin-top:44px; display:inline-block;
+    border:1.5px solid var(--ink); padding:13px 36px;
+    font-family:'Caveat', cursive; font-size:20px; color:var(--ink);
+    text-decoration:none; transition:background .3s,color .3s;
+    animation:fadeUp .8s .54s ease both;
+  }
+  .hero-cta:hover { background:var(--ink); color:var(--parch); }
+  .hero-r { display:flex; align-items:center; justify-content:center; padding:40px 40px 40px 0; }
+  .hero-svg { width:100%; max-width:470px; }
+
+  /* SVG draw-in */
+  @keyframes drawIn { from{stroke-dashoffset:2400;opacity:0} to{stroke-dashoffset:0;opacity:1} }
+  .sk { stroke-dasharray:2400; animation:drawIn 4s ease forwards; }
+  .sk.d1{animation-delay:.2s} .sk.d2{animation-delay:.6s} .sk.d3{animation-delay:1s}
+  .sk.d4{animation-delay:1.4s} .sk.d5{animation-delay:1.8s} .sk.d6{animation-delay:2.2s}
+
+  /* SECTIONS */
+  section { padding:96px 72px; position:relative; overflow:hidden; }
+  section.alt { background:var(--parch-alt); }
+  .s-tag { font-family:'Caveat', cursive; font-size:16px; color:var(--ink-pale); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px; }
+  .s-title { font-family:'Playfair Display', serif; font-style:italic; font-size:clamp(34px,4vw,54px); color:var(--ink); line-height:1.08; }
+  .s-rule { display:block; width:48px; height:1.5px; background:var(--ink-pale); margin:18px 0 32px; }
+
+  /* FINCA */
+  .finca-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  .finca-text p { font-size:18px; line-height:1.85; color:var(--text-mid); margin-bottom:18px; }
+  .timeline { margin-top:36px; }
+  .tl { display:grid; grid-template-columns:60px 1fr; gap:18px; padding:16px 0; border-bottom:1px solid rgba(26,30,143,.08); }
+  .tl:first-child { border-top:1px solid rgba(26,30,143,.08); }
+  .tl-t { font-family:'Caveat', cursive; font-size:22px; color:var(--ink-mid); padding-top:2px; }
+  .tl-body h4 { font-family:'Playfair Display', serif; font-style:italic; font-size:18px; color:var(--ink); margin-bottom:3px; }
+  .tl-body p { font-size:15px; color:var(--text-mid); line-height:1.5; }
+  .addr-card { background:var(--cream); border:1px solid rgba(26,30,143,.14); padding:30px 30px 24px; position:relative; }
+  .addr-card::after { content:''; position:absolute; bottom:-6px; right:-6px; width:100%; height:100%; border:1px solid rgba(26,30,143,.18); pointer-events:none; }
+  .addr-lbl { font-family:'Caveat', cursive; font-size:14px; color:var(--ink-pale); letter-spacing:.12em; text-transform:uppercase; margin-bottom:12px; }
+  .addr-name { font-family:'Playfair Display', serif; font-style:italic; font-size:24px; color:var(--ink); margin-bottom:6px; }
+  .addr-sub { font-size:15px; color:var(--text-mid); margin-bottom:22px !important; line-height:1.65; }
+  .addr-link { font-family:'Caveat', cursive; font-size:18px; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink-ghost); padding-bottom:2px; transition:opacity .2s; }
+  .addr-link:hover { opacity:.55; }
+
+  /* HOTELS */
+  .hotels { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:6px; }
+  .hotel { border:1px solid rgba(26,30,143,.12); padding:30px 24px; background:var(--cream); transition:transform .3s,box-shadow .3s; position:relative; overflow:hidden; }
+  .hotel::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--ink); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
+  .hotel:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(26,30,143,.08); }
+  .hotel:hover::before { transform:scaleX(1); }
+  .hotel-km { font-family:'Caveat', cursive; font-size:14px; color:var(--ink-pale); letter-spacing:.1em; text-transform:uppercase; margin-bottom:9px; }
+  .hotel-name { font-family:'Playfair Display', serif; font-style:italic; font-size:21px; color:var(--ink); margin-bottom:13px; }
+  .hotel-desc { font-size:15px; line-height:1.75; color:var(--text-mid); margin-bottom:20px; }
+  .hotel-lnk { font-family:'Caveat', cursive; font-size:17px; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink-ghost); padding-bottom:2px; transition:opacity .2s; }
+  .hotel-lnk:hover { opacity:.55; }
+  .hotels-note { margin-top:26px; font-size:15px; font-style:italic; color:var(--text-mid); }
+
+  /* DRESS CODE */
+  .dc-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .dc-text p { font-size:18px; line-height:1.85; color:var(--text-mid); margin-bottom:18px; }
+  .palette { display:flex; gap:14px; margin-top:26px; flex-wrap:wrap; }
+  .sw-w { display:flex; flex-direction:column; align-items:center; gap:7px; }
+  .sw { width:48px; height:48px; border-radius:50%; border:1px solid rgba(26,30,143,.14); box-shadow:0 2px 6px rgba(0,0,0,.05); }
+  .sw-l { font-family:'Caveat', cursive; font-size:12px; color:var(--text-mid); text-align:center; }
+  .dd { margin-top:34px; display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .dd-col h4 { font-family:'Caveat', cursive; font-size:18px; color:var(--ink); margin-bottom:10px; }
+  .dd-col ul { list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .dd-col li { font-size:15px; color:var(--text-mid); line-height:1.5; padding-left:16px; position:relative; }
+  .dd-col li::before { content:'—'; position:absolute; left:0; color:var(--ink-pale); }
+
+  /* FORM */
+  .form-wrap { max-width:660px; margin:0 auto; text-align:center; }
+  .form-intro { font-size:18px; font-style:italic; color:var(--text-mid); margin-bottom:44px; line-height:1.75; }
+  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; text-align:left; }
+  .fg { display:flex; flex-direction:column; gap:8px; }
+  .fg.full { grid-column:1/-1; }
+  .fg label { font-family:'Caveat', cursive; font-size:15px; color:var(--ink); letter-spacing:.07em; }
+  .fg input,.fg select,.fg textarea { background:transparent; border:none; border-bottom:1px solid rgba(26,30,143,.22); padding:9px 0; font-family:'EB Garamond',serif; font-size:17px; color:var(--text); outline:none; transition:border-color .3s; width:100%; }
+  .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--ink); }
+  .fg textarea { resize:vertical; min-height:78px; }
+  .fg select { appearance:none; cursor:pointer; }
+  .r-row { display:flex; gap:28px; margin-top:4px; flex-wrap:wrap; }
+  .r-opt { display:flex; align-items:center; gap:9px; cursor:pointer; font-size:16px; color:var(--text-mid); }
+  .r-opt input[type="radio"] { width:15px; height:15px; appearance:none; cursor:pointer; border:1px solid var(--ink-pale); border-radius:50%; position:relative; flex-shrink:0; padding:0; border-bottom:1px solid var(--ink-pale); }
+  .r-opt input[type="radio"]:checked::after { content:''; position:absolute; inset:3px; background:var(--ink); border-radius:50%; }
+  .form-btn { margin-top:44px; background:transparent; border:1.5px solid var(--ink); padding:15px 56px; font-family:'Caveat',cursive; font-size:22px; color:var(--ink); cursor:pointer; position:relative; overflow:hidden; transition:color .3s,transform .2s; }
+  .form-btn::before { content:''; position:absolute; inset:0; background:var(--ink); transform:translateX(-101%); transition:transform .3s ease; z-index:0; }
+  .form-btn:hover::before { transform:translateX(0); }
+  .form-btn:hover { color:var(--parch); transform:translateY(-2px); }
+  .form-btn span { position:relative; z-index:1; }
+  .exito { display:none; padding:48px; }
+  .exito.show { display:block; }
+  .exito-titulo { font-family:'Playfair Display',serif; font-style:italic; font-size:38px; color:var(--ink); margin-bottom:14px; }
+  .exito p { font-size:18px; font-style:italic; color:var(--text-mid); }
+
+  /* REGALO */
+  .regalo-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .regalo-text p { font-size:18px; line-height:1.85; color:var(--text-mid); margin-bottom:18px; }
+  .iban-box { margin-top:32px; border:1px solid rgba(26,30,143,.18); padding:26px 30px; background:var(--cream); position:relative; }
+  .iban-box::after { content:''; position:absolute; bottom:-6px; right:-6px; width:100%; height:100%; border:1px solid rgba(26,30,143,.18); pointer-events:none; }
+  .iban-lbl { font-family:'Caveat',cursive; font-size:13px; color:var(--ink-pale); letter-spacing:.14em; text-transform:uppercase; margin-bottom:9px; }
+  .iban-nombre { font-family:'Playfair Display',serif; font-style:italic; font-size:21px; color:var(--ink); margin-bottom:5px; }
+  .iban-num { font-family:'Caveat',cursive; font-size:20px; color:var(--text); letter-spacing:.06em; }
+  .copy-btn { margin-top:14px; background:none; border:1px solid var(--ink-pale); padding:7px 20px; font-family:'Caveat',cursive; font-size:16px; color:var(--ink); cursor:pointer; transition:all .25s; }
+  .copy-btn:hover { background:var(--ink); color:var(--parch); border-color:var(--ink); }
+  .list-lnk { display:inline-block; margin-top:26px; font-family:'Caveat',cursive; font-size:19px; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink-ghost); padding-bottom:3px; transition:opacity .2s; }
+  .list-lnk:hover { opacity:.55; }
+
+  /* FOOTER */
+  footer { background:var(--ink); padding:56px 72px; display:flex; justify-content:space-between; align-items:center; }
+  .ft-name { font-family:'Playfair Display',serif; font-style:italic; font-size:32px; color:var(--parch); opacity:.9; }
+  .ft-info { text-align:right; font-family:'Caveat',cursive; font-size:18px; color:var(--parch); opacity:.55; line-height:1.7; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+  .reveal { opacity:0; transform:translateY(20px); transition:opacity .8s ease,transform .8s ease; }
+  .reveal.vis { opacity:1; transform:none; }
+
+  @media (max-width:900px) {
+    nav { padding:12px 20px; }
+    nav ul { gap:16px; }
+    .hero { grid-template-columns:1fr; }
+    .hero-r { display:none; }
+    .hero-l { padding:70px 24px 60px; }
+    section { padding:72px 24px; }
+    .finca-grid,.dc-grid,.regalo-grid { grid-template-columns:1fr; gap:44px; }
+    .hotels { grid-template-columns:1fr; }
+    .form-grid { grid-template-columns:1fr; }
+    footer { flex-direction:column; gap:16px; text-align:center; }
+    .ft-info { text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">sofía & alfredo</div>
+  <ul>
+    <li><a href="#finca">La Finca</a></li>
+    <li><a href="#alojamiento">Alojamiento</a></li>
+    <li><a href="#vestimenta">Vestimenta</a></li>
+    <li><a href="#confirmacion">Confirmación</a></li>
+    <li><a href="#regalo">Regalo</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="inicio">
+  <div class="hero-l">
+    <p class="hero-eyebrow">os invitamos a nuestra boda</p>
+    <h1 class="hero-names">sofía<span class="hero-amp">&</span>alfredo</h1>
+    <span class="hero-rule"></span>
+    <div class="hero-date-row">
+      <span class="hero-day">19</span>
+      <div class="hero-date-stacked">
+        <span class="hero-month">septiembre</span>
+        <span class="hero-year">2026</span>
+      </div>
+    </div>
+    <p class="hero-place">Finca Cañada Honda · Librilla, Murcia</p>
+    <p class="hero-sub">Entre olivos centenarios y cielo murciano,<br>bajo la luz dorada del atardecer.</p>
+    <a href="#confirmacion" class="hero-cta">Confirmar asistencia</a>
+  </div>
+  <div class="hero-r">
+    <svg class="hero-svg" viewBox="0 0 480 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="480" height="560" fill="#f5f0e8"/>
+
+      <!-- Sketchy hills (back) -->
+      <path class="sk d1" d="M-2 392 Q28 358 62 370 Q92 382 122 360 Q154 336 186 350 Q216 364 248 342 Q280 318 312 338 Q344 358 374 332 Q406 306 438 326 Q462 340 482 330 L482 422 L-2 422Z" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.17"/>
+      <path class="sk d1" d="M-2 410 Q38 390 78 402 Q120 414 164 398 Q208 382 252 396 Q296 410 342 392 Q384 376 428 392 Q454 400 482 390 L482 422 L-2 422Z" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.11"/>
+
+      <!-- Ground -->
+      <path class="sk d1" d="M2 422 Q60 420 120 423 Q182 426 242 422 Q302 418 362 424 Q422 430 478 421" stroke="#1a1e8f" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- House walls (wobbly) -->
+      <path class="sk d2" d="M108 268 Q109 265 110 264 L350 263 Q351 265 351 267 L352 420 Q350 421 349 421 L109 422 Q107 421 107 420 Z" stroke="#1a1e8f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Roof -->
+      <path class="sk d2" d="M95 266 Q128 246 162 226 Q194 208 228 193 Q231 192 233 194 Q268 210 300 228 Q332 246 365 266" stroke="#1a1e8f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Roof edge shadow line -->
+      <path d="M102 271 Q162 253 230 198 Q296 252 358 271" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.28"/>
+
+      <!-- Chimney -->
+      <path class="sk d3" d="M275 222 Q275 220 276 219 L299 218 Q300 220 300 222 L300 258 Q299 259 297 259 L275 259 Q273 258 274 257 Z" stroke="#1a1e8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Smoke wisps -->
+      <path d="M284 218 Q280 206 285 196 Q290 186 283 176 Q277 167 281 158" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round" opacity="0.32"/>
+
+      <!-- Arched window left -->
+      <path class="sk d3" d="M133 299 Q133 297 135 296 L178 295 Q180 297 180 300 L180 353 Q178 368 156 369 Q133 367 132 353 Z" stroke="#1a1e8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M156 296 Q156 330 155 369" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.42"/>
+      <path d="M133 332 Q155 336 180 332" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.33"/>
+      <!-- Shutter suggestion -->
+      <path d="M132 300 Q126 305 125 336 Q125 350 130 354" stroke="#1a1e8f" stroke-width="1.1" stroke-linecap="round" opacity="0.22"/>
+      <path d="M180 300 Q186 305 187 336 Q187 350 182 354" stroke="#1a1e8f" stroke-width="1.1" stroke-linecap="round" opacity="0.22"/>
+
+      <!-- Square window right -->
+      <path class="sk d3" d="M262 295 Q264 294 265 294 L318 293 Q319 295 319 297 L319 347 Q318 348 317 348 L263 349 Q261 348 261 346 Z" stroke="#1a1e8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M290 294 Q290 320 290 348" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+      <path d="M262 320 Q288 323 319 320" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+
+      <!-- Door arched -->
+      <path class="sk d4" d="M199 421 Q198 356 200 344 Q207 321 229 320 Q251 320 258 344 Q260 355 259 421" stroke="#1a1e8f" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M199 382 Q228 385 259 382" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.28"/>
+      <path d="M199 360 Q228 362 259 360" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.2"/>
+      <!-- door knob -->
+      <path d="M253 390 Q255 390 256 392 Q256 395 253 395" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- OLIVE TREE LEFT — sketchy organic trunk -->
+      <path class="sk d3" d="M55 422 Q54 400 55 378 Q55 356 53 336 Q52 318 55 298 Q56 283 56 272" stroke="#1a1e8f" stroke-width="3" stroke-linecap="round"/>
+      <!-- Branches -->
+      <path class="sk d3" d="M55 338 Q46 323 38 308 Q32 296 28 283" stroke="#1a1e8f" stroke-width="2.2" stroke-linecap="round"/>
+      <path class="sk d3" d="M55 316 Q64 303 72 292 Q78 282 80 273" stroke="#1a1e8f" stroke-width="2" stroke-linecap="round"/>
+      <!-- Canopy (wobbly irregular blobs) -->
+      <path class="sk d4" d="M56 253 Q40 248 29 257 Q16 267 18 280 Q20 294 33 300 Q47 305 61 298 Q76 290 77 276 Q79 260 66 253 Q62 250 56 253Z" stroke="#1a1e8f" stroke-width="1.6" stroke-linecap="round"/>
+      <path class="sk d4" d="M26 270 Q14 265 8 276 Q4 287 11 296 Q19 305 30 301 Q40 296 40 283Z" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+      <path class="sk d4" d="M72 265 Q62 256 55 265 Q49 274 56 284 Q64 293 77 287 Q85 279 78 267Z" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+      <!-- Leaf dashes inside -->
+      <path d="M29 268 Q34 264 41 268" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+      <path d="M46 260 Q51 256 57 262" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.28"/>
+      <path d="M58 272 Q64 268 70 274" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.28"/>
+      <path d="M22 280 Q27 276 32 281" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.22"/>
+      <path d="M40 278 Q46 274 52 279" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.22"/>
+      <!-- Olive berries -->
+      <path d="M35 272 L35 268 M33 268 Q35 266 37 268" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
+      <path d="M63 266 L63 262 M61 262 Q63 260 65 262" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
+      <path d="M50 280 L50 276 M48 276 Q50 274 52 276" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+
+      <!-- OLIVE TREE RIGHT -->
+      <path class="sk d3" d="M416 422 Q417 400 416 377 Q417 354 416 332 Q415 312 417 295 Q418 282 418 270" stroke="#1a1e8f" stroke-width="3" stroke-linecap="round"/>
+      <path class="sk d3" d="M417 336 Q425 318 432 306 Q440 294 447 281" stroke="#1a1e8f" stroke-width="2.2" stroke-linecap="round"/>
+      <path class="sk d3" d="M417 314 Q407 302 399 290 Q393 280 391 271" stroke="#1a1e8f" stroke-width="2" stroke-linecap="round"/>
+      <path class="sk d4" d="M417 250 Q401 244 390 254 Q379 264 381 278 Q383 292 396 299 Q409 304 423 297 Q435 288 435 273 Q435 256 421 249Z" stroke="#1a1e8f" stroke-width="1.6" stroke-linecap="round"/>
+      <path class="sk d4" d="M435 266 Q445 260 451 271 Q457 282 450 291 Q442 299 432 295Z" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+      <path class="sk d4" d="M384 268 Q373 262 367 273 Q363 284 372 292 Q381 299 393 294Z" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M393 266 Q399 262 406 267" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.28"/>
+      <path d="M410 258 Q416 254 422 259" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.28"/>
+      <path d="M421 272 Q427 268 433 273" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.28"/>
+      <path d="M400 280 L400 276 M398 276 Q400 274 402 276" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
+      <path d="M425 267 L425 263 M423 263 Q425 261 427 263" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
+
+      <!-- CYPRESS trees far right -->
+      <path class="sk d5" d="M459 422 Q459 400 461 376 Q462 352 461 330 Q460 310 462 298" stroke="#1a1e8f" stroke-width="2" stroke-linecap="round"/>
+      <path d="M462 298 Q452 293 447 306 Q442 320 449 333 Q457 348 461 358 Q463 348 467 333 Q471 318 466 304 Q462 292 462 298Z" stroke="#1a1e8f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path class="sk d5" d="M473 422 Q474 400 474 378 Q475 357 475 340" stroke="#1a1e8f" stroke-width="1.7" stroke-linecap="round" opacity="0.6"/>
+      <path d="M475 340 Q467 335 464 347 Q461 360 466 371 Q471 380 475 385 Q476 378 479 366 Q482 351 478 340 Q476 333 475 340Z" stroke="#1a1e8f" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+      <!-- Sun (sketchy wobbly circle + rays) -->
+      <path class="sk d1" d="M350 68 Q360 53 376 55 Q393 58 398 74 Q402 90 391 102 Q379 114 363 109 Q346 104 342 89 Q338 74 350 68Z" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round" opacity="0.33"/>
+      <path d="M368 50 Q368 44 369 39" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.28"/>
+      <path d="M388 58 Q393 52 397 48" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.28"/>
+      <path d="M400 79 Q406 78 410 78" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.28"/>
+      <path d="M395 102 Q399 106 402 109" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.28"/>
+      <path d="M346 58 Q342 53 339 50" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.28"/>
+      <path d="M336 80 Q330 79 326 79" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round" opacity="0.28"/>
+
+      <!-- Flower pot at door -->
+      <path class="sk d5" d="M184 421 Q183 414 187 409 L197 409 Q198 414 197 421" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M183 413 Q190 415 198 413" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+      <path d="M191 409 Q190 399 191 389" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M191 401 Q184 394 180 385" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M191 396 Q197 390 200 382" stroke="#1a1e8f" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M187 387 Q183 383 187 379 Q192 375 196 379 Q200 383 196 387Z" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+      <path d="M178 383 Q175 379 178 376 Q181 373 184 377Z" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+      <path d="M199 380 Q197 376 200 374 Q203 372 205 376Z" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+
+      <!-- Swallows -->
+      <path class="sk d6" d="M140 156 Q146 149 150 153 Q153 157 158 150 Q162 145 167 152" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.48"/>
+      <path class="sk d6" d="M202 131 Q207 124 210 128 Q213 132 217 126 Q220 121 225 127" stroke="#1a1e8f" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.42"/>
+      <path class="sk d6" d="M274 143 Q278 138 281 141 Q283 145 286 139 Q289 135 293 140" stroke="#1a1e8f" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.38"/>
+
+      <!-- Handwritten label -->
+      <text x="240" y="486" font-family="Caveat, cursive" font-size="17" fill="#1a1e8f" text-anchor="middle" opacity="0.52">Cañada Honda · Librilla</text>
+      <path d="M153 492 Q240 490 327 492" stroke="#1a1e8f" stroke-width="0.8" stroke-linecap="round" opacity="0.28"/>
+      <text x="240" y="516" font-family="'EB Garamond', serif" font-style="italic" font-size="13" fill="#1a1e8f" text-anchor="middle" opacity="0.28" letter-spacing="3">Murcia · España</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ══ FINCA ══ -->
+<section id="finca" class="alt">
+  <div class="finca-grid">
+    <div class="finca-text reveal">
+      <p class="s-tag">el lugar</p>
+      <h2 class="s-title">Finca Cañada Honda</h2>
+      <span class="s-rule"></span>
+      <p>Enclavada en el paraje natural de Librilla, en el corazón de la huerta murciana, la Finca Cañada Honda guarda entre sus muros de piedra siglos de sol mediterráneo.</p>
+      <p>La jornada comienza con la ceremonia en el jardín exterior, rodeados de olivos centenarios, y concluye bien entrada la noche bajo las estrellas del campo murciano.</p>
+      <div class="timeline">
+        <div class="tl"><span class="tl-t">18:00</span><div class="tl-body"><h4>Ceremonia civil</h4><p>Jardín de los olivos · al aire libre</p></div></div>
+        <div class="tl"><span class="tl-t">19:30</span><div class="tl-body"><h4>Cóctel de bienvenida</h4><p>Terraza sur con vistas al campo</p></div></div>
+        <div class="tl"><span class="tl-t">21:30</span><div class="tl-body"><h4>Cena & baile</h4><p>Gran salón de piedra y terraza</p></div></div>
+        <div class="tl"><span class="tl-t">02:00</span><div class="tl-body"><h4>Afterparty</h4><p>Patio interior · música hasta el amanecer</p></div></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.18s">
+      <div class="addr-card">
+        <p class="addr-lbl">Cómo llegar</p>
+        <p class="addr-name">Finca Cañada Honda</p>
+        <p class="addr-sub">Paraje Cañada Honda, s/n · Librilla (Murcia)<br>A 25 min de Murcia capital · A 45 min del Aeropuerto RMU</p>
+        <a href="https://maps.google.com/?q=Librilla+Murcia" class="addr-link" target="_blank">Ver en Google Maps →</a>
+      </div>
+      <!-- Small landscape sketch -->
+      <div style="display:flex;justify-content:center;margin-top:36px;">
+        <svg viewBox="0 0 300 162" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;">
+          <rect width="300" height="162" fill="#ede7d6" rx="1"/>
+          <!-- hills -->
+          <path d="M0 108 Q50 88 100 100 Q150 112 200 92 Q250 72 300 86 L300 162 L0 162Z" stroke="#1a1e8f" stroke-width="1.2" fill="none" opacity="0.2"/>
+          <!-- field rows -->
+          <path d="M8 130 Q76 118 144 130 Q212 142 280 126" stroke="#1a1e8f" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
+          <path d="M4 145 Q72 133 142 145 Q212 157 278 142" stroke="#1a1e8f" stroke-width="1" fill="none" opacity="0.15" stroke-linecap="round"/>
+          <!-- olive tree left -->
+          <path d="M70 148 Q70 130 70 116 Q70 104 70 92" stroke="#1a1e8f" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M70 116 Q62 106 56 96" stroke="#1a1e8f" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M70 106 Q78 98 82 90" stroke="#1a1e8f" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M70 76 Q57 70 50 80 Q44 90 50 100 Q59 108 70 104 Q82 98 84 86 Q84 74 70 76Z" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <!-- olive tree right -->
+          <path d="M220 148 Q221 130 220 115 Q220 102 221 90" stroke="#1a1e8f" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M220 116 Q228 106 234 96" stroke="#1a1e8f" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M220 104 Q212 96 208 88" stroke="#1a1e8f" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M220 74 Q207 68 200 78 Q194 88 200 98 Q209 106 220 103 Q232 97 234 85 Q234 72 220 74Z" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <!-- sun -->
+          <path d="M154 28 Q161 19 170 21 Q179 23 181 34 Q183 45 176 52 Q168 59 159 55 Q150 51 150 40 Q150 31 154 28Z" stroke="#1a1e8f" stroke-width="1.2" fill="none" opacity="0.3"/>
+          <!-- birds -->
+          <path d="M104 36 Q108 31 111 35 Q114 39 118 34" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/>
+          <path d="M126 27 Q129 22 132 26 Q134 30 138 25" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/>
+          <text x="150" y="155" font-family="Caveat, cursive" font-size="12" fill="#1a1e8f" text-anchor="middle" opacity="0.45">huerta murciana</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ALOJAMIENTO ══ -->
+<section id="alojamiento">
+  <p class="s-tag reveal">descansar</p>
+  <h2 class="s-title reveal">Alojamiento</h2>
+  <span class="s-rule reveal"></span>
+  <div class="hotels">
+    <div class="hotel reveal"><p class="hotel-km">~5 min · coche</p><h3 class="hotel-name">Hotel Rural La Peña</h3><p class="hotel-desc">Hotel rural entre olivos con piscina y ambiente sereno. Tarifas especiales negociadas para los invitados. Desayuno regional incluido.</p><a href="#" class="hotel-lnk">Ver hotel →</a></div>
+    <div class="hotel reveal" style="transition-delay:.15s"><p class="hotel-km">~15 min · coche</p><h3 class="hotel-name">Hotel Nelva Murcia</h3><p class="hotel-desc">Hotel moderno a las afueras de Murcia capital. Gran aparcamiento y posibilidad de lanzadera a la finca para el bloque reservado.</p><a href="#" class="hotel-lnk">Ver hotel →</a></div>
+    <div class="hotel reveal" style="transition-delay:.3s"><p class="hotel-km">~25 min · coche</p><h3 class="hotel-name">NH Collection Murcia</h3><p class="hotel-desc">En pleno centro histórico de Murcia, junto a la catedral. Ideal para quienes quieran aprovechar el viaje para visitar la ciudad.</p><a href="#" class="hotel-lnk">Ver hotel →</a></div>
+  </div>
+  <p class="hotels-note reveal">Para información sobre tarifas especiales escríbenos a <strong style="font-style:normal">hola@sofiayalfredo.es</strong></p>
+</section>
+
+<!-- ══ VESTIMENTA ══ -->
+<section id="vestimenta" class="alt">
+  <div class="dc-grid">
+    <div class="dc-text reveal">
+      <p class="s-tag">cómo venir</p>
+      <h2 class="s-title">Código de<br>Vestimenta</h2>
+      <span class="s-rule"></span>
+      <p>Celebramos al aire libre en septiembre bajo el sol murciano. Queremos un ambiente elegante y festivo: <strong>etiqueta garden mediterránea</strong>.</p>
+      <p>Tejidos ligeros y naturales, colores cálidos de la tierra. Para quienes lleven tacón, cuña o plataforma para caminar cómodo por el jardín.</p>
+      <div class="palette">
+        <div class="sw-w"><div class="sw" style="background:#d4c5a9"></div><span class="sw-l">Arena</span></div>
+        <div class="sw-w"><div class="sw" style="background:#e8c8a0"></div><span class="sw-l">Trigo</span></div>
+        <div class="sw-w"><div class="sw" style="background:#c8d4b8"></div><span class="sw-l">Salvia</span></div>
+        <div class="sw-w"><div class="sw" style="background:#b8c8d8"></div><span class="sw-l">Cielo</span></div>
+        <div class="sw-w"><div class="sw" style="background:#d8c0b8"></div><span class="sw-l">Terracota</span></div>
+        <div class="sw-w"><div class="sw" style="background:#d8c8e4"></div><span class="sw-l">Lavanda</span></div>
+        <div class="sw-w"><div class="sw" style="background:#f0e4c0"></div><span class="sw-l">Crema</span></div>
+      </div>
+      <div class="dd">
+        <div class="dd-col"><h4>✓ Sí</h4><ul><li>Colores tierra y pastel</li><li>Lino, seda, algodón</li><li>Vestido midi o cóctel</li><li>Traje de verano ligero</li><li>Cuña o plataforma</li><li>Pamelas y sombreros</li></ul></div>
+        <div class="dd-col"><h4>✗ No</h4><ul><li>Negro (de los novios)</li><li>Blanco o marfil</li><li>Ropa de playa</li><li>Vaqueros o deportivos</li></ul></div>
+      </div>
+    </div>
+    <!-- Sketchy couple -->
+    <div style="display:flex;justify-content:center;align-items:center;" class="reveal" style="transition-delay:.2s">
+      <svg viewBox="0 0 290 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:250px;width:100%">
+        <rect width="290" height="420" fill="#ede7d6" rx="1"/>
+        <!-- Figure 1: Bride -->
+        <!-- head -->
+        <path d="M84 65 Q74 62 68 71 Q62 82 65 95 Q68 108 79 114 Q92 119 103 112 Q115 103 114 89 Q113 74 103 66 Q94 60 84 65Z" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <!-- hair wavy -->
+        <path d="M66 80 Q64 65 73 56 Q85 46 100 50 Q116 55 118 70 Q120 82 116 90" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <path d="M116 76 Q123 72 121 86" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <!-- neck -->
+        <path d="M86 113 Q86 121 85 126 M100 112 Q100 120 101 126" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- bodice -->
+        <path d="M73 132 Q70 152 70 170 Q69 183 70 194 L120 195 Q121 182 120 168 Q120 150 117 132Z" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- neckline V -->
+        <path d="M73 132 Q89 146 94 156 Q98 147 113 132" stroke="#1a1e8f" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <!-- skirt A-line -->
+        <path d="M70 194 Q57 244 51 300 Q47 335 49 375 L141 375 Q143 334 138 298 Q131 242 120 194Z" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- dress lines -->
+        <path d="M66 234 Q94 244 124 234" stroke="#1a1e8f" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.32"/>
+        <path d="M59 275 Q94 288 130 275" stroke="#1a1e8f" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.25"/>
+        <path d="M53 318 Q94 332 136 318" stroke="#1a1e8f" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.18"/>
+        <!-- arms -->
+        <path d="M73 142 Q58 162 54 185 Q52 198 52 205" stroke="#1a1e8f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M117 142 Q132 162 136 186 Q138 200 137 207" stroke="#1a1e8f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <!-- bouquet sketchy -->
+        <path d="M137 208 Q142 214 141 222" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M140 208 Q148 202 152 210 Q156 218 149 224" stroke="#1a1e8f" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        <path d="M149 202 Q155 197 158 204" stroke="#1a1e8f" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <path d="M141 223 Q142 234 141 241" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- legs -->
+        <path d="M80 375 Q78 392 78 406" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M110 375 Q112 392 112 406" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- wedge shoes -->
+        <path d="M72 406 Q79 408 88 408 Q90 412 85 414 Q77 414 72 410Z" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M106 406 Q113 408 122 408 Q124 412 119 414 Q111 414 106 410Z" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+
+        <!-- Figure 2: Groom -->
+        <!-- head -->
+        <path d="M206 69 Q196 65 190 73 Q184 84 187 97 Q190 110 201 116 Q214 120 224 112 Q235 102 233 88 Q231 73 221 67 Q214 63 206 69Z" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <!-- hair short -->
+        <path d="M188 85 Q186 70 195 61 Q207 52 220 56 Q233 61 235 74" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <!-- neck -->
+        <path d="M204 115 Q204 123 204 129 M218 114 Q218 122 218 129" stroke="#1a1e8f" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- jacket -->
+        <path d="M192 136 Q189 160 188 192 L234 193 Q233 160 230 136Z" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- lapels -->
+        <path d="M192 136 Q202 150 210 162 Q215 155 220 150 Q226 145 230 136" stroke="#1a1e8f" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <!-- tie lines -->
+        <path d="M206 136 Q211 143 213 152 Q215 143 220 136" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <!-- pocket square -->
+        <path d="M224 145 L228 139 L232 145" stroke="#1a1e8f" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- trousers -->
+        <path d="M188 193 Q184 252 182 312 L207 312 Q211 263 213 224 Q215 263 218 312 L243 312 Q241 252 234 193Z" stroke="#1a1e8f" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- arms -->
+        <path d="M192 150 Q176 170 172 192 Q170 205 170 212" stroke="#1a1e8f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M230 150 Q244 170 248 192 Q250 205 250 212" stroke="#1a1e8f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <!-- legs -->
+        <path d="M194 312 Q192 336 192 360" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M228 312 Q230 336 230 360" stroke="#1a1e8f" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- shoes -->
+        <path d="M184 360 Q192 363 203 363 Q206 368 200 371 Q190 371 184 365Z" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M222 360 Q230 363 241 363 Q244 368 238 371 Q228 371 222 365Z" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+
+        <!-- ground suggestion -->
+        <path d="M28 380 Q145 378 262 380" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.2"/>
+        <!-- caption -->
+        <text x="145" y="402" font-family="Caveat, cursive" font-size="13.5" fill="#1a1e8f" text-anchor="middle" opacity="0.48">etiqueta garden mediterránea</text>
+        <path d="M60 408 Q145 406 230 408" stroke="#1a1e8f" stroke-width="0.8" stroke-linecap="round" opacity="0.26"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONFIRMACIÓN ══ -->
+<section id="confirmacion">
+  <div class="form-wrap">
+    <p class="s-tag reveal">¿vendrás?</p>
+    <h2 class="s-title reveal">Confirmar Asistencia</h2>
+    <span class="s-rule reveal" style="margin:18px auto 32px;"></span>
+    <p class="form-intro reveal">Confírmanos tu asistencia antes del <strong>15 de julio de 2026</strong>.<br>Nos ayuda enormemente para organizar el día perfecto.</p>
+    <div id="theForm" class="reveal">
+      <div class="form-grid">
+        <div class="fg"><label>Nombre</label><input type="text" placeholder="tu nombre"></div>
+        <div class="fg"><label>Apellidos</label><input type="text" placeholder="tus apellidos"></div>
+        <div class="fg full"><label>Email</label><input type="email" placeholder="para enviarte todos los detalles"></div>
+        <div class="fg full"><label>¿Asistirás?</label><div class="r-row"><label class="r-opt"><input type="radio" name="asiste" value="si" checked><span>¡Allí estaré!</span></label><label class="r-opt"><input type="radio" name="asiste" value="no"><span>Lo siento, no podré</span></label></div></div>
+        <div class="fg"><label>Menú</label><select><option>Menú estándar</option><option>Vegetariano</option><option>Vegano</option><option>Sin gluten</option><option>Sin lactosa</option></select></div>
+        <div class="fg"><label>Acompañantes</label><select><option>Solo yo</option><option>+1 persona</option><option>+2 personas</option><option>+3 o más</option></select></div>
+        <div class="fg full"><label>Alergias o intolerancias</label><input type="text" placeholder="si tienes alguna, cuéntanos aquí"></div>
+        <div class="fg full"><label>¿Necesitas transporte a la finca?</label><div class="r-row"><label class="r-opt"><input type="radio" name="bus" value="si"><span>Sí, me vendría bien</span></label><label class="r-opt"><input type="radio" name="bus" value="no" checked><span>No, me organizo</span></label></div></div>
+        <div class="fg full"><label>Un mensaje para los novios</label><textarea placeholder="lo que sientas, lo que quieras contarnos..."></textarea></div>
+      </div>
+      <button class="form-btn" onclick="enviar()"><span>Enviar confirmación</span></button>
+    </div>
+    <div id="exito" class="exito">
+      <p class="exito-titulo">¡Te esperamos! 🌿</p>
+      <p>Hemos recibido tu confirmación. Pronto recibirás todos los detalles en tu correo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REGALO ══ -->
+<section id="regalo" class="alt">
+  <div class="regalo-grid">
+    <div class="regalo-text reveal">
+      <p class="s-tag">si quieres...</p>
+      <h2 class="s-title">Lista de<br>Bodas</h2>
+      <span class="s-rule"></span>
+      <p>Vuestra presencia es el mayor regalo que podríais hacernos. Compartir este día con las personas que queremos es todo lo que necesitamos.</p>
+      <p>Si aun así queréis contribuir con algo más, hemos decidido dedicar nuestro primer año de casados a <strong>recorrer el sudeste asiático juntos</strong>. Cualquier aportación irá directa a esa aventura.</p>
+      <p>También tenemos lista de bodas en El Corte Inglés con algunas cosas para nuestro nuevo hogar, por si preferís algo más concreto.</p>
+      <div class="iban-box">
+        <p class="iban-lbl">Aportación al viaje</p>
+        <p class="iban-nombre">Sofía Martínez & Alfredo Ruiz</p>
+        <p class="iban-num">ES12 3456 7890 1234 5678 9012</p>
+        <button class="copy-btn" onclick="copiarIBAN()">Copiar IBAN</button>
+      </div>
+      <a href="#" class="list-lnk">Ver lista El Corte Inglés →</a>
+    </div>
+    <!-- Sketchy suitcase -->
+    <div style="display:flex;justify-content:center;" class="reveal" style="transition-delay:.2s">
+      <svg viewBox="0 0 290 350" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:260px;width:100%">
+        <rect width="290" height="350" fill="#ede7d6" rx="1"/>
+        <!-- Suitcase body (wobbly) -->
+        <path d="M46 120 Q46 118 48 117 L244 116 Q246 118 246 120 L247 270 Q246 272 244 272 L47 273 Q45 272 45 270Z" stroke="#1a1e8f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- middle band -->
+        <path d="M45 190 Q144 194 247 190" stroke="#1a1e8f" stroke-width="1.7" stroke-linecap="round" opacity="0.48"/>
+        <!-- clasp -->
+        <path d="M126 186 Q126 180 133 178 L157 178 Q164 180 164 187 L164 196 Q163 202 157 203 L133 203 Q126 201 126 195Z" stroke="#1a1e8f" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Handle -->
+        <path d="M110 116 Q108 96 112 88 Q117 80 128 79 L162 79 Q172 80 176 88 Q181 97 179 116" stroke="#1a1e8f" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- wheels (sketchy ellipses) -->
+        <path d="M64 274 Q64 281 71 285 Q78 287 82 282 Q88 277 86 271" stroke="#1a1e8f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M204 274 Q204 281 211 285 Q218 287 222 282 Q228 277 226 271" stroke="#1a1e8f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- sticker sun (wobbly) -->
+        <path d="M78 150 Q76 142 82 138 Q89 134 96 139 Q103 144 101 154 Q99 163 92 164 Q83 164 78 156Z" stroke="#1a1e8f" stroke-width="1.2" fill="none" opacity="0.45"/>
+        <path d="M89 134 Q89 128 89 125" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <path d="M101 140 Q106 137 109 135" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <path d="M102 154 Q107 157 110 159" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <path d="M75 156 Q71 159 68 161" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <path d="M75 142 Q71 139 68 137" stroke="#1a1e8f" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <!-- sticker plane (sketchy) -->
+        <path d="M170 145 Q178 141 187 141 Q196 141 200 148 Q202 155 197 160 Q190 164 182 162 L171 168 L167 165 L176 158 L168 153Z" stroke="#1a1e8f" stroke-width="1.2" fill="none" opacity="0.42"/>
+        <!-- SE ASIA faint text -->
+        <text x="146" y="236" font-family="Caveat, cursive" font-size="24" fill="#1a1e8f" text-anchor="middle" opacity="0.16" letter-spacing="3">SE ASIA</text>
+        <!-- olive branch top left -->
+        <path d="M22 50 Q36 40 50 46 Q64 52 72 65 Q80 78 76 90" stroke="#1a1e8f" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        <path d="M34 42 Q28 35 33 28 Q39 23 44 30 Q47 37 41 42Z" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.58"/>
+        <path d="M50 48 Q46 40 52 36 Q58 34 61 42 Q61 50 55 50Z" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.58"/>
+        <path d="M64 58 Q62 50 68 48 Q74 48 74 56 Q74 63 68 63Z" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.58"/>
+        <path d="M30 38 L28 34 M26 34 Q28 32 30 34" stroke="#1a1e8f" stroke-width="1.1" stroke-linecap="round" opacity="0.4"/>
+        <path d="M58 44 L56 40 M54 40 Q56 38 58 40" stroke="#1a1e8f" stroke-width="1.1" stroke-linecap="round" opacity="0.4"/>
+        <!-- olive branch bottom right (mirrored) -->
+        <path d="M268 300 Q254 310 240 304 Q226 298 218 286 Q210 274 214 262" stroke="#1a1e8f" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        <path d="M256 308 Q262 316 258 322 Q252 326 248 320 Q246 313 252 308Z" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.58"/>
+        <path d="M242 302 Q246 310 240 314 Q234 316 232 308 Q232 300 238 300Z" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.58"/>
+        <path d="M228 292 Q230 300 224 302 Q218 302 218 294 Q218 287 224 288Z" stroke="#1a1e8f" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.58"/>
+        <!-- caption -->
+        <text x="145" y="320" font-family="Caveat, cursive" font-size="13.5" fill="#1a1e8f" text-anchor="middle" opacity="0.48">viaje de novios · sudeste asiático</text>
+        <path d="M65 326 Q145 324 225 326" stroke="#1a1e8f" stroke-width="0.8" stroke-linecap="round" opacity="0.26"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-name">sofía & alfredo</div>
+  <div class="ft-info">19 de septiembre, 2026<br>Finca Cañada Honda · Librilla, Murcia</div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('vis'); }), {threshold:.07, rootMargin:'0px 0px -28px 0px'});
+  items.forEach(el => obs.observe(el));
+
+  function enviar() {
+    const f = document.getElementById('theForm'), s = document.getElementById('exito');
+    f.style.transition='opacity .4s,transform .4s'; f.style.opacity='0'; f.style.transform='translateY(-10px)';
+    setTimeout(()=>{ f.style.display='none'; s.classList.add('show'); }, 420);
+  }
+
+  function copiarIBAN() {
+    navigator.clipboard.writeText('ES12 3456 7890 1234 5678 9012').then(()=>{
+      const b = document.querySelector('.copy-btn'), o = b.textContent;
+      b.textContent='¡Copiado! ✓'; b.style.background='var(--ink)'; b.style.color='var(--parch)'; b.style.borderColor='var(--ink)';
+      setTimeout(()=>{ b.textContent=o; b.style.background=''; b.style.color=''; b.style.borderColor=''; }, 2200);
+    });
+  }
+</script>
+</body>
+</html>
