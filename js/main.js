@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('nav')) {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      }
+    });
+  }
+
   // Reveal animation
   const reveals = document.querySelectorAll(".reveal");
   const observer = new IntersectionObserver(entries => {

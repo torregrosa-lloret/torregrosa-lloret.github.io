@@ -46,9 +46,51 @@ nav {
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
 .nav-logo { font-family: 'Permanent Marker', cursive; font-size: 19px; color: white; text-transform: uppercase; letter-spacing: .03em; }
+.nav-toggle { display: none; }
 nav ul { list-style: none; display: flex; gap: 36px; }
 nav a { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: white; text-decoration: none; opacity: .7; transition: opacity .2s; }
 nav a:hover { opacity: 1; }
+
+/* Hamburger Menu Styles */
+.nav-toggle {
+  position: relative;
+  width: 24px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-toggle span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  left: 0;
+}
+
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 9px; opacity: 1; }
+.nav-toggle span:nth-child(3) { top: 18px; }
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 9px;
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 9px;
+}
 
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr; padding-top: 70px; }
 .hero-l { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 80px 72px; text-align: center; align-items: center; }
@@ -173,10 +215,39 @@ nav a:hover { opacity: 1; }
 }
 
 @media (max-width: 640px) {
-  nav { padding: 10px 16px; }
+  nav {
+    padding: 10px 16px;
+    flex-wrap: wrap;
+  }
   .nav-logo { font-size: 14px; }
-  nav ul { gap: 12px; }
-  nav a { font-size: 10px; }
+  .nav-toggle { display: block; }
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .nav-menu.active {
+    max-height: 500px;
+  }
+  .nav-menu li {
+    border-top: 1px solid rgba(255,255,255,.05);
+  }
+  .nav-menu li:last-child {
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+  nav a {
+    font-size: 10px;
+    display: block;
+    padding: 12px 16px;
+  }
   .hero-l { padding: 50px 16px 40px; }
   .hero-names { font-size: clamp(36px, 5vw, 52px); }
   .hero-eyebrow { font-size: 12px; margin-bottom: 14px; }
