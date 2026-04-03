@@ -127,20 +127,24 @@ nav a:hover { opacity: 1; }
 .finca-text p, .regalo-text p { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
 
 #comoLlegar.finca-bg {
-  position: relative;
-  overflow: hidden;
-}
-
-#comoLlegar.finca-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
   background-image: url('../assets/images/mapa-finca.png');
-  background-size: 50% auto;
+  background-size: 55%;
   background-position: right center;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  opacity: 0.25;
+  position: relative;
+}
+
+#comoLlegar.finca-bg * {
+  position: relative;
+  z-index: 1;
+}
+
+#comoLlegar.finca-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(253, 249, 244, 0.92) 0%, rgba(253, 249, 244, 0.85) 50%, rgba(253, 249, 244, 0.3) 100%);
   pointer-events: none;
   z-index: 0;
 }
