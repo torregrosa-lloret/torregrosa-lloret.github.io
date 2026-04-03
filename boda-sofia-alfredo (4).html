@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Boda Sofía & Alfredo</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Shadows+Into+Light&family=Rock+Salt&family=Barlow:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --ink: #1a2a9f;
+      --ink-mid: #2d5a3d;
+      --ink-pale: #c85a54;
+      --ink-ghost: #a89080;
+      --ink-faint: #f5f0e8;
+      --paper: #faf7f2;
+      --paper-alt: #f4efe6;
+      --cream: #fdfbf7;
+      --text: #1a1818;
+      --text-mid: #3a3830;
+      --annot: #c85a54;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #fdf9f4;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.75;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    section { isolation: isolate; position: relative; overflow: hidden; padding: 96px 72px; background: transparent; }
+    section.alt { background: #00000003; }
+    section:after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; pointer-events: none; z-index: 2; }
+    section:not(.alt):after { background: linear-gradient(to bottom, #fdf9f400, #f4efe666); }
+    section.alt:after { background: linear-gradient(to bottom, #f4efe600, #fdf9f466); }
+    section.hero:after { height: 160px; background: linear-gradient(to bottom, #fdf9f400, #f4efe68c); }
+    section:before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 70px; pointer-events: none; z-index: 2; }
+    section:not(.alt):before { background: linear-gradient(to top, #fdf9f400, #f4efe633); }
+    section.alt:before { background: linear-gradient(to top, #f4efe600, #fdf9f433); }
+    section.hero:before { display: none; }
+    section > *:not(.plx-layer) { position: relative; z-index: 1; }
+    
+    footer { position: relative; z-index: 5; background: var(--ink); padding: 56px 72px; display: flex; justify-content: space-between; align-items: center; }
+    
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 16px 56px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--ink); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .nav-logo { font-family: 'Permanent Marker', cursive; font-size: 19px; color: white; text-transform: uppercase; letter-spacing: .03em; }
+    nav ul { list-style: none; display: flex; gap: 36px; }
+    nav a { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: white; text-decoration: none; opacity: .7; transition: opacity .2s; }
+    nav a:hover { opacity: 1; }
+    
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr; padding-top: 70px; }
+    .hero-l { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 80px 72px; text-align: center; align-items: center; }
+    .hero-eyebrow { font-family: 'Rock Salt', cursive; font-size: 14px; font-weight: 300; letter-spacing: .06em; color: var(--text-mid); margin-bottom: 20px; animation: fadeUp .8s ease both; }
+    .hero-names { font-family: 'Permanent Marker', cursive; font-size: clamp(52px, 6.5vw, 88px); line-height: .9; color: var(--ink); text-transform: uppercase; animation: fadeUp .8s .1s ease both; }
+    .hero-amp { font-size: .7em; margin: 0 4px; display: inline-block; color: var(--ink); }
+    .hero-rule { display: block; width: 68px; height: 1px; background: var(--ink-pale); margin: 28px 0; animation: growLine 1s .28s ease both; }
+    .hero-date-row { display: flex; align-items: flex-end; gap: 10px; animation: fadeUp .8s .22s ease both; justify-content: center; }
+    .hero-day { font-weight: 300; font-size: 96px; color: var(--ink); line-height: 1; }
+    .hero-date-stacked { display: flex; flex-direction: column; gap: 2px; }
+    .hero-month { font-weight: 500; font-size: 28px; color: var(--ink); letter-spacing: .08em; text-transform: uppercase; }
+    .hero-year { font-weight: 300; font-size: 22px; color: var(--ink-pale); }
+    .hero-date-embroidered { font-family: 'Rock Salt', cursive; font-size: 32px; color: var(--ink); font-weight: 300; margin: 28px 0; letter-spacing: 0.08em; animation: fadeUp .8s .22s ease both; }
+    .hero-place { margin-top: 24px; font-family: 'Rock Salt', cursive; font-size: 19px; color: var(--annot); animation: fadeUp .8s .34s ease both; }
+    .hero-sub { margin-top: 14px; max-width: 360px; font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--text-mid); animation: fadeUp .8s .44s ease both; }
+    .hero-cta { margin-top: 44px; display: inline-block; border: 1.5px solid var(--ink); padding: 13px 36px; font-weight: 500; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: background .3s, color .3s; animation: fadeUp .8s .54s ease both; }
+    .hero-cta:hover { background: var(--ink); color: var(--paper); }
+    .hero-r { display: none; }
+    .hero-svg { width: 100%; max-width: 470px; }
+    
+    .plx-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .plx-layer svg { position: absolute; width: 100%; height: 140%; top: -20%; will-change: transform; }
+    
+    .s-tag { font-weight: 300; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
+    .s-title { font-family: 'Permanent Marker', cursive; font-size: clamp(28px, 3.6vw, 46px); color: var(--ink); line-height: 1.05; text-transform: uppercase; }
+    .s-rule { display: block; width: 40px; height: 1px; background: var(--ink-pale); margin: 18px 0 32px; }
+    
+    .annot { position: absolute; font-family: 'Permanent Marker', cursive; font-size: 15px; color: var(--annot); line-height: 1.3; pointer-events: none; z-index: 3; animation: fadeUp 1.2s ease .8s both; }
+    .annot svg { display: block; overflow: visible; }
+    .annot-arrow { fill: none; stroke: var(--annot); stroke-width: 1.4; stroke-linecap: round; marker-end: url(#arrowhead); }
+    
+    .finca-grid, .regalo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .regalo-grid { align-items: center; }
+    .finca-text p, .regalo-text p { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
+    
+    .timeline { margin-top: 36px; }
+    .tl { display: grid; grid-template-columns: 60px 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(26,42,159,.08); }
+    .tl:first-child { border-top: 1px solid rgba(26,42,159,.08); }
+    .tl-t { font-weight: 500; font-size: 20px; color: var(--ink-mid); padding-top: 2px; letter-spacing: .03em; }
+    .tl-body h4 { font-family: 'Permanent Marker', cursive; font-size: 16px; color: var(--ink); margin-bottom: 3px; text-transform: uppercase; }
+    .tl-body p { font-size: 13px; font-weight: 300; color: var(--text-mid); line-height: 1.5; }
+    
+    .addr-card { background: #ffffff8c; border: 1px solid rgba(26,42,159,.12); padding: 30px 30px 24px; position: relative; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    .addr-card:after { content: ""; position: absolute; bottom: -5px; right: -5px; width: 100%; height: 100%; border: 1px solid rgba(26,42,159,.09); pointer-events: none; }
+    .addr-lbl { font-weight: 500; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 12px; }
+    .addr-name { font-family: 'Permanent Marker', cursive; font-size: 22px; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
+    .addr-sub { font-size: 14px; font-weight: 300; color: var(--text-mid); margin-bottom: 22px; line-height: 1.65; }
+    .addr-link { font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-ghost); padding-bottom: 2px; transition: opacity .2s; }
+    .addr-link:hover { opacity: .55; }
+    
+    .hotels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 6px; }
+    .hotel { border: 1px solid rgba(26,42,159,.09); padding: 28px 24px; background: #ffffff80; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); transition: transform .3s, box-shadow .3s; position: relative; overflow: hidden; }
+    .hotel:before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
+    .hotel:hover { transform: translateY(-4px); box-shadow: 0 14px 40px #1a2a9f12; }
+    .hotel:hover:before { transform: scaleX(1); }
+    .hotel-km { font-weight: 300; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
+    .hotel-name { font-family: 'Permanent Marker', cursive; font-size: 18px; color: var(--ink); margin-bottom: 13px; text-transform: uppercase; }
+    .hotel-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid); margin-bottom: 20px; }
+    .hotel-lnk { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-ghost); padding-bottom: 2px; transition: opacity .2s; }
+    .hotel-lnk:hover { opacity: .55; }
+    .hotels-note { margin-top: 26px; font-size: 14px; font-weight: 300; font-style: italic; color: var(--text-mid); }
+    
+    .form-wrap { max-width: 720px; margin: 0 auto; text-align: center; }
+    #confirmacion .s-tag { color: #f5f0e8; }
+    #confirmacion .s-title { color: #f5f0e8; }
+    #confirmacion .s-rule { background: #f5f0e8; margin: 18px auto 32px; }
+    .form-intro { font-size: 15px; font-weight: 300; color: var(--text-mid); margin-bottom: 40px; line-height: 1.8; }
+    #confirmacion .form-intro { color: #f5f0e8; }
+    .gform-wrap { border: 1px solid rgba(245,240,232,.3); background: rgba(255,255,255,.1); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: 4px; position: relative; }
+    .gform-wrap:after { content: ""; position: absolute; bottom: -6px; right: -6px; width: 100%; height: 100%; border: 1px solid rgba(245,240,232,.2); pointer-events: none; }
+    #confirmacion .hero-cta { border: 1.5px solid #f5f0e8; color: #f5f0e8; }
+    #confirmacion .hero-cta:hover { background: #f5f0e8; color: var(--ink); }
+    #confirmacion p { color: #f5f0e8; }
+    #confirmacion:before { display: none; }
+    #confirmacion:after { display: none; }
+    
+    .iban-box { margin-top: 32px; border: 1px solid rgba(26,42,159,.13); padding: 26px 30px; background: #ffffff8c; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); position: relative; }
+    .iban-box:after { content: ""; position: absolute; bottom: -5px; right: -5px; width: 100%; height: 100%; border: 1px solid rgba(26,42,159,.08); pointer-events: none; }
+    .iban-lbl { font-weight: 300; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 9px; }
+    .iban-nombre { font-family: 'Permanent Marker', cursive; font-size: 19px; color: var(--ink); margin-bottom: 5px; text-transform: uppercase; }
+    .iban-num { font-weight: 300; font-size: 18px; color: var(--text); letter-spacing: .07em; }
+    
+    .copy-btn { margin-top: 14px; background: none; border: 1px solid rgba(26,42,159,.22); padding: 7px 20px; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; transition: all .25s; }
+    .copy-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    
+    .ft-name { font-family: 'Permanent Marker', cursive; font-size: 26px; color: var(--paper); opacity: .92; text-transform: uppercase; letter-spacing: .02em; }
+    .ft-info { text-align: right; font-weight: 300; font-size: 14px; color: var(--paper); opacity: .55; line-height: 1.7; letter-spacing: .04em; }
+
+    .countdown { display: flex; gap: 24px; margin-top: 28px; animation: fadeUp .8s .48s ease both; }
+    .cd-block { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .cd-num { font-family: 'Permanent Marker', cursive; font-size: 44px; color: var(--ink); line-height: 1; }
+    .cd-lbl { font-weight: 300; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); }
+    .cd-sep { font-family: 'Permanent Marker', cursive; font-size: 36px; color: var(--ink-ghost); align-self: center; padding-bottom: 10px; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.vis { opacity: 1; transform: none; }
+
+    @keyframes fadeUp { 0% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: none; } }
+    @keyframes growLine { 0% { width: 0; opacity: 0; } 100% { width: 68px; opacity: 1; } }
+    @keyframes drawIn { 0% { stroke-dashoffset: 2400; opacity: 0; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+    
+    .sk { stroke-dasharray: 2400; animation: drawIn 4s ease forwards; }
+    .sk.d1 { animation-delay: .2s; }
+    .sk.d2 { animation-delay: .6s; }
+    .sk.d3 { animation-delay: 1s; }
+    .sk.d4 { animation-delay: 1.4s; }
+    .sk.d5 { animation-delay: 1.8s; }
+    .sk.d6 { animation-delay: 2.2s; }
+
+    @media (max-width: 900px) {
+      nav { padding: 12px 20px; }
+      nav ul { gap: 16px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-r { display: none; }
+      .hero-l { padding: 70px 24px 60px; }
+      section { padding: 72px 24px; }
+      .finca-grid, .regalo-grid { grid-template-columns: 1fr; gap: 44px; }
+      .hotels { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .ft-info { text-align: center; }
+      .annot { display: none; }
+    }
+    @media (max-width: 480px) {
+      .countdown { gap: 16px !important; }
+      .cd-num { font-size: 32px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div aria-hidden="true" style="position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;">
+    </div>
+
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#2d5a3d" opacity="0.75" />
+      </marker>
+    </defs>
+  </svg>
+
+  <nav>
+    <div class="nav-logo">sofía & alfredo</div>
+    <ul>
+      <li><a href="#comoLlegar">Cómo Llegar</a></li>
+      <li><a href="#finca">La Finca</a></li>
+      <li><a href="#alojamiento">Alojamiento</a></li>
+      <li><a href="#confirmacion">Confirmación</a></li>
+      <li><a href="#regalo">Regalo</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="plx-layer" data-speed="0.14">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,780 C240,760 480,772 720,764 C960,756 1200,768 1440,762 L1440,900 L0,900Z" stroke="#2d5a3d" strokeWidth="80" strokeLinecap="round" opacity="0.022"/>
+        <path d="M0,60 C80,120 180,160 240,240 C300,320 290,400 270,480" stroke="#2d5a3d" strokeWidth="2" strokeLinecap="round" opacity="0.1"/>
+        <path d="M110,140 C90,122 68,120 64,136 C60,152 76,168 98,162 C120,156 124,140 112,132Z" stroke="#2d5a3d" strokeWidth="1.4" opacity="0.09"/>
+        <path d="M170,210 C148,192 124,192 122,208 C120,224 138,238 162,232 C186,226 188,210 174,202Z" stroke="#2d5a3d" strokeWidth="1.4" opacity="0.09"/>
+        <path d="M212,298 C190,280 164,282 162,300 C160,318 180,332 204,324 C228,316 228,300 214,292Z" stroke="#2d5a3d" strokeWidth="1.4" opacity="0.09"/>
+        <circle cx="900" cy="120" r="2.8" fill="#2d5a3d" opacity="0.05"/>
+        <circle cx="1100" cy="260" r="2" fill="#2d5a3d" opacity="0.04"/>
+        <circle cx="1320" cy="180" r="3.2" fill="#2d5a3d" opacity="0.04"/>
+        <circle cx="1400" cy="380" r="1.8" fill="#2d5a3d" opacity="0.035"/>
+      </svg>
+    </div>
+    
+    <div class="hero-l">
+      <div class="annot" style="top: calc(50% - 60px); left: 72px; transform: rotate(-1deg); animation-delay: 1.4s;">
+        <span style="font-size: 13px; opacity: 0.7;">la murciana ↑</span>
+      </div>
+      <div class="annot" style="top: calc(50% + 20px); left: 72px; transform: rotate(1deg); animation-delay: 1.6s;">
+        <span style="font-size: 13px; opacity: 0.7;">↓ el de alicante</span>
+      </div>
+      <p class="hero-eyebrow">os invitamos a nuestra boda</p>
+      <h1 class="hero-names">sofía <span class="hero-amp">&</span> alfredo</h1>
+      <span class="hero-rule"></span>
+      <div class="hero-date-row">
+        <p class="hero-date-embroidered">19 · 09 · 2026</p>
+      </div>
+      <p class="hero-place">Finca Cañada Honda · Librilla, Murcia</p>
+      
+      <div id="cd-widget" class="countdown" aria-label="Cuenta atrás">
+        <div class="cd-block"><span class="cd-num" id="cd-d">—</span><span class="cd-lbl">días</span></div>
+        <span class="cd-sep">·</span>
+        <div class="cd-block"><span class="cd-num" id="cd-h">—</span><span class="cd-lbl">horas</span></div>
+        <span class="cd-sep">·</span>
+        <div class="cd-block"><span class="cd-num" id="cd-m">—</span><span class="cd-lbl">min</span></div>
+        <span class="cd-sep">·</span>
+        <div class="cd-block"><span class="cd-num" id="cd-s">—</span><span class="cd-lbl">seg</span></div>
+      </div>
+
+      <p class="hero-sub">Entre olivos centenarios y cielo murciano,<br>bajo la luz dorada del atardecer.</p>
+      <a href="#confirmacion" class="hero-cta">Confirmar asistencia</a>
+    </div>
+
+    <div class="hero-r">
+      <svg class="hero-svg" viewBox="0 0 480 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="560" fill="#f5f0e8" />
+        <path class="sk d1" d="M-2 392 Q28 358 62 370 Q92 382 122 360 Q154 336 186 350 Q216 364 248 342 Q280 318 312 338 Q344 358 374 332 Q406 306 438 326 Q462 340 482 330 L482 422 L-2 422Z" stroke="#2d5a3d" strokeWidth="1.3" strokeLinecap="round" opacity="0.17"/>
+        <path class="sk d1" d="M-2 410 Q38 390 78 402 Q120 414 164 398 Q208 382 252 396 Q296 410 342 392 Q384 376 428 392 Q454 400 482 390 L482 422 L-2 422Z" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.11"/>
+        <path class="sk d1" d="M2 422 Q60 420 120 423 Q182 426 242 422 Q302 418 362 424 Q422 430 478 421" stroke="#2d5a3d" strokeWidth="2" strokeLinecap="round"/>
+        <path class="sk d2" d="M108 268 Q109 265 110 264 L350 263 Q351 265 351 267 L352 420 Q350 421 349 421 L109 422 Q107 421 107 420 Z" stroke="#2d5a3d" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path class="sk d2" d="M95 266 Q128 246 162 226 Q194 208 228 193 Q231 192 233 194 Q268 210 300 228 Q332 246 365 266" stroke="#2d5a3d" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M102 271 Q162 253 230 198 Q296 252 358 271" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.28"/>
+        <path class="sk d3" d="M275 222 Q275 220 276 219 L299 218 Q300 220 300 222 L300 258 Q299 259 297 259 L275 259 Q273 258 274 257 Z" stroke="#2d5a3d" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M284 218 Q280 206 285 196 Q290 186 283 176 Q277 167 281 158" stroke="#2d5a3d" strokeWidth="1.2" strokeLinecap="round" opacity="0.32"/>
+        <path class="sk d3" d="M133 299 Q133 297 135 296 L178 295 Q180 297 180 300 L180 353 Q178 368 156 369 Q133 367 132 353 Z" stroke="#2d5a3d" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M156 296 Q156 330 155 369" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.42"/>
+        <path d="M133 332 Q155 336 180 332" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.33"/>
+        <path class="sk d3" d="M262 295 Q264 294 265 294 L318 293 Q319 295 319 297 L319 347 Q318 348 317 348 L263 349 Q261 348 261 346 Z" stroke="#2d5a3d" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M290 294 Q290 320 290 348" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.4"/>
+        <path d="M262 320 Q288 323 319 320" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.4"/>
+        <path class="sk d4" d="M199 421 Q198 356 200 344 Q207 321 229 320 Q251 320 258 344 Q260 355 259 421" stroke="#2d5a3d" strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M199 382 Q228 385 259 382" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.28"/>
+        <path class="sk d3" d="M55 422 Q54 400 55 378 Q55 356 53 336 Q52 318 55 298 Q56 283 56 272" stroke="#2d5a3d" strokeWidth="3" strokeLinecap="round"/>
+        <path class="sk d3" d="M55 338 Q46 323 38 308 Q32 296 28 283" stroke="#2d5a3d" strokeWidth="2.2" strokeLinecap="round"/>
+        <path class="sk d3" d="M55 316 Q64 303 72 292 Q78 282 80 273" stroke="#2d5a3d" strokeWidth="2" strokeLinecap="round"/>
+        <path class="sk d4" d="M56 253 Q40 248 29 257 Q16 267 18 280 Q20 294 33 300 Q47 305 61 298 Q76 290 77 276 Q79 260 66 253 Q62 250 56 253Z" stroke="#2d5a3d" strokeWidth="1.6" strokeLinecap="round"/>
+        <path class="sk d4" d="M26 270 Q14 265 8 276 Q4 287 11 296 Q19 305 30 301 Q40 296 40 283Z" stroke="#2d5a3d" strokeWidth="1.4" strokeLinecap="round"/>
+        <path class="sk d4" d="M72 265 Q62 256 55 265 Q49 274 56 284 Q64 293 77 287 Q85 279 78 267Z" stroke="#2d5a3d" strokeWidth="1.4" strokeLinecap="round"/>
+        <path class="sk d3" d="M416 422 Q417 400 416 377 Q417 354 416 332 Q415 312 417 295 Q418 282 418 270" stroke="#2d5a3d" strokeWidth="3" strokeLinecap="round"/>
+        <path class="sk d3" d="M417 336 Q425 318 432 306 Q440 294 447 281" stroke="#2d5a3d" strokeWidth="2.2" strokeLinecap="round"/>
+        <path class="sk d3" d="M417 314 Q407 302 399 290 Q393 280 391 271" stroke="#2d5a3d" strokeWidth="2" strokeLinecap="round"/>
+        <path class="sk d4" d="M417 250 Q401 244 390 254 Q379 264 381 278 Q383 292 396 299 Q409 304 423 297 Q435 288 435 273 Q435 256 421 249Z" stroke="#2d5a3d" strokeWidth="1.6" strokeLinecap="round"/>
+        <path class="sk d4" d="M435 266 Q445 260 451 271 Q457 282 450 291 Q442 299 432 295Z" stroke="#2d5a3d" strokeWidth="1.4" strokeLinecap="round"/>
+        <path class="sk d4" d="M384 268 Q373 262 367 273 Q363 284 372 292 Q381 299 393 294Z" stroke="#2d5a3d" strokeWidth="1.4" strokeLinecap="round"/>
+        <path class="sk d1" d="M350 68 Q360 53 376 55 Q393 58 398 74 Q402 90 391 102 Q379 114 363 109 Q346 104 342 89 Q338 74 350 68Z" stroke="#2d5a3d" strokeWidth="1.5" strokeLinecap="round" opacity="0.33"/>
+        <path class="sk d6" d="M140 156 Q146 149 150 153 Q153 157 158 150 Q162 145 167 152" stroke="#2d5a3d" strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.48"/>
+        <path class="sk d6" d="M202 131 Q207 124 210 128 Q213 132 217 126 Q220 121 225 127" stroke="#2d5a3d" strokeWidth="1.3" fill="none" strokeLinecap="round" opacity="0.42"/>
+        <path class="sk d6" d="M274 143 Q278 138 281 141 Q283 145 286 139 Q289 135 293 140" stroke="#2d5a3d" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.38"/>
+        <text x="240" y="486" fontFamily="Shadows Into Light, cursive" fontSize="17" fill="#2d5a3d" textAnchor="middle" opacity="0.52">Cañada Honda · Librilla</text>
+        <text x="240" y="516" fontFamily="'Shadows Into Light', cursive" fontStyle="italic" fontSize="13" fill="#2d5a3d" textAnchor="middle" opacity="0.28" letterSpacing="3">Murcia · España</text>
+      </svg>
+    </div>
+  </section>
+
+  <section id="comoLlegar">
+    <div class="plx-layer" data-speed="0.22">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        <path d="M0,760 C180,720 360,740 540,728 C720,716 900,748 1080,730 C1260,712 1380,736 1440,740 L1440,900 L0,900Z" stroke="#2d5a3d" strokeWidth="1.5" opacity="0.07"/>
+        <path d="M0,100 C60,160 140,180 180,260 C220,340 200,420 180,480" stroke="#2d5a3d" strokeWidth="1.6" strokeLinecap="round" opacity="0.08"/>
+        <path d="M80,170 C62,154 48,148 44,160 C40,172 54,186 72,184 C90,182 96,168 88,160Z" stroke="#2d5a3d" strokeWidth="1.2" opacity="0.07"/>
+        <circle cx="1300" cy="180" r="3" fill="#2d5a3d" opacity="0.05"/>
+        <circle cx="1380" cy="320" r="2" fill="#2d5a3d" opacity="0.04"/>
+      </svg>
+    </div>
+
+    <div class="finca-grid">
+      <div class="finca-text reveal">
+        <p class="s-tag">acceso</p>
+        <h2 class="s-title">Cómo Llegar</h2>
+        <span class="s-rule"></span>
+        <p>La Finca Cañada Honda está ubicada en Librilla, en el corazón de la huerta murciana. Acceso fácil desde la capital y bien comunicada por carretera.</p>
+        
+        <div class="addr-card" style="margin-top: 32px;">
+          <p class="addr-lbl">Ubicación</p>
+          <p class="addr-name">Finca Cañada Honda</p>
+          <p class="addr-sub">Paraje Cañada Honda, s/n · Librilla (Murcia)<br>A 25 min de Murcia capital · A 45 min del Aeropuerto RMU</p>
+          <a href="https://maps.google.com/?q=Librilla+Murcia" class="addr-link" target="_blank" rel="noreferrer">Ver en Google Maps →</a>
+        </div>
+      </div>
+      
+      <div class="reveal" style="transition-delay: .18s; display: flex; align-items: center; justify-content: center;">
+        <img src="mapa-finca.png" alt="Mapa de ubicación de la Finca Cañada Honda" style="width: 100%; max-width: 400px; border-radius: 4px; box-shadow: 0 10px 30px rgba(26,42,159,.15);">
+      </div>
+    </div>
+  </section>
+
+  <section id="finca" class="alt">
+    <div class="plx-layer" data-speed="0.22">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        <path d="M0,760 C180,720 360,740 540,728 C720,716 900,748 1080,730 C1260,712 1380,736 1440,740 L1440,900 L0,900Z" stroke="#2d5a3d" strokeWidth="1.5" opacity="0.07"/>
+        <path d="M0,100 C60,160 140,180 180,260 C220,340 200,420 180,480" stroke="#2d5a3d" strokeWidth="1.6" strokeLinecap="round" opacity="0.08"/>
+        <path d="M80,170 C62,154 48,148 44,160 C40,172 54,186 72,184 C90,182 96,168 88,160Z" stroke="#2d5a3d" strokeWidth="1.2" opacity="0.07"/>
+        <circle cx="1300" cy="180" r="3" fill="#2d5a3d" opacity="0.05"/>
+        <circle cx="1380" cy="320" r="2" fill="#2d5a3d" opacity="0.04"/>
+      </svg>
+    </div>
+
+    <div class="annot reveal" style="top: 52px; right: 72px; transform: rotate(-2deg);">
+      <span>aquí nos casamos →</span>
+      <svg width="80" height="40" style="margin-top: 2px;">
+        <path class="annot-arrow" d="M4,8 C20,8 50,6 72,30" markerEnd="url(#arrowhead)"/>
+      </svg>
+    </div>
+
+    <div class="finca-grid">
+      <div class="finca-text reveal">
+        <p class="s-tag">el lugar</p>
+        <h2 class="s-title">Finca Cañada Honda</h2>
+        <span class="s-rule"></span>
+        <p>Enclavada en el paraje natural de Librilla, en el corazón de la huerta murciana, la Finca Cañada Honda guarda entre sus muros de piedra siglos de sol mediterráneo.</p>
+        <p>La jornada comienza con la ceremonia en el jardín exterior, rodeados de olivos centenarios, y concluye bien entrada la noche bajo las estrellas del campo murciano.</p>
+        
+        <div class="timeline">
+          <div class="tl"><span class="tl-t">18:00</span><div class="tl-body"><h4>Ceremonia civil</h4><p>Jardín de los olivos · al aire libre</p></div></div>
+          <div class="tl"><span class="tl-t">19:30</span><div class="tl-body"><h4>Cóctel de bienvenida</h4><p>Terraza sur con vistas al campo</p></div></div>
+          <div class="tl"><span class="tl-t">21:30</span><div class="tl-body"><h4>Cena & baile</h4><p>Gran salón de piedra y terraza</p></div></div>
+          <div class="tl"><span class="tl-t">02:00</span><div class="tl-body"><h4>Afterparty</h4><p>Patio interior · música hasta el amanecer</p></div></div>
+        </div>
+      </div>
+      
+      <div class="reveal" style="transition-delay: .18s;">
+        <div class="addr-card">
+          <p class="addr-lbl">La finca</p>
+          <p class="addr-name">Finca Cañada Honda</p>
+          <p class="addr-sub">Paraje Cañada Honda, s/n · Librilla (Murcia)<br>A 25 min de Murcia capital · A 45 min del Aeropuerto RMU</p>
+          <a href="https://maps.google.com/?q=Librilla+Murcia" class="addr-link" target="_blank" rel="noreferrer">Ver en Google Maps →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="annot reveal" style="top: 52px; right: 72px; transform: rotate(-2deg);">
+      <span>aquí nos casamos →</span>
+      <svg width="80" height="40" style="margin-top: 2px;">
+        <path class="annot-arrow" d="M4,8 C20,8 50,6 72,30" markerEnd="url(#arrowhead)"/>
+      </svg>
+    </div>
+
+    <div class="finca-grid">
+      <div class="finca-text reveal">
+        <p class="s-tag">el lugar</p>
+        <h2 class="s-title">Finca Cañada Honda</h2>
+        <span class="s-rule"></span>
+        <p>Enclavada en el paraje natural de Librilla, en el corazón de la huerta murciana, la Finca Cañada Honda guarda entre sus muros de piedra siglos de sol mediterráneo.</p>
+        <p>La jornada comienza con la ceremonia en el jardín exterior, rodeados de olivos centenarios, y concluye bien entrada la noche bajo las estrellas del campo murciano.</p>
+        
+        <div class="timeline">
+          <div class="tl"><span class="tl-t">18:00</span><div class="tl-body"><h4>Ceremonia civil</h4><p>Jardín de los olivos · al aire libre</p></div></div>
+          <div class="tl"><span class="tl-t">19:30</span><div class="tl-body"><h4>Cóctel de bienvenida</h4><p>Terraza sur con vistas al campo</p></div></div>
+          <div class="tl"><span class="tl-t">21:30</span><div class="tl-body"><h4>Cena & baile</h4><p>Gran salón de piedra y terraza</p></div></div>
+          <div class="tl"><span class="tl-t">02:00</span><div class="tl-body"><h4>Afterparty</h4><p>Patio interior · música hasta el amanecer</p></div></div>
+        </div>
+      </div>
+      
+      <div class="reveal" style="transition-delay: .18s;">
+        <div class="addr-card">
+          <p class="addr-lbl">Cómo llegar</p>
+          <p class="addr-name">Finca Cañada Honda</p>
+          <p class="addr-sub">Paraje Cañada Honda, s/n · Librilla (Murcia)<br>A 25 min de Murcia capital · A 45 min del Aeropuerto RMU</p>
+          <a href="https://maps.google.com/?q=Librilla+Murcia" class="addr-link" target="_blank" rel="noreferrer">Ver en Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="alojamiento">
+    <div class="plx-layer" data-speed="0.28">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        <path d="M1380,900 C1380,760 1378,640 1382,540 C1385,480 1380,440 1382,400" stroke="#2d5a3d" strokeWidth="2.5" strokeLinecap="round" opacity="0.06"/>
+        <path d="M0,700 C200,692 400,700 600,695 C800,690 1000,698 1200,694" stroke="#2d5a3d" strokeWidth="1" strokeLinecap="round" opacity="0.05"/>
+      </svg>
+    </div>
+
+    <div class="annot reveal" style="bottom: 80px; left: 72px; transform: rotate(1.5deg);">
+      <svg width="80" height="32" style="margin-bottom: 4px;">
+        <path class="annot-arrow" d="M4,28 C20,28 50,20 76,8" markerEnd="url(#arrowhead)"/>
+      </svg>
+      <span>preguntadnos<br>si necesitáis ayuda</span>
+    </div>
+
+    <p class="s-tag reveal">descansar</p>
+    <h2 class="s-title reveal">Alojamiento</h2>
+    <span class="s-rule reveal"></span>
+    
+    <div class="hotels">
+      <div class="hotel reveal">
+        <p class="hotel-km">~5 min · coche</p>
+        <h3 class="hotel-name">Hotel Rural La Peña</h3>
+        <p class="hotel-desc">Hotel rural entre olivos con piscina y ambiente sereno. Tarifas especiales negociadas para los invitados. Desayuno regional incluido.</p>
+        <a href="#" class="hotel-lnk">Ver hotel →</a>
+      </div>
+      <div class="hotel reveal" style="transition-delay: .15s;">
+        <p class="hotel-km">~15 min · coche</p>
+        <h3 class="hotel-name">Hotel Nelva Murcia</h3>
+        <p class="hotel-desc">Hotel moderno a las afueras de Murcia capital. Gran aparcamiento y posibilidad de lanzadera a la finca para el bloque reservado.</p>
+        <a href="#" class="hotel-lnk">Ver hotel →</a>
+      </div>
+      <div class="hotel reveal" style="transition-delay: .3s;">
+        <p class="hotel-km">~25 min · coche</p>
+        <h3 class="hotel-name">NH Collection Murcia</h3>
+        <p class="hotel-desc">En pleno centro histórico de Murcia, junto a la catedral. Ideal para quienes quieran aprovechar el viaje para visitar la ciudad.</p>
+        <a href="#" class="hotel-lnk">Ver hotel →</a>
+      </div>
+    </div>
+    
+    <p class="hotels-note reveal">Para información sobre tarifas especiales escríbenos a <strong style="font-style: normal;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb99949f9abb88949d929a829a979d899e9f94d59e88">[email&#160;protected]</a></strong></p>
+  </section>
+
+  <section id="confirmacion" style="background: var(--ink);">
+    <div class="form-wrap reveal">
+      <p class="s-tag">rsvp</p>
+      <h2 class="s-title">Confirmar<br>Asistencia</h2>
+      <span class="s-rule" style="margin: 18px auto 32px;"></span>
+      <p class="form-intro">Por favor confirmad vuestra asistencia antes del <strong>15 de junio de 2026</strong>. Necesitamos saber si hay alergias, intolerancias o necesidades especiales.</p>
+      
+      <div class="gform-wrap">
+        <iframe src="https://forms.gle/6UwZjYDCxcjFYhtC6" style="display: block; width: 100%; height: 860px; border: none; background: transparent;" title="Formulario de confirmación de asistencia" onerror="this.innerHTML='Cargando…'">Cargando…</iframe>
+      </div>
+      
+      <div style="margin-top: 20px; text-align: center;">
+        <a href="https://forms.gle/6UwZjYDCxcjFYhtC6" target="_blank" rel="noreferrer" class="hero-cta" style="margin-top: 0; display: inline-block;">Abrir formulario →</a>
+        <p style="margin-top: 10px; font-size: 12px; font-weight: 300; color: var(--ink-pale);">Si el formulario integrado no se muestra, usa el botón de arriba</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="regalo" class="alt">
+    <div class="plx-layer" data-speed="0.18">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+        <path d="M0,900 C100,820 200,760 280,680 C360,600 360,520 340,440" stroke="#2d5a3d" strokeWidth="2" strokeLinecap="round" opacity="0.08"/>
+        <path d="M130,780 C110,762 88,760 84,774 C80,788 96,804 118,800 C140,796 146,778 136,770Z" stroke="#2d5a3d" strokeWidth="1.4" opacity="0.07"/>
+        <path d="M96,700 C74,684 50,684 48,700 C46,716 64,730 88,724 C112,718 116,702 100,694Z" stroke="#2d5a3d" strokeWidth="1.4" opacity="0.07"/>
+        <circle cx="1300" cy="160" r="3" fill="#2d5a3d" opacity="0.05"/>
+        <circle cx="1380" cy="280" r="2" fill="#2d5a3d" opacity="0.04"/>
+      </svg>
+    </div>
+
+    <div class="annot reveal" style="top: 60px; right: 72px; transform: rotate(-1.5deg);">
+      <span>¡con todo nuestro cariño!</span>
+      <svg width="80" height="36" style="display: block; margin-top: 4px;">
+        <path class="annot-arrow" d="M4,4 C22,8 50,16 76,32" markerEnd="url(#arrowhead)"/>
+      </svg>
+    </div>
+
+    <div class="regalo-grid">
+      <div class="regalo-text reveal">
+        <p class="s-tag">si queréis</p>
+        <h2 class="s-title">El Regalo</h2>
+        <span class="s-rule"></span>
+        <p>Vuestra presencia ya es el mejor regalo. Lo decimos en serio, no es la frase de rigor.</p>
+        <p>Si aun así queréis darnos algo, os lo ponemos fácil: <strong>un sobre en la boda</strong>. Sin comisiones, sin esperas, sin acordarse del código BIC a las once de la noche.</p>
+        <p style="font-style: italic; font-size: 15px; color: var(--ink-pale); margin-top: -4px;">El efectivo llega antes, huele mejor y se puede gastar en lo que queramos. Win-win.</p>
+        
+        <div id="gift-section" style="margin-top: 28px;">
+          <div id="gift-hint" style="display: none; background: rgba(26,42,159,0.05); border: 1px solid var(--ink-faint); border-radius: 2px; padding: 14px 18px; margin-bottom: 16px; font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.7;"></div>
+          <button id="gift-btn" class="copy-btn" style="font-size: 12px; padding: 10px 22px;">Ver número de cuenta</button>
+        </div>
+
+        <div id="iban-container" class="iban-box" style="display: none; margin-top: 28px;">
+          <p style="font-size: 13px; font-weight: 300; color: var(--ink-pale); margin-bottom: 14px; font-style: italic;">Está bien, está bien… Aquí lo tienes. Pero ya sabes dónde está el cajero. 🏧</p>
+          <p class="iban-lbl">Aportación al viaje de novios</p>
+          <p class="iban-nombre">Sofía Perea & Alfredo Torregrosa</p>
+          <p class="iban-num">ES12 3456 7890 1234 5678 9012</p>
+          <button id="copy-iban" class="copy-btn">Copiar IBAN</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ft-name">sofía & alfredo</div>
+    <div class="ft-info">
+      19 · 09 · 2026<br>
+      Finca Cañada Honda · Librilla, Murcia<br>
+      con todo nuestro amor
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Reveal animation
+    document.addEventListener("DOMContentLoaded", () => {
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add("vis");
+          }
+        });
+      }, { threshold: 0.08 });
+      
+      reveals.forEach(el => observer.observe(el));
+
+      // Parallax effect
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        document.querySelectorAll(".plx-layer").forEach(layer => {
+          const speed = parseFloat(layer.dataset.speed || "0.2");
+          const svg = layer.querySelector("svg");
+          if (svg) {
+            svg.style.transform = `translateY(${scrollY * speed * 0.4}px)`;
+          }
+        });
+      };
+      
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      // Gift logic interaction
+      const steps = [
+        { btn: "Ver número de cuenta", hint: null },
+        { btn: "En serio, mejor en efectivo…", hint: "Sabemos lo que estás pensando. Es solo un par de clics, qué pereza el sobre… Pero piénsalo bien: el sobre tiene su encanto." },
+        { btn: "¿De verdaaad? 😮", hint: "Muy bien. Allá tú. Hemos hecho todo lo posible para disuadirte y aun así vas a continuar. Respetamos tu decisión, aunque no la compartamos." }
+      ];
+      
+      let clickCount = 0;
+      const giftBtn = document.getElementById("gift-btn");
+      const giftHint = document.getElementById("gift-hint");
+      const giftSection = document.getElementById("gift-section");
+      const ibanContainer = document.getElementById("iban-container");
+      
+      giftBtn.addEventListener("click", () => {
+        clickCount++;
+        if (clickCount >= steps.length) {
+          giftSection.style.display = "none";
+          ibanContainer.style.display = "block";
+        } else {
+          giftBtn.textContent = steps[clickCount].btn;
+          if (steps[clickCount].hint) {
+            giftHint.style.display = "block";
+            giftHint.textContent = steps[clickCount].hint;
+          }
+        }
+      });
+
+      // IBAN copy logic
+      document.getElementById("copy-iban").addEventListener("click", function() {
+        navigator.clipboard.writeText("ES12 3456 7890 1234 5678 9012");
+        this.textContent = "Copiado ✓";
+        setTimeout(() => {
+          this.textContent = "Copiar IBAN";
+        }, 2000);
+      });
+
+      // Countdown injection
+      var WEDDING = new Date('2026-09-19T18:00:00+02:00');
+      function tick(){
+        var diff = WEDDING - new Date();
+        if(diff <= 0) {
+          document.getElementById('cd-d').textContent = 
+          document.getElementById('cd-h').textContent = 
+          document.getElementById('cd-m').textContent = 
+          document.getElementById('cd-s').textContent = '0';
+          return;
+        }
+        document.getElementById('cd-d').textContent = Math.floor(diff / 864e5);
+        document.getElementById('cd-h').textContent = String(Math.floor(diff % 864e5 / 36e5)).padStart(2, '0');
+        document.getElementById('cd-m').textContent = String(Math.floor(diff % 36e5 / 6e4)).padStart(2, '0');
+        document.getElementById('cd-s').textContent = String(Math.floor(diff % 6e4 / 1e3)).padStart(2, '0');
+      }
+      tick(); 
+      setInterval(tick, 1000);
+    });
+  </script>
+</body>
+</html>
