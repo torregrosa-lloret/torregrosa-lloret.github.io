@@ -144,7 +144,8 @@ nav a:hover { opacity: 1; }
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(253, 249, 244, 0.82);
+  height: auto;
+  background: rgba(253, 249, 244, 0.88);
   pointer-events: none;
   z-index: 0;
 }
