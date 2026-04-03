@@ -126,6 +126,8 @@ nav a:hover { opacity: 1; }
 .regalo-grid { align-items: center; }
 .finca-text p, .regalo-text p { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
 
+.finca-image { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(26,42,159,.15); object-fit: cover; }
+
 .timeline { margin-top: 36px; }
 .tl { display: grid; grid-template-columns: 60px 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(26,42,159,.08); }
 .tl:first-child { border-top: 1px solid rgba(26,42,159,.08); }
