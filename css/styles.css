@@ -123,7 +123,7 @@ nav a:hover { opacity: 1; }
 .annot-arrow { fill: none; stroke: var(--annot); stroke-width: 1.4; stroke-linecap: round; marker-end: url(#arrowhead); }
 
 .finca-grid, .regalo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.regalo-grid { align-items: center; }
+.regalo-grid { grid-template-columns: 1fr; max-width: 720px; align-items: center; }
 .finca-text p, .regalo-text p { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
 
 #comoLlegar.finca-bg {
