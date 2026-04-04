@@ -272,9 +272,16 @@
       Finca Cañada Honda · Librilla, Murcia<br>
       con todo nuestro amor
     </div>
-    <div class="ft-deploy" id="deploy-info">
-      <span class="deploy-branch" id="deploy-branch">—</span>
-      <span class="deploy-time" id="deploy-time">—</span>
+    <div class="ft-deploy-tooltip" id="deploy-info">
+      <button class="deploy-badge" title="Información de deploy" aria-label="Ver información de deploy">
+        <span class="deploy-dot"></span>
+      </button>
+      <div class="deploy-tooltip-content">
+        <div class="tooltip-label">Rama:</div>
+        <div class="tooltip-value" id="deploy-branch">—</div>
+        <div class="tooltip-label" style="margin-top: 8px;">Deploy:</div>
+        <div class="tooltip-value" id="deploy-time">—</div>
+      </div>
     </div>
   </footer>
 
