@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Gift logic interaction
   const steps = [
     { btn: "Ver número de cuenta", hint: null },
-    { btn: "En serio, mejor en efectivo…", hint: "Sabemos lo que estás pensando. Es solo un par de clics, qué pereza el sobre… Pero piénsalo bien: el sobre tiene su encanto." },
-    { btn: "¿De verdaaad? 😮", hint: "Muy bien. Allá tú. Hemos hecho todo lo posible para disuadirte y aun así vas a continuar. Respetamos tu decisión, aunque no la compartamos." }
+    { btn: "Ver número de cuenta", hint: "Sabemos lo que estás pensando. Es solo un par de clics, qué pereza el sobre… Pero piénsalo bien: el sobre tiene su encanto." },
+    { btn: "Acho, qué me enseñes el número de cuenta", hint: "Muy bien. Allá tú. Hemos hecho todo lo posible para disuadirte y aun así vas a continuar. Respetamos tu decisión, aunque no la compartamos." }
   ];
 
   let clickCount = 0;
