@@ -37,3 +37,6 @@ build/
 # Temporary files
 *.tmp
 *.temp
+
+# Deploy info (generated at build time)
+deploy-info.json

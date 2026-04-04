@@ -120,4 +120,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   tick();
   setInterval(tick, 1000);
+
+  // Load and display deploy info
+  fetch('deploy-info.json')
+    .then(response => response.json())
+    .then(data => {
+      const branchEl = document.getElementById('deploy-branch');
+      const timeEl = document.getElementById('deploy-time');
+
+      if (branchEl) {
+        branchEl.textContent = data.branch || '—';
+      }
+
+      if (timeEl && data.deployTime) {
+        const deployDate = new Date(data.deployTime);
+        const formattedTime = deployDate.toLocaleString('es-ES', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          timeZone: 'UTC'
+        });
+        timeEl.textContent = formattedTime;
+      }
+    })
+    .catch(error => {
+      console.log('Deploy info not available');
+    });
 });
