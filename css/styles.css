@@ -160,16 +160,17 @@ nav a:hover { opacity: 1; }
 }
 
 #finca {
-  padding: 96px 0;
+  padding: 96px 72px;
 }
 
 #finca .finca-grid {
+  display: block;
   width: 100%;
-  grid-template-columns: 1fr;
 }
 
 #finca .finca-text {
-  padding: 0 72px;
+  width: 100%;
+  max-width: none;
 }
 
 .timeline { margin-top: 36px; }
