@@ -159,6 +159,19 @@ nav a:hover { opacity: 1; }
   z-index: 1;
 }
 
+#finca {
+  padding: 96px 0;
+}
+
+#finca .finca-grid {
+  width: 100%;
+  grid-template-columns: 1fr;
+}
+
+#finca .finca-text {
+  padding: 0 72px;
+}
+
 .timeline { margin-top: 36px; }
 .tl { display: grid; grid-template-columns: 60px 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(26,42,159,.08); }
 .tl:first-child { border-top: 1px solid rgba(26,42,159,.08); }
