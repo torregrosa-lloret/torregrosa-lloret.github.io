@@ -263,9 +263,17 @@ nav a:hover { opacity: 1; }
 }
 
 .buses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.bus-card { border: 1px solid rgba(45,90,61,.15); padding: 28px; background: rgba(45,90,61,.03); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); position: relative; overflow: hidden; }
+.bus-section { margin-bottom: 24px; }
+.bus-section:last-child { margin-bottom: 0; }
+.bus-lbl { font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); font-weight: 500; margin-bottom: 10px; }
+.bus-row { font-size: 17px; color: var(--text); line-height: 1.8; font-weight: 300; margin: 3px 0; }
+.bus-time { font-weight: 500; color: var(--ink); }
 
 @media (max-width: 640px) {
-  .buses-grid { grid-template-columns: 1fr; }
+  .buses-grid { grid-template-columns: 1fr; gap: 20px; }
+  .bus-card { padding: 28px 24px; }
+  .bus-section { margin-bottom: 20px; }
 }
 
   nav {
