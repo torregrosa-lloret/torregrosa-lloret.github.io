@@ -143,6 +143,8 @@ nav a:hover { opacity: 1; }
   z-index: 1;
 }
 
+#comoLlegar.finca-bg:before { display: none; }
+
 #comoLlegar.finca-bg::after {
   content: "";
   position: absolute;
@@ -263,7 +265,8 @@ nav a:hover { opacity: 1; }
 }
 
 .buses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.bus-card { border: 1px solid rgba(45,90,61,.15); padding: 28px; background: rgba(45,90,61,.03); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); position: relative; overflow: hidden; }
+.bus-card { background: #ffffff8c; border: 1px solid rgba(26,42,159,.12); padding: 28px 28px 24px; position: relative; overflow: hidden; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.bus-card:after { content: ""; position: absolute; bottom: -5px; right: -5px; width: 100%; height: 100%; border: 1px solid rgba(26,42,159,.09); pointer-events: none; }
 .bus-section { margin-bottom: 24px; }
 .bus-section:last-child { margin-bottom: 0; }
 .bus-lbl { font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); font-weight: 500; margin-bottom: 10px; }
@@ -271,9 +274,9 @@ nav a:hover { opacity: 1; }
 .bus-time { font-weight: 500; color: var(--ink); }
 
 @media (max-width: 640px) {
-  .buses-grid { grid-template-columns: 1fr; gap: 20px; }
-  .bus-card { padding: 28px 24px; }
-  .bus-section { margin-bottom: 20px; }
+  .buses-grid { grid-template-columns: 1fr; gap: 28px; }
+  .bus-card { padding: 28px 24px 24px; }
+  .bus-section { margin-bottom: 22px; }
 }
 
   nav {
