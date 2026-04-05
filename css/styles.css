@@ -262,7 +262,12 @@ nav a:hover { opacity: 1; }
   .annot { display: none; }
 }
 
+.buses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
 @media (max-width: 640px) {
+  .buses-grid { grid-template-columns: 1fr; }
+}
+
   nav {
     padding: 10px 16px;
   }
