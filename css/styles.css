@@ -19,7 +19,7 @@ html { scroll-behavior: smooth; }
 body {
   background-color: #fdf9f4;
   color: var(--text);
-  font-family: 'Barlow', sans-serif;
+  font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.75;
@@ -431,7 +431,7 @@ nav a:hover { opacity: 1; }
   gap: 10px;
   min-height: 220px;
   color: var(--ink-ghost);
-  font-family: 'Barlow', sans-serif;
+  font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   font-size: 18px;
   letter-spacing: .06em;
 }
