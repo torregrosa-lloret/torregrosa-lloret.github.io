@@ -126,7 +126,7 @@ nav a:hover { opacity: 1; }
 
 .finca-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .regalo-grid { display: grid; grid-template-columns: 1fr; gap: 80px; align-items: center; }
-.finca-text p, .regalo-text p { font-size: 18px; font-weight: 300; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
+.finca-text p:not(.s-tag), .regalo-text p:not(.s-tag) { font-size: 18px; font-weight: 300; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
 
 #comoLlegar.finca-bg {
   background-image: url('../assets/images/mapa-finca.png');
@@ -163,9 +163,7 @@ nav a:hover { opacity: 1; }
   z-index: 1;
 }
 
-#finca {
-  padding: 96px 72px;
-}
+#finca {}
 
 #finca .finca-grid {
   display: block;
