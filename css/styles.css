@@ -163,9 +163,7 @@ nav a:hover { opacity: 1; }
   z-index: 1;
 }
 
-#finca {
-  padding: 96px 72px;
-}
+#finca {}
 
 #finca .finca-grid {
   display: block;
