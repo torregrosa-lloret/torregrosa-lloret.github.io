@@ -1,5 +1,5 @@
 :root {
-  --ink: #1a2a9f;
+  --ink: #2a3a8a;
   --ink-mid: #2d5a3d;
   --ink-pale: #c85a54;
   --ink-ghost: #a89080;
@@ -10,6 +10,12 @@
   --text: #1a1818;
   --text-mid: #3a3830;
   --annot: #c85a54;
+  /* Hand-drawn border radii (asymmetric) */
+  --sr-sm: 255px 8px 200px 8px / 8px 200px 8px 255px;
+  --sr-md: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --sr-lg: 28px 4px 22px 8px / 6px 24px 4px 28px;
+  /* Sketch shadow — replaces glass glow */
+  --sketch-shadow: 3px 3px 0 rgba(42,58,138,.10);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,12 +26,12 @@ body {
   font-family: 'Barlow', sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.65;
+  line-height: 1.75;
   overflow-x: hidden;
   position: relative;
 }
 
-section { isolation: isolate; position: relative; overflow: hidden; padding: 96px 72px; background: transparent; }
+section { isolation: isolate; position: relative; overflow: hidden; padding: 120px 72px; background: transparent; }
 section.alt { background: #00000003; }
 section:after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; pointer-events: none; z-index: 2; }
 section:not(.alt):after { background: linear-gradient(to bottom, #fdf9f400, #f4efe666); }
@@ -106,7 +112,7 @@ nav a:hover { opacity: 1; }
 .hero-date-embroidered { font-family: 'Rock Salt', cursive; font-size: 32px; color: var(--ink); font-weight: 300; margin: 28px 0; letter-spacing: 0.08em; animation: fadeUp .8s .22s ease both; }
 .hero-place { margin-top: 24px; font-family: 'Rock Salt', cursive; font-size: 19px; color: var(--annot); animation: fadeUp .8s .34s ease both; }
 .hero-sub { margin-top: 14px; max-width: 360px; font-size: 18px; font-weight: 300; line-height: 1.85; color: var(--text-mid); animation: fadeUp .8s .44s ease both; }
-.hero-cta { margin-top: 44px; display: inline-block; border: 1.5px solid var(--ink); padding: 13px 36px; font-weight: 500; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: background .3s, color .3s; animation: fadeUp .8s .54s ease both; }
+.hero-cta { margin-top: 44px; display: inline-block; border: 2px solid var(--ink); border-radius: var(--sr-md); padding: 13px 36px; font-weight: 500; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); text-decoration: none; transform: rotate(-0.4deg); transition: background .3s, color .3s; animation: fadeUp .8s .54s ease both; }
 .hero-cta:hover { background: var(--ink); color: var(--paper); }
 .hero-r { display: none; }
 .hero-svg { width: 100%; max-width: 470px; }
@@ -114,7 +120,7 @@ nav a:hover { opacity: 1; }
 .plx-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 .plx-layer svg { position: absolute; width: 100%; height: 140%; top: -20%; will-change: transform; }
 
-.s-tag { font-weight: 300; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
+.s-tag { font-family: 'Caveat', cursive; font-weight: 600; font-size: 17px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
 .s-title { font-family: 'Permanent Marker', cursive; font-size: clamp(28px, 3.6vw, 46px); color: var(--ink); line-height: 1.05; text-transform: uppercase; }
 .s-rule { display: block; width: 40px; height: 1px; background: var(--ink-pale); margin: 18px 0 32px; }
 
@@ -182,20 +188,19 @@ nav a:hover { opacity: 1; }
 .tl-body h4 { font-family: 'Permanent Marker', cursive; font-size: 22px; color: var(--ink); margin-bottom: 3px; text-transform: uppercase; }
 .tl-body p { font-size: 17px; font-weight: 300; color: var(--text-mid); line-height: 1.5; }
 
-.addr-card { background: #ffffff8c; border: 1px solid rgba(26,42,159,.12); padding: 30px 30px 24px; position: relative; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
-.addr-card:after { content: ""; position: absolute; bottom: -5px; right: -5px; width: 100%; height: 100%; border: 1px solid rgba(26,42,159,.09); pointer-events: none; }
-.addr-lbl { font-weight: 500; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 12px; }
+.addr-card { background: var(--paper); border: 1.5px solid rgba(42,58,138,.18); border-radius: var(--sr-lg); padding: 30px 30px 24px; position: relative; box-shadow: var(--sketch-shadow); }
+.addr-lbl { font-family: 'Caveat', cursive; font-weight: 600; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 12px; }
 .addr-name { font-family: 'Permanent Marker', cursive; font-size: 24px; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
 .addr-sub { font-size: 17px; font-weight: 300; color: var(--text-mid); margin-bottom: 22px; line-height: 1.65; }
 .addr-link { font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-ghost); padding-bottom: 2px; transition: opacity .2s; }
 .addr-link:hover { opacity: .55; }
 
 .hotels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 6px; }
-.hotel { border: 1px solid rgba(26,42,159,.09); padding: 28px 24px; background: #ffffff80; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); transition: transform .3s, box-shadow .3s; position: relative; overflow: hidden; }
+.hotel { border: 1.5px solid rgba(42,58,138,.14); border-radius: var(--sr-lg); padding: 28px 24px; background: var(--paper); transition: transform .3s; position: relative; overflow: hidden; }
 .hotel:before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
-.hotel:hover { transform: translateY(-4px); box-shadow: 0 14px 40px #1a2a9f12; }
+.hotel:hover { transform: translateY(-4px); }
 .hotel:hover:before { transform: scaleX(1); }
-.hotel-km { font-weight: 300; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
+.hotel-km { font-family: 'Caveat', cursive; font-weight: 600; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
 .hotel-name { font-family: 'Permanent Marker', cursive; font-size: 20px; color: var(--ink); margin-bottom: 13px; text-transform: uppercase; }
 .hotel-desc { font-size: 17px; font-weight: 300; line-height: 1.75; color: var(--text-mid); margin-bottom: 20px; }
 .hotel-lnk { font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-ghost); padding-bottom: 2px; transition: opacity .2s; }
@@ -208,21 +213,19 @@ nav a:hover { opacity: 1; }
 #confirmacion .s-rule { background: #f5f0e8; margin: 18px auto 32px; }
 .form-intro { font-size: 18px; font-weight: 300; color: var(--text-mid); margin-bottom: 40px; line-height: 1.8; }
 #confirmacion .form-intro { color: #f5f0e8; }
-.gform-wrap { border: 1px solid rgba(245,240,232,.3); background: rgba(255,255,255,.1); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: 4px; position: relative; }
-.gform-wrap:after { content: ""; position: absolute; bottom: -6px; right: -6px; width: 100%; height: 100%; border: 1px solid rgba(245,240,232,.2); pointer-events: none; }
+.gform-wrap { border: 1.5px solid rgba(245,240,232,.4); border-radius: var(--sr-lg); background: rgba(255,255,255,.08); padding: 4px; position: relative; }
 #confirmacion .hero-cta { border: 1.5px solid #f5f0e8; color: #f5f0e8; }
 #confirmacion .hero-cta:hover { background: #f5f0e8; color: var(--ink); }
 #confirmacion p { color: #f5f0e8; }
 #confirmacion:before { display: none; }
 #confirmacion:after { display: none; }
 
-.iban-box { margin-top: 32px; border: 1px solid rgba(26,42,159,.13); padding: 26px 30px; background: #ffffff8c; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); position: relative; }
-.iban-box:after { content: ""; position: absolute; bottom: -5px; right: -5px; width: 100%; height: 100%; border: 1px solid rgba(26,42,159,.08); pointer-events: none; }
-.iban-lbl { font-weight: 300; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 9px; }
+.iban-box { margin-top: 32px; border: 1.5px solid rgba(42,58,138,.18); border-radius: var(--sr-lg); padding: 26px 30px; background: var(--paper); position: relative; box-shadow: var(--sketch-shadow); }
+.iban-lbl { font-family: 'Caveat', cursive; font-weight: 600; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 9px; }
 .iban-nombre { font-family: 'Permanent Marker', cursive; font-size: 21px; color: var(--ink); margin-bottom: 5px; text-transform: uppercase; }
 .iban-num { font-weight: 300; font-size: 24px; color: var(--text); letter-spacing: .07em; }
 
-.copy-btn { margin-top: 14px; background: none; border: 1px solid rgba(26,42,159,.22); padding: 7px 20px; font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; transition: all .25s; }
+.copy-btn { margin-top: 14px; background: none; border: 1.5px solid rgba(42,58,138,.28); border-radius: var(--sr-sm); padding: 7px 20px; font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; transform: rotate(0.3deg); transition: all .25s; }
 .copy-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
 .ft-name { font-family: 'Permanent Marker', cursive; font-size: 28px; color: var(--paper); opacity: .92; text-transform: uppercase; letter-spacing: .02em; }
@@ -255,21 +258,21 @@ nav a:hover { opacity: 1; }
   .hero { grid-template-columns: 1fr; }
   .hero-r { display: none; }
   .hero-l { padding: 70px 24px 60px; }
-  section { padding: 72px 24px; }
+  section { padding: 80px 24px; }
   #comoLlegar.finca-bg { padding-top: 24px; }
   .finca-grid { grid-template-columns: 1fr; gap: 44px; }
   .hotels { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 16px; text-align: center; }
   .ft-info { text-align: center; }
   .annot { display: none; }
+  .sketch-frame { transform: none; }
 }
 
 .buses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.bus-card { background: #ffffff8c; border: 1px solid rgba(26,42,159,.12); padding: 28px 28px 24px; position: relative; overflow: hidden; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
-.bus-card:after { content: ""; position: absolute; bottom: -5px; right: -5px; width: 100%; height: 100%; border: 1px solid rgba(26,42,159,.09); pointer-events: none; }
+.bus-card { background: var(--paper); border: 1.5px solid rgba(42,58,138,.18); border-radius: var(--sr-lg); padding: 28px 28px 24px; position: relative; overflow: hidden; box-shadow: var(--sketch-shadow); }
 .bus-section { margin-bottom: 24px; }
 .bus-section:last-child { margin-bottom: 0; }
-.bus-lbl { font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); font-weight: 500; margin-bottom: 10px; }
+.bus-lbl { font-family: 'Caveat', cursive; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-pale); font-weight: 600; margin-bottom: 10px; }
 .bus-row { font-size: 17px; color: var(--text); line-height: 1.8; font-weight: 300; margin: 3px 0; }
 .bus-time { font-weight: 500; color: var(--ink); }
 
@@ -323,7 +326,7 @@ nav a:hover { opacity: 1; }
   .cd-lbl { font-size: 10px; }
   .hero-rule { margin: 18px 0; }
   .hero-cta { margin-top: 32px; padding: 10px 28px; font-size: 12px; }
-  section { padding: 48px 16px; }
+  section { padding: 64px 16px; }
   #comoLlegar.finca-bg { padding-top: 16px; }
   .s-title { font-size: clamp(22px, 3vw, 28px); }
   .finca-grid { gap: 32px; }
@@ -352,6 +355,8 @@ nav a:hover { opacity: 1; }
   nav a { font-size: 10px; letter-spacing: .15em; }
   .hero { min-height: auto; padding-top: 56px; }
   .hero-l { padding: 40px 12px 30px; }
+  .sketch-placeholder { min-height: 140px; font-size: 15px; }
+  .sketch-frame { padding: 6px; }
   .hero-names { font-size: clamp(28px, 4vw, 36px); line-height: 1; }
   .hero-eyebrow { font-size: 12px; margin-bottom: 12px; }
   .hero-rule { width: 50px; margin: 14px 0; }
@@ -364,9 +369,9 @@ nav a:hover { opacity: 1; }
   .cd-sep { font-size: 18px; padding-bottom: 4px; }
   .cd-lbl { font-size: 9px; }
   .hero-cta { margin-top: 24px; padding: 8px 20px; font-size: 11px; }
-  section { padding: 40px 12px; }
+  section { padding: 56px 12px; }
   #comoLlegar.finca-bg { padding-top: 12px; }
-  .s-tag { font-size: 11px; }
+  .s-tag { font-size: 14px; }
   .s-title { font-size: clamp(20px, 2.5vw, 24px); margin-bottom: 8px; }
   .s-rule { width: 30px; margin: 12px 0 20px; }
   .finca-grid { gap: 24px; }
@@ -398,4 +403,39 @@ nav a:hover { opacity: 1; }
   .iban-nombre { font-size: 17px; margin-bottom: 4px; }
   .iban-num { font-size: 21px; }
   .copy-btn { margin-top: 10px; padding: 6px 16px; font-size: 11px; }
+}
+
+/* ── Sketch-frame: wraps real images in a hand-drawn border ── */
+.sketch-frame {
+  display: block;
+  padding: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 12px 16px 10px 18px / 10px 12px 16px 11px;
+  background: var(--paper);
+  box-shadow: var(--sketch-shadow);
+  max-width: 100%;
+  transform: rotate(-0.6deg);
+}
+.sketch-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px 12px 7px 14px / 7px 10px 12px 8px;
+}
+
+/* ── Sketch-placeholder: dashed box for future/missing images ── */
+.sketch-placeholder {
+  border: 2px dashed rgba(42,58,138,.22);
+  border-radius: var(--sr-lg);
+  background: var(--ink-faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 220px;
+  color: var(--ink-ghost);
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  letter-spacing: .06em;
 }
