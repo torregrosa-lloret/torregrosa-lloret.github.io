@@ -399,31 +399,40 @@ nav a:hover { opacity: 1; }
   .copy-btn { margin-top: 10px; padding: 6px 16px; font-size: 11px; }
 }
 
-/* ── Hero polaroids flanking the title ── */
-.hero-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(12px, 3vw, 40px);
-  width: 100%;
-}
+/* ── Hero polaroids as decorative background ── */
 .polaroid {
-  flex-shrink: 0;
-  width: clamp(110px, 16vw, 220px);
+  position: absolute;
+  width: clamp(220px, 32vw, 460px);
   height: auto;
-  filter: drop-shadow(2px 6px 14px rgba(0,0,0,.22));
-  transition: transform .3s ease;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(4px 10px 24px rgba(0,0,0,.25));
+  opacity: 0.92;
+  transition: transform .4s ease;
 }
-.polaroid--left  { transform: rotate(-6deg); }
-.polaroid--right { transform: rotate(5deg); }
-.polaroid--left:hover  { transform: rotate(-2deg) scale(1.04); }
-.polaroid--right:hover { transform: rotate(1.5deg) scale(1.04); }
+.polaroid--left  {
+  left: 4%;
+  top: 14%;
+  transform: rotate(-9deg);
+}
+.polaroid--right {
+  right: 4%;
+  bottom: 8%;
+  transform: rotate(7deg);
+}
+
+.hero .hero-l { position: relative; z-index: 1; }
+
+@media (max-width: 900px) {
+  .polaroid { width: clamp(160px, 38vw, 260px); opacity: 0.85; }
+  .polaroid--left  { left: -4%; top: 8%; transform: rotate(-8deg); }
+  .polaroid--right { right: -4%; bottom: 4%; transform: rotate(6deg); }
+}
 
 @media (max-width: 600px) {
-  .hero-title-row { gap: 8px; }
-  .polaroid { width: clamp(80px, 22vw, 120px); }
-  .polaroid--left  { transform: rotate(-5deg); }
-  .polaroid--right { transform: rotate(4deg); }
+  .polaroid { width: clamp(140px, 42vw, 200px); opacity: 0.78; }
+  .polaroid--left  { left: -8%; top: 6%; transform: rotate(-7deg); }
+  .polaroid--right { right: -8%; bottom: 2%; transform: rotate(5deg); }
 }
 
 /* ── Sketch-frame: wraps real images in a hand-drawn border ── */
