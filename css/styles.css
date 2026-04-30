@@ -399,40 +399,32 @@ nav a:hover { opacity: 1; }
   .copy-btn { margin-top: 10px; padding: 6px 16px; font-size: 11px; }
 }
 
-/* ── Hero polaroids as decorative background ── */
-.polaroid {
-  position: absolute;
-  width: clamp(220px, 32vw, 460px);
+/* ── Wedding gallery: fotografías integradas en el flujo del hero ── */
+.wedding-gallery-inline {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(16px, 3vw, 40px);
+  margin-top: 48px;
+  width: 100%;
+}
+.wedding-gallery-inline__item {
+  margin: 0;
+  flex: 0 0 auto;
+  width: clamp(140px, 20vw, 220px);
+  box-shadow: 0 4px 20px rgba(42, 58, 138, 0.10);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.wedding-gallery-inline__item img {
+  display: block;
+  width: 100%;
   height: auto;
-  z-index: 0;
-  pointer-events: none;
-  filter: drop-shadow(4px 10px 24px rgba(0,0,0,.25));
-  opacity: 0.92;
-  transition: transform .4s ease;
-}
-.polaroid--left  {
-  left: 4%;
-  top: 14%;
-  transform: rotate(-9deg);
-}
-.polaroid--right {
-  right: 4%;
-  bottom: 8%;
-  transform: rotate(7deg);
 }
 
-.hero .hero-l { position: relative; z-index: 1; }
-
-@media (max-width: 900px) {
-  .polaroid { width: clamp(160px, 38vw, 260px); opacity: 0.85; }
-  .polaroid--left  { left: -4%; top: 8%; transform: rotate(-8deg); }
-  .polaroid--right { right: -4%; bottom: 4%; transform: rotate(6deg); }
-}
-
-@media (max-width: 600px) {
-  .polaroid { width: clamp(140px, 42vw, 200px); opacity: 0.78; }
-  .polaroid--left  { left: -8%; top: 6%; transform: rotate(-7deg); }
-  .polaroid--right { right: -8%; bottom: 2%; transform: rotate(5deg); }
+@media (max-width: 480px) {
+  .wedding-gallery-inline { gap: 12px; }
+  .wedding-gallery-inline__item { width: clamp(120px, 38vw, 160px); }
 }
 
 /* ── Sketch-frame: wraps real images in a hand-drawn border ── */
