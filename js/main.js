@@ -120,4 +120,83 @@ document.addEventListener('DOMContentLoaded', function() {
 
   tick();
   setInterval(tick, 1000);
+
+  // ── Polaroid carousel: drag + lightbox ──
+  (function () {
+    const track = document.querySelector('.polaroid-track');
+    if (!track) return;
+
+    const SPEED = 0.5;
+    let x = 0;
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartPos = 0;
+    let moved = false;
+
+    function halfWidth() { return track.scrollWidth / 2; }
+
+    function loop() {
+      if (!dragging) {
+        x += SPEED;
+        if (x >= halfWidth()) x -= halfWidth();
+        track.style.transform = `translateX(${-x}px)`;
+      }
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    function dragStart(clientX) {
+      dragging = true;
+      moved = false;
+      dragStartX = clientX;
+      dragStartPos = x;
+      track.style.cursor = 'grabbing';
+    }
+    function dragMove(clientX) {
+      if (!dragging) return;
+      const delta = dragStartX - clientX;
+      if (Math.abs(delta) > 4) moved = true;
+      const half = halfWidth();
+      x = ((dragStartPos + delta) % half + half) % half;
+      track.style.transform = `translateX(${-x}px)`;
+    }
+    function dragEnd() {
+      dragging = false;
+      track.style.cursor = 'grab';
+    }
+
+    track.addEventListener('mousedown', e => { e.preventDefault(); dragStart(e.clientX); });
+    window.addEventListener('mousemove', e => dragMove(e.clientX));
+    window.addEventListener('mouseup', dragEnd);
+    track.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true });
+    track.addEventListener('touchmove', e => dragMove(e.touches[0].clientX), { passive: true });
+    track.addEventListener('touchend', dragEnd);
+
+    // Lightbox
+    const overlay = document.createElement('div');
+    overlay.className = 'pm-lightbox';
+    overlay.innerHTML = '<img class="pm-lightbox__img" alt=""><button class="pm-lightbox__close" aria-label="Cerrar">✕</button>';
+    document.body.appendChild(overlay);
+    const lbImg = overlay.querySelector('.pm-lightbox__img');
+
+    function openLightbox(src, alt) {
+      lbImg.src = src;
+      lbImg.alt = alt;
+      overlay.classList.add('pm-lightbox--open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      overlay.classList.remove('pm-lightbox--open');
+      document.body.style.overflow = '';
+    }
+
+    track.addEventListener('click', e => {
+      if (moved) return;
+      const slide = e.target.closest('img.pm-slide');
+      if (slide) openLightbox(slide.src, slide.alt);
+    });
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
+    overlay.querySelector('.pm-lightbox__close').addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  })();
 });
