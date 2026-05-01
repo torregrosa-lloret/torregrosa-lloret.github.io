@@ -166,23 +166,13 @@ nav a:hover { opacity: 1; }
 #finca {}
 
 #finca .finca-grid {
-  display: flex;
-  gap: 60px;
-  align-items: flex-start;
+  display: block;
+  width: 100%;
 }
 
 #finca .finca-text {
-  flex: 1;
-}
-
-.finca-acuarela {
-  flex: 0 0 360px;
-}
-
-.acuarela-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  width: 100%;
+  max-width: none;
 }
 
 .timeline { margin-top: 36px; }
@@ -265,8 +255,6 @@ nav a:hover { opacity: 1; }
   section { padding: 80px 24px; }
   #comoLlegar.finca-bg { padding-top: 24px; }
   .finca-grid { grid-template-columns: 1fr; gap: 44px; }
-  #finca .finca-grid { flex-direction: column; }
-  .finca-acuarela { flex: none; width: 100%; max-width: 420px; }
   .hotels { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 16px; text-align: center; }
   .ft-info { text-align: center; }
