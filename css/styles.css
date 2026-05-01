@@ -175,10 +175,73 @@ nav a:hover { opacity: 1; }
   max-width: none;
 }
 
-.timeline { margin-top: 36px; }
-.tl { display: grid; grid-template-columns: 68px 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(26,42,159,.08); }
-.tl:first-child { border-top: 1px solid rgba(26,42,159,.08); }
-.tl-t { font-weight: 500; font-size: 22px; color: var(--ink-mid); padding-top: 2px; letter-spacing: .03em; }
+/* ── Timeline: vertical axis + icon nodes ── */
+.timeline {
+  margin-top: 36px;
+  position: relative;
+}
+
+/* Vertical connecting line — fades in/out at the edges */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 22px; /* centre of the 44px icon column */
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(42,58,138,.14) 8%,
+    rgba(42,58,138,.14) 92%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.tl {
+  display: grid;
+  grid-template-columns: 44px 76px 1fr;
+  column-gap: 16px;
+  padding: 14px 0;
+  align-items: center;
+}
+
+/* Icon container — sits above the line via z-index */
+.tl-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tl-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--paper);
+  border: 1.5px solid rgba(42,58,138,.18);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-mid);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  transition: background .25s, border-color .25s;
+}
+
+.tl:hover .tl-icon {
+  background: rgba(42,58,138,.06);
+  border-color: rgba(42,58,138,.32);
+}
+
+.tl-t {
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--ink-mid);
+  letter-spacing: .03em;
+}
+
 .tl-body h4 { font-family: 'Permanent Marker', cursive; font-size: 22px; color: var(--ink); margin-bottom: 3px; text-transform: uppercase; }
 .tl-body p { font-size: 17px; font-weight: 300; color: var(--text-mid); line-height: 1.5; }
 
@@ -339,7 +402,10 @@ nav a:hover { opacity: 1; }
   .ft-name { font-size: 22px; }
   .ft-info { font-size: 13px; }
   .timeline { margin-top: 24px; }
-  .tl { padding: 12px 0; gap: 12px; grid-template-columns: 50px 1fr; }
+  .timeline::before { left: 20px; }
+  .tl { padding: 12px 0; grid-template-columns: 40px 62px 1fr; column-gap: 12px; }
+  .tl-icon { width: 32px; height: 32px; }
+  .tl-icon svg { width: 16px; height: 16px; }
   .tl-t { font-size: 17px; }
   .tl-body h4 { font-size: 15px; }
   .addr-card { padding: 20px 20px 16px; }
@@ -385,7 +451,10 @@ nav a:hover { opacity: 1; }
   .ft-name { font-size: 18px; }
   .ft-info { font-size: 12px; line-height: 1.5; }
   .timeline { margin-top: 16px; }
-  .tl { padding: 10px 0; gap: 10px; grid-template-columns: 40px 1fr; }
+  .timeline::before { left: 17px; }
+  .tl { padding: 10px 0; grid-template-columns: 34px 52px 1fr; column-gap: 10px; }
+  .tl-icon { width: 28px; height: 28px; }
+  .tl-icon svg { width: 14px; height: 14px; }
   .tl-t { font-size: 15px; }
   .tl-body h4 { font-size: 14px; margin-bottom: 2px; }
   .tl-body p { font-size: 17px; }
