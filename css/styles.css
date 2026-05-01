@@ -280,6 +280,8 @@ nav a:hover { opacity: 1; }
 .bus-lbl { font-family: 'Barlow', sans-serif; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); font-weight: 500; margin-bottom: 10px; }
 .bus-row { font-size: 17px; color: var(--text); line-height: 1.8; font-weight: 300; margin: 3px 0; }
 .bus-time { font-weight: 500; color: var(--ink); }
+.bus-disclaimer { background: var(--paper); border: 1.5px solid rgba(42,58,138,.18); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; padding: 36px 40px; box-shadow: 3px 3px 0 rgba(42,58,138,.10); text-align: center; }
+.bus-disclaimer-text { font-size: 18px; font-weight: 300; color: var(--text-mid); line-height: 1.75; }
 
 @media (max-width: 640px) {
   .buses-grid { grid-template-columns: 1fr; gap: 28px; }
