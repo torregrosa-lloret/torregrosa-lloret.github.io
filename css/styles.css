@@ -190,15 +190,26 @@ nav a:hover { opacity: 1; }
 .addr-link:hover { opacity: .55; }
 
 .hotels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 6px; }
-.hotel { border: 1.5px solid rgba(42,58,138,.14); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; padding: 28px 24px; background: var(--paper); transition: transform .3s; position: relative; overflow: hidden; }
-.hotel:before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
-.hotel:hover { transform: translateY(-4px); }
-.hotel:hover:before { transform: scaleX(1); }
-.hotel-km { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
-.hotel-name { font-family: 'Permanent Marker', cursive; font-size: 20px; color: var(--ink); margin-bottom: 13px; text-transform: uppercase; }
-.hotel-desc { font-size: 17px; font-weight: 300; line-height: 1.75; color: var(--text-mid); margin-bottom: 20px; }
-.hotel-lnk { font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-ghost); padding-bottom: 2px; transition: opacity .2s; }
-.hotel-lnk:hover { opacity: .55; }
+/* Flip cards */
+.alojamiento-card { perspective: 1000px; cursor: pointer; height: 300px; }
+.card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.4,0.2,0.2,1); }
+.alojamiento-card.flipped .card-inner { transform: rotateY(180deg); }
+.card-front, .card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1.5px solid rgba(42,58,138,.14); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; padding: 24px 22px; background: var(--paper); display: flex; flex-direction: column; }
+.card-front::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
+.alojamiento-card:not(.flipped):hover .card-front::before { transform: scaleX(1); }
+.card-back { transform: rotateY(180deg); background: var(--ink); border-color: var(--ink); overflow-y: auto; }
+.etiqueta { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 8px; }
+.card-hotel-name { font-family: 'Permanent Marker', cursive; font-size: 20px; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
+.direccion { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.5; }
+.btn-flip { margin-top: auto; align-self: flex-start; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); border: 1.5px solid rgba(42,58,138,.3); border-radius: 255px 8px 200px 8px / 8px 200px 8px 255px; padding: 5px 14px; transition: all .25s; user-select: none; }
+.alojamiento-card:not(.flipped):hover .btn-flip { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn-flip--back { color: rgba(245,240,232,.75); border-color: rgba(245,240,232,.3); }
+.card-back ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.card-back li { font-size: 13px; font-weight: 300; color: rgba(245,240,232,.88); line-height: 1.55; word-break: break-word; }
+.card-back li strong { font-weight: 600; color: #f5f0e8; }
+.card-back li em { font-style: italic; opacity: .8; }
+.card-back a { color: rgba(245,240,232,.8); text-decoration: underline; text-underline-offset: 2px; }
+.card-back a:hover { opacity: .65; }
 .hotels-note { margin-top: 26px; font-size: 17px; font-weight: 300; font-style: italic; color: var(--text-mid); }
 
 .form-wrap { max-width: 720px; margin: 0 auto; text-align: center; }
@@ -334,8 +345,8 @@ nav a:hover { opacity: 1; }
   .addr-card { padding: 20px 20px 16px; }
   .addr-name { font-size: 20px; }
   .addr-sub { font-size: 18px; }
-  .hotel-name { font-size: 17px; }
-  .hotel-desc { font-size: 18px; }
+  .card-hotel-name { font-size: 17px; }
+  .alojamiento-card { height: 320px; }
   .hotels { gap: 16px; }
   .form-wrap { max-width: 100%; }
   .form-intro { font-size: 17px; margin-bottom: 28px; }
@@ -383,11 +394,10 @@ nav a:hover { opacity: 1; }
   .addr-name { font-size: 17px; margin-bottom: 4px; }
   .addr-sub { font-size: 17px; margin-bottom: 14px; }
   .addr-link { font-size: 12px; }
-  .hotel { padding: 20px 16px; }
-  .hotel-km { font-size: 11px; margin-bottom: 8px; }
-  .hotel-name { font-size: 15px; margin-bottom: 10px; }
-  .hotel-desc { font-size: 16px; margin-bottom: 14px; }
-  .hotel-lnk { font-size: 11px; }
+  .alojamiento-card { height: 360px; }
+  .etiqueta { font-size: 11px; margin-bottom: 8px; }
+  .card-hotel-name { font-size: 15px; margin-bottom: 8px; }
+  .card-back li { font-size: 12px; }
   .hotels-note { font-size: 16px; margin-top: 16px; }
   .form-wrap { max-width: 100%; }
   .form-intro { font-size: 16px; margin-bottom: 20px; }

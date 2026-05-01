@@ -232,62 +232,115 @@
     <span class="s-rule reveal"></span>
 
     <div class="hotels">
-      <div class="hotel reveal">
-        <p class="hotel-km">hotel · murcia</p>
-        <h3 class="hotel-name">AC Murcia</h3>
-        <p class="hotel-desc">
-          <strong>Estándar:</strong> 80,30 € (IVA incl.)<br>
-          <strong>Plus:</strong> 96,80 € (IVA incl.)<br>
-          <strong>Desayuno:</strong> 12,10 € / persona<br>
-          <em>15 habitaciones prebloqueadas.</em>
-        </p>
+
+      <div class="alojamiento-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <span class="etiqueta">Hotel · Murcia</span>
+            <h3 class="card-hotel-name">AC Hotel Murcia</h3>
+            <p class="direccion">Av. Juan Carlos I, 39, Murcia</p>
+            <div class="btn-flip">+ info</div>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Hab. Plus Standard:</strong> 88 € + IVA</li>
+              <li><strong>Hab. Standard:</strong> 73 € + IVA</li>
+              <li><strong>Desayuno:</strong> 11 € + IVA</li>
+              <li>15 habitaciones prebloqueadas.</li>
+              <li><strong>Reservas:</strong> <a href="mailto:reception.murcia@achmhotels.com">reception.murcia@achmhotels.com</a> · <a href="tel:968274250">968 27 42 50</a></li>
+              <li><strong>Ref.:</strong> Boda Sofia &amp; Alfredo 19 sept 26</li>
+            </ul>
+            <div class="btn-flip btn-flip--back">← volver</div>
+          </div>
+        </div>
       </div>
-      <div class="hotel reveal" style="transition-delay: .1s;">
-        <p class="hotel-km">hotel · sercotel</p>
-        <h3 class="hotel-name">JC1</h3>
-        <p class="hotel-desc">
-          <strong>Descuento:</strong> 5% sobre la mejor tarifa disponible.<br>
-          <strong>Código:</strong> BODASOFIAYALFREDO<br>
-          <strong>Late check-out</strong> gratuito hasta las 14:00 h (sujeto a disponibilidad).<br>
-          <em>Válido hasta el 04/09/2026.</em>
-        </p>
-        <a href="https://www.sercotelhoteles.com" target="_blank" rel="noreferrer" class="hotel-lnk">Reservar en sercotelhoteles.com →</a>
+
+      <div class="alojamiento-card reveal" style="transition-delay: .1s;" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <span class="etiqueta">Hotel · Murcia</span>
+            <h3 class="card-hotel-name">Hotel JC1 Murcia</h3>
+            <p class="direccion">Av. Juan Carlos I, 55, Murcia</p>
+            <div class="btn-flip">+ info</div>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Código:</strong> BODASOFIAYALFREDO <em>(5% dto)</em></li>
+              <li><strong>Reservas:</strong> <a href="https://www.sercotelhoteles.com" target="_blank" rel="noreferrer">www.sercotelhoteles.com</a></li>
+              <li>Late check-out gratuito hasta las 14:00 h.</li>
+              <li><em>Válido hasta el 04/09/2026.</em></li>
+            </ul>
+            <div class="btn-flip btn-flip--back">← volver</div>
+          </div>
+        </div>
       </div>
-      <div class="hotel reveal" style="transition-delay: .2s;">
-        <p class="hotel-km">apartamentos</p>
-        <h3 class="hotel-name">Archyval</h3>
-        <p class="hotel-desc">
-          <strong>2 personas:</strong> 65 €/noche<br>
-          <strong>3-4 personas:</strong> 95 €/noche<br>
-          <strong>Suite:</strong> 80 €/noche<br>
-          Pago 1.ª noche por adelantado (fines de semana, pago íntegro). Cancelación gratuita hasta 48 h antes.
-        </p>
-        <a href="tel:968674822" class="hotel-lnk">968 674 822 · 605 819 103</a>
+
+      <div class="alojamiento-card reveal" style="transition-delay: .2s;" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <span class="etiqueta">Apartamentos · Archena</span>
+            <h3 class="card-hotel-name">Apartamentos Archybal</h3>
+            <p class="direccion">C/ Venezuela, 7, Archena</p>
+            <div class="btn-flip">+ info</div>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>2 personas:</strong> 65 €/noche</li>
+              <li><strong>3-4 personas:</strong> 95 €/noche</li>
+              <li><strong>Suite:</strong> 80 €/noche</li>
+              <li><strong>Reservas:</strong> <a href="tel:968674822">968 674 822</a> / <a href="tel:605819103">605 819 103</a> · <a href="mailto:info@apartamentosarchybal.com">info@apartamentosarchybal.com</a></li>
+              <li>Pago anticipado. Cancelación gratuita hasta 48 h.</li>
+            </ul>
+            <div class="btn-flip btn-flip--back">← volver</div>
+          </div>
+        </div>
       </div>
-      <div class="hotel reveal" style="transition-delay: .3s;">
-        <p class="hotel-km">hotel</p>
-        <h3 class="hotel-name">B&amp;B Hotel</h3>
-        <p class="hotel-desc">
-          <strong>Doble uso individual:</strong> 69 € (IVA y desayuno incl.)<br>
-          <strong>Doble:</strong> 74 € (IVA y desayuno incl.)<br>
-          <strong>Código:</strong> BODASOFIAYALFREDOxBB <em>(hasta 01/06/2026)</em><br>
-          Parking, WiFi, café/infusiones 24 h y consigna gratuitos. Mascotas admitidas (20 €/día).
-        </p>
+
+      <div class="alojamiento-card reveal" style="transition-delay: .3s;" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <span class="etiqueta">Hotel · Murcia</span>
+            <h3 class="card-hotel-name">B&amp;B Hotel Murcia</h3>
+            <p class="direccion">Av. Juan de Borbón, 2, Murcia</p>
+            <div class="btn-flip">+ info</div>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Código:</strong> BODASOFIAYALFREDOxBB</li>
+              <li><strong>Individual:</strong> 69 € · <strong>Doble:</strong> 74 €</li>
+              <li>Desayuno incluido. Parking gratuito.</li>
+              <li>Pago del 50% para reservar.</li>
+              <li><em>Disponible hasta 01/06/2026.</em></li>
+            </ul>
+            <div class="btn-flip btn-flip--back">← volver</div>
+          </div>
+        </div>
       </div>
-      <div class="hotel reveal" style="transition-delay: .4s;">
-        <p class="hotel-km">hotel</p>
-        <h3 class="hotel-name">Hyltor</h3>
-        <p class="hotel-desc">
-          <strong>Individual:</strong> 70 € · <strong>Junior Matrimonial:</strong> 85 € · <strong>Doble:</strong> 95 €<br>
-          Desayuno incluido.<br>
-          <strong>Descuentos:</strong> 5% (2 noches) · 10% (3 o más noches)<br>
-          Check-in: 13:30 h · Check-out: 11:30 h<br>
-          <em>Reserva recomendada con al menos 45 días de antelación.</em>
-        </p>
+
+      <div class="alojamiento-card reveal" style="transition-delay: .4s;" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <span class="etiqueta">Hotel · Archena</span>
+            <h3 class="card-hotel-name">Hotel Hyltor</h3>
+            <p class="direccion">Carr. del Balneario, 12-14, Archena</p>
+            <div class="btn-flip">+ info</div>
+          </div>
+          <div class="card-back">
+            <ul>
+              <li><strong>Individual:</strong> 70 € · <strong>Junior Matrimonial:</strong> 85 € · <strong>Doble:</strong> 95 €</li>
+              <li>Desayuno incluido.</li>
+              <li><strong>Descuentos:</strong> 5% (2 noches) · 10% (3 o más noches)</li>
+              <li>Check-in: 13:30 h · Check-out: 11:30 h</li>
+              <li><em>Reserva recomendada con 45 días de antelación.</em></li>
+            </ul>
+            <div class="btn-flip btn-flip--back">← volver</div>
+          </div>
+        </div>
       </div>
+
     </div>
 
-    <p class="hotels-note reveal">¿Necesitáis ayuda para elegir alojamiento? ¡Preguntadnos!</p>
+    <p class="hotels-note reveal">Todas las tarifas están sujetas a disponibilidad, así que os recomendamos reservar con antelación.</p>
   </section>
 
   <section id="confirmacion" style="background: var(--ink);">
