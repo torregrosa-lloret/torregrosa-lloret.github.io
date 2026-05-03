@@ -28,6 +28,7 @@ body {
 }
 
 section { isolation: isolate; position: relative; overflow: hidden; padding: 120px 72px; background: transparent; }
+section:not(.hero) { margin-left: 32px; margin-right: 32px; }
 section.alt { background: #00000003; }
 section:after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; pointer-events: none; z-index: 2; }
 section:not(.alt):after { background: linear-gradient(to bottom, #fdf9f400, #f4efe666); }
@@ -314,6 +315,7 @@ nav a:hover { opacity: 1; }
   .hero-r { display: none; }
   .hero-l { padding: 70px 24px 60px; }
   section { padding: 80px 24px; }
+  section:not(.hero) { margin-left: 16px; margin-right: 16px; }
   #comoLlegar.finca-bg { padding-top: 24px; }
   .finca-grid { grid-template-columns: 1fr; gap: 44px; }
   .hotels { grid-template-columns: 1fr; }
@@ -384,6 +386,7 @@ nav a:hover { opacity: 1; }
   .hero-rule { margin: 18px 0; }
   .hero-cta { margin-top: 32px; padding: 10px 28px; font-size: 12px; }
   section { padding: 64px 16px; }
+  section:not(.hero) { margin-left: 12px; margin-right: 12px; }
   #comoLlegar.finca-bg { padding-top: 16px; }
   .s-title { font-size: clamp(22px, 3vw, 28px); }
   .finca-grid { gap: 32px; }
@@ -430,6 +433,7 @@ nav a:hover { opacity: 1; }
   .cd-lbl { font-size: 9px; }
   .hero-cta { margin-top: 24px; padding: 8px 20px; font-size: 11px; }
   section { padding: 56px 12px; }
+  section:not(.hero) { margin-left: 8px; margin-right: 8px; }
   #comoLlegar.finca-bg { padding-top: 12px; }
   .s-tag { font-size: 14px; }
   .s-title { font-size: clamp(20px, 2.5vw, 24px); margin-bottom: 8px; }
