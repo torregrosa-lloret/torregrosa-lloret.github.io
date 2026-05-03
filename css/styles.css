@@ -289,7 +289,7 @@ nav a:hover { opacity: 1; }
 .ft-name { font-family: 'Permanent Marker', cursive; font-size: 28px; color: var(--paper); opacity: .92; text-transform: uppercase; letter-spacing: .02em; }
 .ft-info { text-align: right; font-weight: 300; font-size: 16px; color: var(--paper); opacity: .55; line-height: 1.7; letter-spacing: .04em; }
 
-.countdown { display: flex; gap: 24px; margin-top: 28px; animation: fadeUp .8s .48s ease both; }
+.countdown { display: flex; gap: 24px; margin-top: 96px; animation: fadeUp .8s .48s ease both; }
 .cd-block { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .cd-num { font-family: 'Permanent Marker', cursive; font-size: 44px; color: var(--ink); line-height: 1; }
 .cd-lbl { font-weight: 300; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); }
@@ -379,7 +379,7 @@ nav a:hover { opacity: 1; }
   .hero-date-embroidered { font-size: 22px; margin: 6px 0 0; }
   .hero-place { font-size: 16px; margin-top: 56px; }
   .hero-sub { max-width: 100%; font-size: 17px; }
-  .countdown { flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .countdown { flex-wrap: wrap; gap: 12px; margin-top: 64px; }
   .cd-num { font-size: 28px; }
   .cd-sep { font-size: 24px; padding-bottom: 6px; }
   .cd-lbl { font-size: 10px; }
@@ -425,7 +425,7 @@ nav a:hover { opacity: 1; }
   .hero-date-embroidered { font-size: 18px; margin: 4px 0 0; }
   .hero-place { font-size: 14px; margin-top: 44px; }
   .hero-sub { max-width: 100%; font-size: 16px; line-height: 1.6; }
-  .countdown { gap: 8px; margin-top: 16px; }
+  .countdown { gap: 8px; margin-top: 48px; }
   .cd-block { gap: 0px; }
   .cd-num { font-size: 24px; }
   .cd-sep { font-size: 18px; padding-bottom: 4px; }
