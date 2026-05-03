@@ -176,16 +176,6 @@ nav a:hover { opacity: 1; }
 }
 
 .timeline { margin: 40px auto 0; max-width: 540px; position: relative; padding: 12px 0 12px 8px; }
-.tl-line {
-  position: absolute;
-  left: 0;
-  top: 24px;
-  bottom: 24px;
-  width: 40px;
-  height: auto;
-  pointer-events: none;
-  z-index: 0;
-}
 .tl {
   display: grid;
   grid-template-columns: 32px 1fr;
@@ -391,7 +381,6 @@ nav a:hover { opacity: 1; }
   .ft-name { font-size: 22px; }
   .ft-info { font-size: 13px; }
   .timeline { margin-top: 28px; max-width: 460px; }
-  .tl-line { top: 20px; bottom: 20px; }
   .tl { padding: 12px 0; gap: 18px; grid-template-columns: 28px 1fr; }
   .tl-marker { width: 20px; height: 20px; }
   .tl-t { font-size: 22px; }
@@ -439,7 +428,6 @@ nav a:hover { opacity: 1; }
   .ft-name { font-size: 18px; }
   .ft-info { font-size: 12px; line-height: 1.5; }
   .timeline { margin-top: 20px; max-width: 100%; padding-left: 4px; }
-  .tl-line { top: 16px; bottom: 16px; width: 32px; }
   .tl { padding: 10px 0; gap: 14px; grid-template-columns: 24px 1fr; }
   .tl-marker { width: 18px; height: 18px; margin-top: 4px; }
   .tl-marker::after { inset: 3px; }
