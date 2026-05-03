@@ -12,6 +12,9 @@
   --annot: #c85a54;
   /* Sketch shadow — replaces glass glow */
   --sketch-shadow: 3px 3px 0 rgba(42,58,138,.10);
+  /* Side spacing — applied as inner padding so section backgrounds still
+     extend edge-to-edge and no visible cut appears on the sides. */
+  --side-pad: clamp(24px, 7vw, 140px);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +30,7 @@ body {
   position: relative;
 }
 
-section { isolation: isolate; position: relative; overflow: hidden; padding: 120px 72px; background: transparent; }
+section { isolation: isolate; position: relative; overflow: hidden; padding: 120px var(--side-pad); background: transparent; }
 section.alt { background: #00000003; }
 section:after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; pointer-events: none; z-index: 2; }
 section:not(.alt):after { background: linear-gradient(to bottom, #fdf9f400, #f4efe666); }
@@ -39,10 +42,10 @@ section.alt:before { background: linear-gradient(to top, #f4efe600, #fdf9f433); 
 section.hero:before { display: none; }
 section > *:not(.plx-layer) { position: relative; z-index: 1; }
 
-footer { position: relative; z-index: 5; background: var(--ink); padding: 56px 72px; display: flex; justify-content: space-between; align-items: center; }
+footer { position: relative; z-index: 5; background: var(--ink); padding: 56px var(--side-pad); display: flex; justify-content: space-between; align-items: center; }
 
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 16px 56px;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 16px var(--side-pad);
   display: flex; justify-content: space-between; align-items: center;
   background: var(--ink); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,255,255,.1);
@@ -95,7 +98,7 @@ nav a:hover { opacity: 1; }
 }
 
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr; padding-top: 70px; }
-.hero-l { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 80px 72px; text-align: center; align-items: center; }
+.hero-l { display: flex; flex-direction: column; justify-content: center; padding: 80px var(--side-pad); text-align: center; align-items: center; }
 .hero-eyebrow { font-family: 'Rock Salt', cursive; font-size: 14px; font-weight: 300; letter-spacing: .06em; color: var(--text-mid); margin-bottom: 20px; animation: fadeUp .8s ease both; }
 .hero-names { font-family: 'Permanent Marker', cursive; font-size: clamp(52px, 6.5vw, 88px); line-height: .9; color: var(--ink); text-transform: uppercase; animation: fadeUp .8s .1s ease both; }
 .hero-amp { font-size: .7em; margin: 0 4px; display: inline-block; color: var(--ink); }
@@ -337,7 +340,6 @@ nav a:hover { opacity: 1; }
   .buses-grid { grid-template-columns: 1fr; gap: 28px; }
   .bus-card { padding: 28px 24px 24px; }
   .bus-section { margin-bottom: 22px; }
-}
 
   nav {
     padding: 10px 16px;
