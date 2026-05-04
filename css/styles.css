@@ -139,19 +139,11 @@ nav a:hover { opacity: 1; }
 .hero-place { margin-top: 88px; font-family: 'Rock Salt', cursive; font-size: 19px; color: var(--annot); animation: fadeUp .8s .34s ease both; }
 .hero-fold {
   align-self: stretch;
-  position: relative;
   height: 16px;
-  margin: 44px 0;
+  margin: 44px calc(-1 * var(--side-pad));
   pointer-events: none;
   animation: fadeUp .8s .4s ease both;
-}
-.hero-fold::before {
-  content: "";
-  position: absolute;
-  top: 0; bottom: 0;
-  left: calc(36px - var(--side-pad));
-  right: calc(36px - var(--side-pad));
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 16' preserveAspectRatio='none'><defs><linearGradient id='gT' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='black' stop-opacity='0'/><stop offset='1' stop-color='black' stop-opacity='0.10'/></linearGradient><linearGradient id='gB' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='black' stop-opacity='0.06'/><stop offset='1' stop-color='black' stop-opacity='0'/></linearGradient></defs><rect x='0' y='2' width='1200' height='6' fill='url(%23gT)'/><rect x='0' y='8.6' width='1200' height='5' fill='url(%23gB)'/><line x1='0' y1='8.5' x2='1200' y2='8.5' stroke='white' stroke-opacity='0.5' stroke-width='0.5'/><path d='M0 7.95 Q150 7.7 300 8.1 T600 7.85 T900 8.15 T1200 7.95' stroke='black' stroke-opacity='0.32' stroke-width='0.9' fill='none' stroke-linecap='round'/><path d='M0 8.55 Q200 8.45 400 8.65 T800 8.55 T1200 8.5' stroke='black' stroke-opacity='0.09' stroke-width='0.5' fill='none'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 16' preserveAspectRatio='none'><defs><linearGradient id='gT' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='black' stop-opacity='0'/><stop offset='1' stop-color='black' stop-opacity='0.055'/></linearGradient><linearGradient id='gB' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='black' stop-opacity='0.032'/><stop offset='1' stop-color='black' stop-opacity='0'/></linearGradient></defs><rect x='0' y='2.5' width='1600' height='5.5' fill='url(%23gT)'/><rect x='0' y='8.7' width='1600' height='4.5' fill='url(%23gB)'/><line x1='0' y1='8.5' x2='1600' y2='8.5' stroke='white' stroke-opacity='0.28' stroke-width='0.45'/><path d='M0 7.96 C55 7.74 120 8.12 185 7.83 C240 7.66 305 8.07 365 7.94 C425 8.11 495 7.7 555 8.02 C620 7.78 685 8.14 745 7.86 C810 7.96 880 7.72 945 8.08 C1010 7.84 1075 8.1 1140 7.88 C1205 8.06 1270 7.74 1335 7.99 C1400 8.13 1470 7.82 1535 7.94 C1575 8.04 1600 7.9 1600 7.95' stroke='black' stroke-opacity='0.19' stroke-width='0.7' fill='none' stroke-linecap='round'/><path d='M0 8.62 C90 8.44 180 8.66 280 8.5 C370 8.6 470 8.42 565 8.55 C660 8.65 760 8.42 855 8.55 C950 8.62 1050 8.4 1145 8.58 C1240 8.5 1340 8.45 1440 8.6 C1520 8.5 1600 8.48 1600 8.52' stroke='black' stroke-opacity='0.06' stroke-width='0.45' fill='none'/></svg>");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
