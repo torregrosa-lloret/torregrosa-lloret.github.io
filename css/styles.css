@@ -137,6 +137,24 @@ nav a:hover { opacity: 1; }
 .hero-year { font-weight: 300; font-size: 22px; color: var(--ink-pale); }
 .hero-date-embroidered { font-family: 'Rock Salt', cursive; font-size: 32px; color: var(--ink); font-weight: 300; margin: 8px 0 0; letter-spacing: 0.08em; animation: fadeUp .8s .22s ease both; }
 .hero-place { margin-top: 88px; font-family: 'Rock Salt', cursive; font-size: 19px; color: var(--annot); animation: fadeUp .8s .34s ease both; }
+.hero-fold {
+  align-self: stretch;
+  position: relative;
+  height: 16px;
+  margin: 44px 0;
+  pointer-events: none;
+  animation: fadeUp .8s .4s ease both;
+}
+.hero-fold::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(36px - var(--side-pad));
+  right: calc(36px - var(--side-pad));
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 16' preserveAspectRatio='none'><defs><linearGradient id='gT' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='black' stop-opacity='0'/><stop offset='1' stop-color='black' stop-opacity='0.10'/></linearGradient><linearGradient id='gB' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='black' stop-opacity='0.06'/><stop offset='1' stop-color='black' stop-opacity='0'/></linearGradient></defs><rect x='0' y='2' width='1200' height='6' fill='url(%23gT)'/><rect x='0' y='8.6' width='1200' height='5' fill='url(%23gB)'/><line x1='0' y1='8.5' x2='1200' y2='8.5' stroke='white' stroke-opacity='0.5' stroke-width='0.5'/><path d='M0 7.95 Q150 7.7 300 8.1 T600 7.85 T900 8.15 T1200 7.95' stroke='black' stroke-opacity='0.32' stroke-width='0.9' fill='none' stroke-linecap='round'/><path d='M0 8.55 Q200 8.45 400 8.65 T800 8.55 T1200 8.5' stroke='black' stroke-opacity='0.09' stroke-width='0.5' fill='none'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
 .hero-sub { margin-top: 14px; max-width: 360px; font-size: 18px; font-weight: 300; line-height: 1.85; color: var(--text-mid); animation: fadeUp .8s .44s ease both; }
 .hero-cta { margin-top: 44px; display: inline-block; border: 2px solid var(--ink); border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; padding: 13px 36px; font-weight: 500; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); text-decoration: none; transform: rotate(-0.4deg); transition: background .3s, color .3s; animation: fadeUp .8s .54s ease both; }
 .hero-cta:hover { background: var(--ink); color: var(--paper); }
@@ -316,7 +334,7 @@ nav a:hover { opacity: 1; }
 .ft-name { font-family: 'Permanent Marker', cursive; font-size: 28px; color: var(--paper); opacity: .92; text-transform: uppercase; letter-spacing: .02em; }
 .ft-info { text-align: right; font-weight: 300; font-size: 16px; color: var(--paper); opacity: .55; line-height: 1.7; letter-spacing: .04em; }
 
-.countdown { display: flex; gap: 24px; margin-top: 96px; animation: fadeUp .8s .48s ease both; }
+.countdown { display: flex; gap: 24px; margin-top: 0; animation: fadeUp .8s .48s ease both; }
 .cd-block { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .cd-num { font-family: 'Permanent Marker', cursive; font-size: 44px; color: var(--ink); line-height: 1; }
 .cd-lbl { font-weight: 300; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); }
@@ -406,7 +424,8 @@ nav a:hover { opacity: 1; }
   .hero-date-embroidered { font-size: 22px; margin: 6px 0 0; }
   .hero-place { font-size: 16px; margin-top: 56px; }
   .hero-sub { max-width: 100%; font-size: 17px; }
-  .countdown { flex-wrap: wrap; gap: 12px; margin-top: 64px; }
+  .countdown { flex-wrap: wrap; gap: 12px; margin-top: 0; }
+  .hero-fold { margin: 28px 0; height: 14px; }
   .cd-num { font-size: 28px; }
   .cd-sep { font-size: 24px; padding-bottom: 6px; }
   .cd-lbl { font-size: 10px; }
@@ -452,7 +471,8 @@ nav a:hover { opacity: 1; }
   .hero-date-embroidered { font-size: 18px; margin: 4px 0 0; }
   .hero-place { font-size: 14px; margin-top: 44px; }
   .hero-sub { max-width: 100%; font-size: 16px; line-height: 1.6; }
-  .countdown { gap: 8px; margin-top: 48px; }
+  .countdown { gap: 8px; margin-top: 0; }
+  .hero-fold { margin: 20px 0; height: 12px; }
   .cd-block { gap: 0px; }
   .cd-num { font-size: 24px; }
   .cd-sep { font-size: 18px; padding-bottom: 4px; }
