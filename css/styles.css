@@ -1,15 +1,15 @@
 :root {
   --ink: #2a3a8a;
   --ink-mid: #2d5a3d;
-  --ink-pale: #c85a54;
-  --ink-ghost: #a89080;
+  --ink-pale: #b04742;
+  --ink-ghost: #8b7060;
   --ink-faint: #f5f0e8;
   --paper: #faf7f2;
   --paper-alt: #f4efe6;
   --cream: #fdfbf7;
   --text: #1a1818;
-  --text-mid: #3a3830;
-  --annot: #c85a54;
+  --text-mid: #2e2c26;
+  --annot: #b04742;
   /* Sketch shadow — replaces glass glow */
   --sketch-shadow: 3px 3px 0 rgba(42,58,138,.10);
   /* Side spacing — applied as inner padding so section backgrounds still
@@ -24,10 +24,11 @@ body {
   color: var(--text);
   font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.75;
   overflow-x: hidden;
   position: relative;
+  -webkit-text-size-adjust: 100%;
 }
 
 section { isolation: isolate; position: relative; overflow: hidden; padding: 120px var(--side-pad); background: transparent; }
@@ -50,17 +51,17 @@ nav {
   background: var(--ink); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
-.nav-logo { font-family: 'Permanent Marker', cursive; font-size: 19px; color: white; text-transform: uppercase; letter-spacing: .03em; }
+.nav-logo { font-family: 'Permanent Marker', cursive; font-size: 21px; color: white; text-transform: uppercase; letter-spacing: .03em; }
 .nav-toggle { display: none; }
 .nav-menu { list-style: none; display: flex; gap: 36px; }
-nav a { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: white; text-decoration: none; opacity: .7; transition: opacity .2s; }
+nav a { font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: white; text-decoration: none; opacity: .85; transition: opacity .2s; }
 nav a:hover { opacity: 1; }
 
 /* Hamburger Menu Styles */
 .nav-toggle {
   position: relative;
-  width: 24px;
-  height: 20px;
+  width: 32px;
+  height: 26px;
   background: none;
   border: none;
   cursor: pointer;
@@ -72,7 +73,7 @@ nav a:hover { opacity: 1; }
   position: absolute;
   display: block;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background-color: white;
   border-radius: 2px;
   transition: all 0.3s ease;
@@ -80,12 +81,12 @@ nav a:hover { opacity: 1; }
 }
 
 .nav-toggle span:nth-child(1) { top: 0; }
-.nav-toggle span:nth-child(2) { top: 9px; opacity: 1; }
-.nav-toggle span:nth-child(3) { top: 18px; }
+.nav-toggle span:nth-child(2) { top: 11px; opacity: 1; }
+.nav-toggle span:nth-child(3) { top: 22px; }
 
 .nav-toggle.active span:nth-child(1) {
   transform: rotate(45deg);
-  top: 9px;
+  top: 11px;
 }
 
 .nav-toggle.active span:nth-child(2) {
@@ -94,7 +95,7 @@ nav a:hover { opacity: 1; }
 
 .nav-toggle.active span:nth-child(3) {
   transform: rotate(-45deg);
-  top: 9px;
+  top: 11px;
 }
 
 .hero {
@@ -132,9 +133,9 @@ nav a:hover { opacity: 1; }
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 80px 12px, 80px 12px, 12px 80px, 12px 80px;
 }
-.hero-l { display: grid; grid-template-rows: 1fr auto 1fr; justify-items: center; text-align: center; padding: 0; }
+.hero-l { display: grid; grid-template-rows: auto 1fr auto 1fr; justify-items: center; text-align: center; padding: 0; }
 .hero-top, .hero-bottom { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.hero-eyebrow { font-family: 'Rock Salt', cursive; font-size: 14px; font-weight: 300; letter-spacing: .06em; color: var(--text-mid); margin-bottom: 20px; animation: fadeUp .8s ease both; }
+.hero-eyebrow { font-family: 'Rock Salt', cursive; font-size: 16px; font-weight: 300; letter-spacing: .06em; color: var(--text-mid); margin: 28px 0 0; align-self: start; animation: fadeUp .8s ease both; }
 .hero-names { font-family: 'Permanent Marker', cursive; font-size: clamp(52px, 6.5vw, 88px); line-height: .9; color: var(--ink); text-transform: uppercase; animation: fadeUp .8s .1s ease both; }
 .hero-amp { font-size: .7em; margin: 0 4px; display: inline-block; color: var(--ink); }
 .hero-rule { display: block; width: 68px; height: 7px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'%3E%3Cpath d='M1,5 C4,1.5 15,0.5 30,1.5 C45,2.5 56,1 59,4.5 C56,8 45,8.5 30,7 C15,5.5 4,8.5 1,5Z' fill='%23c85a54' opacity='.88'/%3E%3C/svg%3E") center/100% 100% no-repeat; margin: 18px 0 8px; animation: growLine 1s .28s ease both; }
@@ -143,7 +144,7 @@ nav a:hover { opacity: 1; }
 .hero-date-stacked { display: flex; flex-direction: column; gap: 2px; }
 .hero-month { font-weight: 500; font-size: 28px; color: var(--ink); letter-spacing: .08em; text-transform: uppercase; }
 .hero-year { font-weight: 300; font-size: 22px; color: var(--ink-pale); }
-.hero-date-embroidered { font-family: 'Rock Salt', cursive; font-size: 32px; color: var(--ink); font-weight: 300; margin: 8px 0 0; letter-spacing: 0.08em; animation: fadeUp .8s .22s ease both; }
+.hero-date-embroidered { font-family: 'Rock Salt', cursive; font-size: 34px; color: var(--ink); font-weight: 300; margin: 8px 0 0; letter-spacing: 0.08em; animation: fadeUp .8s .22s ease both; }
 .hero-place { margin-top: 88px; font-family: 'Rock Salt', cursive; font-size: 19px; color: var(--annot); animation: fadeUp .8s .34s ease both; }
 .hero-fold {
   position: relative;
@@ -166,8 +167,8 @@ nav a:hover { opacity: 1; }
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-.hero-sub { margin-top: 14px; max-width: 360px; font-size: 18px; font-weight: 300; line-height: 1.85; color: var(--text-mid); animation: fadeUp .8s .44s ease both; }
-.hero-cta { margin-top: 44px; display: inline-block; border: 2px solid var(--ink); border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; padding: 13px 36px; font-weight: 500; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); text-decoration: none; transform: rotate(-0.4deg); transition: background .3s, color .3s; animation: fadeUp .8s .54s ease both; }
+.hero-sub { margin-top: 14px; max-width: 360px; font-size: 19px; font-weight: 300; line-height: 1.85; color: var(--text-mid); animation: fadeUp .8s .44s ease both; }
+.hero-cta { margin-top: 44px; display: inline-block; border: 2px solid var(--ink); border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; padding: 16px 40px; font-weight: 600; font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); text-decoration: none; transform: rotate(-0.4deg); transition: background .3s, color .3s; animation: fadeUp .8s .54s ease both; }
 .hero-cta:hover { background: var(--ink); color: var(--paper); }
 .hero-r { display: none; }
 .hero-svg { width: 100%; max-width: 470px; }
@@ -175,7 +176,7 @@ nav a:hover { opacity: 1; }
 .plx-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 .plx-layer svg { position: absolute; width: 100%; height: 140%; top: -20%; will-change: transform; }
 
-.s-tag { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
+.s-tag { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
 .s-title { font-family: 'Permanent Marker', cursive; font-size: clamp(28px, 3.6vw, 46px); color: var(--ink); line-height: 1.05; text-transform: uppercase; }
 .s-rule { display: block; width: 44px; height: 7px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'%3E%3Cpath d='M1,5 C4,1.5 15,0.5 30,1.5 C45,2.5 56,1 59,4.5 C56,8 45,8.5 30,7 C15,5.5 4,8.5 1,5Z' fill='%23c85a54' opacity='.88'/%3E%3C/svg%3E") center/100% 100% no-repeat; margin: 18px 0 32px; }
 
@@ -185,7 +186,7 @@ nav a:hover { opacity: 1; }
 
 .finca-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .regalo-grid { display: grid; grid-template-columns: 1fr; gap: 80px; align-items: center; }
-.finca-text p:not(.s-tag), .regalo-text p:not(.s-tag) { font-size: 18px; font-weight: 300; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
+.finca-text p:not(.s-tag), .regalo-text p:not(.s-tag) { font-size: 19px; font-weight: 400; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
 
 #comoLlegar.finca-bg {
   background-image: url('../assets/images/mapa-finca.png');
@@ -276,14 +277,14 @@ nav a:hover { opacity: 1; }
 .tl-content { display: flex; flex-direction: row; align-items: baseline; gap: 18px; flex-wrap: wrap; }
 .tl-t {
   font-family: 'Shadows Into Light', cursive;
-  font-size: 26px;
+  font-size: 28px;
   line-height: 1;
   color: var(--ink-pale);
   letter-spacing: .02em;
 }
 .tl-name {
   font-family: 'Permanent Marker', cursive;
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.05;
   color: var(--ink);
   text-transform: uppercase;
@@ -292,10 +293,10 @@ nav a:hover { opacity: 1; }
 }
 
 .addr-card { background: var(--paper); border: 1.5px solid rgba(42,58,138,.18); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; padding: 30px 30px 24px; position: relative; box-shadow: 3px 3px 0 rgba(42,58,138,.10); }
-.addr-lbl { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 12px; }
-.addr-name { font-family: 'Permanent Marker', cursive; font-size: 24px; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
-.addr-sub { font-size: 17px; font-weight: 300; color: var(--text-mid); margin-bottom: 22px; line-height: 1.65; }
-.addr-link { font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-ghost); padding-bottom: 2px; transition: opacity .2s; }
+.addr-lbl { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 12px; }
+.addr-name { font-family: 'Permanent Marker', cursive; font-size: 26px; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
+.addr-sub { font-size: 18px; font-weight: 400; color: var(--text-mid); margin-bottom: 22px; line-height: 1.7; }
+.addr-link { font-size: 15px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--ink); padding-bottom: 3px; transition: opacity .2s; display: inline-block; padding-top: 4px; }
 .addr-link:hover { opacity: .55; }
 
 .hotels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 6px; }
@@ -307,25 +308,25 @@ nav a:hover { opacity: 1; }
 .card-front::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
 .alojamiento-card:not(.flipped):hover .card-front::before { transform: scaleX(1); }
 .card-back { transform: rotateY(180deg); background: var(--ink); border-color: var(--ink); overflow-y: auto; }
-.etiqueta { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 8px; }
-.card-hotel-name { font-family: 'Permanent Marker', cursive; font-size: 20px; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
-.direccion { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.5; }
-.btn-flip { margin-top: auto; align-self: flex-start; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); border: 1.5px solid rgba(42,58,138,.3); border-radius: 255px 8px 200px 8px / 8px 200px 8px 255px; padding: 5px 14px; transition: all .25s; user-select: none; }
+.etiqueta { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 8px; }
+.card-hotel-name { font-family: 'Permanent Marker', cursive; font-size: 22px; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
+.direccion { font-size: 16px; font-weight: 400; color: var(--text-mid); line-height: 1.5; }
+.btn-flip { margin-top: auto; align-self: flex-start; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); border: 1.5px solid rgba(42,58,138,.4); border-radius: 255px 8px 200px 8px / 8px 200px 8px 255px; padding: 8px 18px; transition: all .25s; user-select: none; }
 .alojamiento-card:not(.flipped):hover .btn-flip { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .btn-flip--back { color: rgba(245,240,232,.75); border-color: rgba(245,240,232,.3); }
-.card-back ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
-.card-back li { font-size: 13px; font-weight: 300; color: rgba(245,240,232,.88); line-height: 1.55; word-break: break-word; }
-.card-back li strong { font-weight: 600; color: #f5f0e8; }
-.card-back li em { font-style: italic; opacity: .8; }
-.card-back a { color: rgba(245,240,232,.8); text-decoration: underline; text-underline-offset: 2px; }
-.card-back a:hover { opacity: .65; }
-.hotels-note { margin-top: 26px; font-size: 17px; font-weight: 300; font-style: italic; color: var(--text-mid); }
+.card-back ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+.card-back li { font-size: 15px; font-weight: 400; color: rgba(245,240,232,.95); line-height: 1.6; word-break: break-word; }
+.card-back li strong { font-weight: 700; color: #f5f0e8; }
+.card-back li em { font-style: italic; opacity: .85; }
+.card-back a { color: rgba(245,240,232,.95); text-decoration: underline; text-underline-offset: 2px; font-weight: 500; }
+.card-back a:hover { opacity: .75; }
+.hotels-note { margin-top: 26px; font-size: 18px; font-weight: 400; font-style: italic; color: var(--text-mid); }
 
 .form-wrap { max-width: 720px; margin: 0 auto; text-align: center; }
 #confirmacion .s-tag { color: #f5f0e8; }
 #confirmacion .s-title { color: #f5f0e8; }
 #confirmacion .s-rule { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'%3E%3Cpath d='M1,5 C4,1.5 15,0.5 30,1.5 C45,2.5 56,1 59,4.5 C56,8 45,8.5 30,7 C15,5.5 4,8.5 1,5Z' fill='%23f5f0e8' opacity='.88'/%3E%3C/svg%3E") center/100% 100% no-repeat; margin: 18px auto 32px; }
-.form-intro { font-size: 18px; font-weight: 300; color: var(--text-mid); margin-bottom: 40px; line-height: 1.8; }
+.form-intro { font-size: 19px; font-weight: 400; color: var(--text-mid); margin-bottom: 40px; line-height: 1.8; }
 #confirmacion .form-intro { color: #f5f0e8; }
 .gform-wrap { border: 1.5px solid rgba(245,240,232,.4); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; background: rgba(255,255,255,.08); padding: 4px; position: relative; }
 #confirmacion .hero-cta { border: 1.5px solid #f5f0e8; color: #f5f0e8; }
@@ -335,21 +336,21 @@ nav a:hover { opacity: 1; }
 #confirmacion:after { display: none; }
 
 .iban-box { margin-top: 32px; border: 1.5px solid rgba(42,58,138,.18); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; padding: 26px 30px; background: var(--paper); position: relative; box-shadow: 3px 3px 0 rgba(42,58,138,.10); }
-.iban-lbl { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 9px; }
-.iban-nombre { font-family: 'Permanent Marker', cursive; font-size: 21px; color: var(--ink); margin-bottom: 5px; text-transform: uppercase; }
-.iban-num { font-weight: 300; font-size: 24px; color: var(--text); letter-spacing: .07em; }
+.iban-lbl { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 9px; }
+.iban-nombre { font-family: 'Permanent Marker', cursive; font-size: 23px; color: var(--ink); margin-bottom: 5px; text-transform: uppercase; }
+.iban-num { font-weight: 500; font-size: 26px; color: var(--text); letter-spacing: .07em; }
 
-.copy-btn { margin-top: 14px; background: none; border: 1.5px solid rgba(42,58,138,.28); border-radius: 255px 8px 200px 8px / 8px 200px 8px 255px; padding: 7px 20px; font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; transform: rotate(0.3deg); transition: all .25s; }
+.copy-btn { margin-top: 14px; background: none; border: 1.5px solid rgba(42,58,138,.4); border-radius: 255px 8px 200px 8px / 8px 200px 8px 255px; padding: 11px 24px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); cursor: pointer; transform: rotate(0.3deg); transition: all .25s; }
 .copy-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-.ft-name { font-family: 'Permanent Marker', cursive; font-size: 28px; color: var(--paper); opacity: .92; text-transform: uppercase; letter-spacing: .02em; }
-.ft-info { text-align: right; font-weight: 300; font-size: 16px; color: var(--paper); opacity: .55; line-height: 1.7; letter-spacing: .04em; }
+.ft-name { font-family: 'Permanent Marker', cursive; font-size: 30px; color: var(--paper); opacity: .92; text-transform: uppercase; letter-spacing: .02em; }
+.ft-info { text-align: right; font-weight: 400; font-size: 17px; color: var(--paper); opacity: .75; line-height: 1.7; letter-spacing: .04em; }
 
 .countdown { display: flex; gap: 24px; margin-top: 0; animation: fadeUp .8s .48s ease both; }
 .cd-block { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.cd-num { font-family: 'Permanent Marker', cursive; font-size: 44px; color: var(--ink); line-height: 1; }
-.cd-lbl { font-weight: 300; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); }
-.cd-sep { font-family: 'Permanent Marker', cursive; font-size: 36px; color: var(--ink-ghost); align-self: center; padding-bottom: 10px; }
+.cd-num { font-family: 'Permanent Marker', cursive; font-size: 46px; color: var(--ink); line-height: 1; }
+.cd-lbl { font-weight: 500; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-pale); }
+.cd-sep { font-family: 'Permanent Marker', cursive; font-size: 38px; color: var(--ink-ghost); align-self: center; padding-bottom: 10px; }
 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
 .reveal.vis { opacity: 1; transform: none; }
@@ -386,11 +387,11 @@ nav a:hover { opacity: 1; }
 .bus-card { background: var(--paper); border: 1.5px solid rgba(42,58,138,.18); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; padding: 28px 28px 24px; position: relative; overflow: hidden; box-shadow: 3px 3px 0 rgba(42,58,138,.10); }
 .bus-section { margin-bottom: 24px; }
 .bus-section:last-child { margin-bottom: 0; }
-.bus-lbl { font-family: 'Barlow', sans-serif; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-pale); font-weight: 500; margin-bottom: 10px; }
-.bus-row { font-size: 17px; color: var(--text); line-height: 1.8; font-weight: 300; margin: 3px 0; }
-.bus-time { font-weight: 500; color: var(--ink); }
+.bus-lbl { font-family: 'Barlow', sans-serif; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-pale); font-weight: 600; margin-bottom: 10px; }
+.bus-row { font-size: 18px; color: var(--text); line-height: 1.8; font-weight: 400; margin: 3px 0; }
+.bus-time { font-weight: 600; color: var(--ink); }
 .bus-disclaimer { background: var(--paper); border: 1.5px solid rgba(42,58,138,.18); border-radius: 28px 4px 22px 8px / 6px 24px 4px 28px; padding: 36px 40px; box-shadow: 3px 3px 0 rgba(42,58,138,.10); text-align: center; }
-.bus-disclaimer-text { font-size: 18px; font-weight: 300; color: var(--text-mid); line-height: 1.75; }
+.bus-disclaimer-text { font-size: 19px; font-weight: 400; color: var(--text-mid); line-height: 1.75; }
 
 @media (max-width: 640px) {
   .buses-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -398,9 +399,9 @@ nav a:hover { opacity: 1; }
   .bus-section { margin-bottom: 22px; }
 
   nav {
-    padding: 10px 16px;
+    padding: 12px 16px;
   }
-  .nav-logo { font-size: 14px; }
+  .nav-logo { font-size: 17px; }
   .nav-toggle { display: block; }
   .nav-menu {
     position: absolute;
@@ -416,113 +417,126 @@ nav a:hover { opacity: 1; }
     border-bottom: 1px solid rgba(255,255,255,.1);
   }
   .nav-menu.active {
-    max-height: 500px;
+    max-height: 600px;
   }
   .nav-menu li {
-    border-top: 1px solid rgba(255,255,255,.05);
+    border-top: 1px solid rgba(255,255,255,.08);
   }
   .nav-menu li:last-child {
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    border-bottom: 1px solid rgba(255,255,255,.08);
   }
   nav a {
-    font-size: 11px;
+    font-size: 16px;
+    letter-spacing: .12em;
     display: block;
-    padding: 12px 16px;
+    padding: 18px 20px;
+    opacity: .95;
   }
-  .hero-names { font-size: clamp(36px, 5vw, 52px); }
-  .hero-eyebrow { font-size: 13px; margin-bottom: 14px; }
-  .hero-date-embroidered { font-size: 22px; margin: 6px 0 0; }
-  .hero-place { font-size: 16px; margin-top: 56px; }
-  .hero-sub { max-width: 100%; font-size: 17px; }
-  .countdown { flex-wrap: wrap; gap: 12px; margin-top: 0; }
+  .hero-names { font-size: clamp(44px, 8vw, 64px); }
+  .hero-eyebrow { font-size: 16px; margin: 22px 0 0; }
+  .hero-date-embroidered { font-size: 26px; margin: 6px 0 0; }
+  .hero-place { font-size: 18px; margin-top: 56px; }
+  .hero-sub { max-width: 100%; font-size: 18px; }
+  .countdown { flex-wrap: wrap; gap: 14px; margin-top: 0; }
   .hero-fold { height: 14px; }
-  .cd-num { font-size: 28px; }
-  .cd-sep { font-size: 24px; padding-bottom: 6px; }
-  .cd-lbl { font-size: 10px; }
+  .cd-num { font-size: 34px; }
+  .cd-sep { font-size: 28px; padding-bottom: 6px; }
+  .cd-lbl { font-size: 12px; }
   .hero-rule { margin: 12px 0 6px; }
-  .hero-cta { margin-top: 32px; padding: 10px 28px; font-size: 12px; }
+  .hero-cta { margin-top: 32px; padding: 14px 32px; font-size: 15px; }
   section { padding: 64px 16px; }
   #comoLlegar.finca-bg { padding-top: 16px; }
-  .s-title { font-size: clamp(22px, 3vw, 28px); }
+  .s-title { font-size: clamp(28px, 5vw, 36px); }
+  .s-tag { font-size: 14px; }
   .finca-grid { gap: 32px; }
   footer { padding: 40px 16px; }
-  .ft-name { font-size: 22px; }
-  .ft-info { font-size: 13px; }
+  .ft-name { font-size: 24px; }
+  .ft-info { font-size: 15px; }
   .timeline { margin-top: 28px; max-width: 520px; }
   .timeline::before { left: 17px; top: 24px; bottom: 24px; }
-  .tl { padding: 12px 0; gap: 18px; grid-template-columns: 28px 1fr; }
+  .tl { padding: 14px 0; gap: 18px; grid-template-columns: 28px 1fr; }
   .tl-marker { width: 20px; height: 20px; }
   .tl-content { gap: 14px; }
-  .tl-t { font-size: 22px; }
-  .tl-name { font-size: 24px; }
-  .addr-card { padding: 20px 20px 16px; }
-  .addr-name { font-size: 20px; }
+  .tl-t { font-size: 24px; }
+  .tl-name { font-size: 26px; }
+  .addr-card { padding: 22px 22px 18px; }
+  .addr-name { font-size: 22px; }
   .addr-sub { font-size: 18px; }
-  .card-hotel-name { font-size: 17px; }
-  .alojamiento-card { height: 320px; }
+  .addr-link { font-size: 15px; }
+  .card-hotel-name { font-size: 19px; }
+  .direccion { font-size: 16px; }
+  .alojamiento-card { height: 340px; }
   .hotels { gap: 16px; }
   .form-wrap { max-width: 100%; }
-  .form-intro { font-size: 17px; margin-bottom: 28px; }
+  .form-intro { font-size: 18px; margin-bottom: 28px; }
   .gform-wrap { padding: 2px; }
+  .bus-disclaimer { padding: 28px 24px; }
+  .bus-disclaimer-text { font-size: 18px; }
+  .finca-text p:not(.s-tag), .regalo-text p:not(.s-tag) { font-size: 18px; }
 }
 
 @media (max-width: 480px) {
-  nav { padding: 8px 12px; }
-  .nav-logo { font-size: 13px; letter-spacing: 0; }
+  nav { padding: 10px 14px; }
+  .nav-logo { font-size: 16px; letter-spacing: .02em; }
   .nav-menu { gap: 8px; }
-  nav a { font-size: 10px; letter-spacing: .15em; }
-  .hero { min-height: 100vh; padding: 72px 12px 22px; }
-  .sketch-placeholder { min-height: 140px; font-size: 15px; }
+  nav a { font-size: 16px; letter-spacing: .12em; padding: 18px 18px; }
+  .hero { min-height: 100vh; padding: 72px 14px 24px; }
+  .sketch-placeholder { min-height: 140px; font-size: 16px; }
   .sketch-frame { padding: 6px; }
-  .hero-names { font-size: clamp(28px, 4vw, 36px); line-height: 1; }
-  .hero-eyebrow { font-size: 12px; margin-bottom: 12px; }
+  .hero-names { font-size: clamp(38px, 11vw, 52px); line-height: 1; }
+  .hero-eyebrow { font-size: 15px; margin: 18px 0 0; }
   .hero-rule { width: 50px; margin: 10px 0 4px; }
-  .hero-date-embroidered { font-size: 18px; margin: 4px 0 0; }
-  .hero-place { font-size: 14px; margin-top: 44px; }
-  .hero-sub { max-width: 100%; font-size: 16px; line-height: 1.6; }
-  .countdown { gap: 8px; margin-top: 0; }
+  .hero-date-embroidered { font-size: 22px; margin: 4px 0 0; }
+  .hero-place { font-size: 16px; margin-top: 44px; }
+  .hero-sub { max-width: 100%; font-size: 17px; line-height: 1.7; }
+  .countdown { gap: 10px; margin-top: 0; }
   .hero-fold { height: 12px; }
-  .cd-block { gap: 0px; }
-  .cd-num { font-size: 24px; }
-  .cd-sep { font-size: 18px; padding-bottom: 4px; }
-  .cd-lbl { font-size: 9px; }
-  .hero-cta { margin-top: 24px; padding: 8px 20px; font-size: 11px; }
-  section { padding: 56px 12px; }
+  .cd-block { gap: 2px; }
+  .cd-num { font-size: 30px; }
+  .cd-sep { font-size: 22px; padding-bottom: 4px; }
+  .cd-lbl { font-size: 11px; }
+  .hero-cta { margin-top: 24px; padding: 13px 26px; font-size: 14px; }
+  section { padding: 56px 14px; }
   #comoLlegar.finca-bg { padding-top: 12px; }
-  .s-tag { font-size: 14px; }
-  .s-title { font-size: clamp(20px, 2.5vw, 24px); margin-bottom: 8px; }
-  .s-rule { width: 32px; height: 6px; margin: 12px 0 20px; }
+  .s-tag { font-size: 13px; letter-spacing: .18em; }
+  .s-title { font-size: clamp(26px, 7vw, 32px); margin-bottom: 8px; }
+  .s-rule { width: 36px; height: 6px; margin: 12px 0 20px; }
   .finca-grid { gap: 24px; }
-  .finca-text p, .regalo-text p { font-size: 17px; margin-bottom: 12px; }
-  footer { padding: 30px 12px; }
-  .ft-name { font-size: 18px; }
-  .ft-info { font-size: 12px; line-height: 1.5; }
+  .finca-text p:not(.s-tag), .regalo-text p:not(.s-tag) { font-size: 18px; margin-bottom: 14px; line-height: 1.7; }
+  footer { padding: 30px 16px; }
+  .ft-name { font-size: 20px; }
+  .ft-info { font-size: 14px; line-height: 1.6; }
   .timeline { margin-top: 20px; max-width: 100%; padding-left: 4px; }
   .timeline::before { left: 13px; top: 20px; bottom: 20px; }
-  .tl { padding: 10px 0; gap: 14px; grid-template-columns: 24px 1fr; }
+  .tl { padding: 12px 0; gap: 14px; grid-template-columns: 24px 1fr; }
   .tl-marker { width: 18px; height: 18px; }
   .tl-marker::after { inset: 3px; }
   .tl-content { gap: 12px; }
-  .tl-t { font-size: 20px; }
-  .tl-name { font-size: 20px; }
-  .addr-card { padding: 16px 16px 12px; }
-  .addr-lbl { font-size: 10px; margin-bottom: 8px; }
-  .addr-name { font-size: 17px; margin-bottom: 4px; }
-  .addr-sub { font-size: 17px; margin-bottom: 14px; }
-  .addr-link { font-size: 12px; }
-  .alojamiento-card { height: 360px; }
-  .etiqueta { font-size: 11px; margin-bottom: 8px; }
-  .card-hotel-name { font-size: 15px; margin-bottom: 8px; }
-  .card-back li { font-size: 12px; }
-  .hotels-note { font-size: 16px; margin-top: 16px; }
+  .tl-t { font-size: 22px; }
+  .tl-name { font-size: 22px; }
+  .addr-card { padding: 20px 18px 16px; }
+  .addr-lbl { font-size: 12px; margin-bottom: 8px; }
+  .addr-name { font-size: 19px; margin-bottom: 4px; }
+  .addr-sub { font-size: 17px; margin-bottom: 16px; line-height: 1.65; }
+  .addr-link { font-size: 14px; }
+  .alojamiento-card { height: 380px; }
+  .etiqueta { font-size: 12px; margin-bottom: 8px; }
+  .card-hotel-name { font-size: 18px; margin-bottom: 8px; }
+  .direccion { font-size: 15px; }
+  .card-back li { font-size: 14px; line-height: 1.6; }
+  .btn-flip { font-size: 12px; padding: 8px 16px; }
+  .hotels-note { font-size: 17px; margin-top: 16px; }
   .form-wrap { max-width: 100%; }
-  .form-intro { font-size: 16px; margin-bottom: 20px; }
-  #confirmacion .form-intro { font-size: 16px; }
-  .iban-box { padding: 18px 20px; }
-  .iban-lbl { font-size: 10px; margin-bottom: 6px; }
-  .iban-nombre { font-size: 17px; margin-bottom: 4px; }
-  .iban-num { font-size: 21px; }
-  .copy-btn { margin-top: 10px; padding: 6px 16px; font-size: 11px; }
+  .form-intro { font-size: 17px; margin-bottom: 20px; }
+  #confirmacion .form-intro { font-size: 17px; }
+  .iban-box { padding: 20px 20px; }
+  .iban-lbl { font-size: 12px; margin-bottom: 6px; }
+  .iban-nombre { font-size: 19px; margin-bottom: 4px; }
+  .iban-num { font-size: 22px; word-break: break-all; }
+  .copy-btn { margin-top: 12px; padding: 11px 20px; font-size: 13px; }
+  .bus-disclaimer { padding: 24px 20px; }
+  .bus-disclaimer-text { font-size: 17px; }
+  .bus-lbl { font-size: 13px; }
 }
 
 /* ── Sketch-frame: wraps real images in a hand-drawn border ── */
