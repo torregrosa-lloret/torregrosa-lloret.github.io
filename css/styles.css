@@ -280,7 +280,6 @@ nav a:hover { opacity: 1; }
   height: 100%;
   overflow: visible;
   display: block;
-  filter: url(#hand-drawn);
 }
 .tl-dot-path {
   stroke-dasharray: 70;
