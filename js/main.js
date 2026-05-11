@@ -55,10 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener("scroll", handleScroll, { passive: true });
 
   // Gift logic interaction
+  const DOT_EMPTY = '<span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(42,58,138,.3);display:inline-block;"></span>';
+  const DOT_FILLED = '<span style="width:8px;height:8px;border-radius:50%;background:rgba(42,58,138,.5);border:1.5px solid rgba(42,58,138,.5);display:inline-block;"></span>';
+
   const steps = [
-    { btn: "Ver número de cuenta", hint: null, dots: "○○○" },
-    { btn: "Insiste un poco más…", hint: "Sabemos lo que estás pensando. Qué pereza el sobre… Pero piénsalo bien: el sobre tiene su encanto. Si aún quieres verlo, vuelve a pulsar el botón.", dots: "●○○" },
-    { btn: "Acho, qué me enseñes el número de cuenta", hint: "Muy bien. Respetamos tu decisión. A caballo regalao' no le mires el dentao'. Dale una última vez al botón y aparece.", dots: "●●○" }
+    { btn: "Ver número de cuenta", hint: null, dots: DOT_EMPTY + DOT_EMPTY },
+    { btn: "Acho, qué me enseñes el número de cuenta", hint: "Sabemos lo que estás pensando. Qué pereza el sobre… Pero piénsalo bien: el sobre tiene su encanto. Si aún quieres verlo, <strong>vuelve a pulsar el botón</strong>.", dots: DOT_FILLED + DOT_EMPTY }
   ];
 
   let clickCount = 0;
@@ -76,11 +78,11 @@ document.addEventListener('DOMContentLoaded', function() {
         ibanContainer.style.display = "block";
       } else {
         giftBtn.textContent = steps[clickCount].btn;
-        giftBtn.setAttribute("aria-label", steps[clickCount].btn + " – paso " + (clickCount + 1) + " de 3");
-        if (giftProgress) giftProgress.textContent = steps[clickCount].dots;
+        giftBtn.setAttribute("aria-label", steps[clickCount].btn + " – paso " + (clickCount + 1) + " de 2");
+        if (giftProgress) giftProgress.innerHTML = steps[clickCount].dots;
         if (steps[clickCount].hint) {
           giftHint.style.display = "block";
-          giftHint.textContent = steps[clickCount].hint;
+          giftHint.innerHTML = steps[clickCount].hint;
         }
       }
     });
