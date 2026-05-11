@@ -320,6 +320,7 @@ nav a:hover { opacity: 1; }
 .card-back li em { font-style: italic; opacity: .85; }
 .card-back a { color: rgba(245,240,232,.95); text-decoration: underline; text-underline-offset: 2px; font-weight: 500; }
 .card-back a:hover { opacity: .75; }
+.hotels-intro { max-width: 680px; margin: 0 auto 40px; font-size: 18px; font-weight: 400; color: var(--text-mid); line-height: 1.7; text-align: center; }
 .hotels-note { margin-top: 26px; font-size: 18px; font-weight: 400; font-style: italic; color: var(--text-mid); }
 
 .form-wrap { max-width: 720px; margin: 0 auto; text-align: center; }
