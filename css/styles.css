@@ -239,13 +239,17 @@ nav a:hover { opacity: 1; }
 .timeline::before {
   content: "";
   position: absolute;
-  left: 18px;
+  left: 16px;
   top: 28px;
   bottom: 28px;
-  width: 2px;
-  background: var(--ink-mid);
-  opacity: .4;
+  width: 4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 100' preserveAspectRatio='none'%3E%3Cpath d='M2,0 C2.4,10 1.6,22 2.2,35 C2.8,48 1.4,62 2,75 C2.5,85 1.7,93 2,100' stroke='%232d5a3d' stroke-width='1.8' stroke-linecap='round' fill='none' opacity='.4'/%3E%3C/svg%3E") center/100% 100% no-repeat;
   z-index: 0;
+  animation: drawLineDown 1.4s ease forwards;
+  animation-play-state: paused;
+}
+.finca-text.vis .timeline::before {
+  animation-play-state: running;
 }
 .tl {
   display: grid;
@@ -260,20 +264,48 @@ nav a:hover { opacity: 1; }
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 2px solid var(--ink-mid);
+  border: none;
   background: var(--paper);
   position: relative;
   z-index: 1;
   box-shadow: 0 0 0 5px var(--paper);
 }
 .tl-marker::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: var(--ink-mid);
-  opacity: .8;
+  display: none;
 }
+.tl-dot-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+.tl-dot-path {
+  stroke-dasharray: 58;
+  stroke-dashoffset: 58;
+  animation: drawDot 0.85s ease forwards;
+  animation-play-state: paused;
+}
+.tl-dot-fill {
+  opacity: 0;
+  animation: fadeInDot 0.4s ease forwards;
+  animation-play-state: paused;
+}
+.finca-text.vis .tl-dot-path,
+.finca-text.vis .tl-dot-fill {
+  animation-play-state: running;
+}
+.tl:nth-child(1) .tl-dot-path { animation-delay: 0.15s; }
+.tl:nth-child(2) .tl-dot-path { animation-delay: 0.45s; }
+.tl:nth-child(3) .tl-dot-path { animation-delay: 0.75s; }
+.tl:nth-child(4) .tl-dot-path { animation-delay: 1.05s; }
+.tl:nth-child(5) .tl-dot-path { animation-delay: 1.35s; }
+.tl:nth-child(1) .tl-dot-fill { animation-delay: 0.85s; }
+.tl:nth-child(2) .tl-dot-fill { animation-delay: 1.15s; }
+.tl:nth-child(3) .tl-dot-fill { animation-delay: 1.45s; }
+.tl:nth-child(4) .tl-dot-fill { animation-delay: 1.75s; }
+.tl:nth-child(5) .tl-dot-fill { animation-delay: 2.05s; }
 .tl-content { display: flex; flex-direction: row; align-items: baseline; gap: 18px; flex-wrap: wrap; }
 .tl-t {
   font-family: 'Shadows Into Light', cursive;
@@ -358,6 +390,10 @@ nav a:hover { opacity: 1; }
 @keyframes fadeUp { 0% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: none; } }
 @keyframes growLine { 0% { width: 0; opacity: 0; } 100% { width: 68px; opacity: 1; } }
 @keyframes drawIn { 0% { stroke-dashoffset: 2400; opacity: 0; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes drawLineDown { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+@keyframes drawLineRight { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+@keyframes drawDot { from { stroke-dashoffset: 58; } to { stroke-dashoffset: 0; } }
+@keyframes fadeInDot { from { opacity: 0; } to { opacity: 0.8; } }
 
 .sk { stroke-dasharray: 2400; animation: drawIn 4s ease forwards; }
 .sk.d1 { animation-delay: .2s; }
@@ -384,8 +420,10 @@ nav a:hover { opacity: 1; }
     left: 0;
     right: 0;
     width: auto;
-    height: 2px;
+    height: 4px;
     transform: translateY(-50%);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 4' preserveAspectRatio='none'%3E%3Cpath d='M0,2 C10,2.4 22,1.6 35,2.2 C48,2.8 62,1.4 75,2 C85,2.5 93,1.7 100,2' stroke='%232d5a3d' stroke-width='1.8' stroke-linecap='round' fill='none' opacity='.4'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+    animation-name: drawLineRight;
   }
 
   .tl {
