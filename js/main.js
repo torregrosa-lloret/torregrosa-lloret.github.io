@@ -55,16 +55,19 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener("scroll", handleScroll, { passive: true });
 
   // Gift logic interaction
+  const DOT_EMPTY = '<span style="width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(42,58,138,.3);display:inline-block;"></span>';
+  const DOT_FILLED = '<span style="width:8px;height:8px;border-radius:50%;background:rgba(42,58,138,.5);border:1.5px solid rgba(42,58,138,.5);display:inline-block;"></span>';
+
   const steps = [
-    { btn: "Ver número de cuenta", hint: null },
-    { btn: "Ver número de cuenta", hint: "Sabemos lo que estás pensando. Qué pereza el sobre… Pero piénsalo bien: el sobre tiene su encanto." },
-    { btn: "Acho, qué me enseñes el número de cuenta", hint: "Muy bien. Respetamos tu decisión. A caballo regalao' no le mires el dentao'." }
+    { btn: "Ver número de cuenta", hint: null, dots: DOT_EMPTY + DOT_EMPTY },
+    { btn: "Acho, qué me enseñes el número de cuenta", hint: "Sabemos lo que estás pensando. Qué pereza el sobre… Pero piénsalo bien: el sobre tiene su encanto. Si aún quieres verlo, <strong>vuelve a pulsar el botón</strong>.", dots: DOT_FILLED + DOT_EMPTY }
   ];
 
   let clickCount = 0;
   const giftBtn = document.getElementById("gift-btn");
   const giftHint = document.getElementById("gift-hint");
   const giftSection = document.getElementById("gift-section");
+  const giftProgress = document.getElementById("gift-progress");
   const ibanContainer = document.getElementById("iban-container");
 
   if (giftBtn) {
@@ -75,9 +78,11 @@ document.addEventListener('DOMContentLoaded', function() {
         ibanContainer.style.display = "block";
       } else {
         giftBtn.textContent = steps[clickCount].btn;
+        giftBtn.setAttribute("aria-label", steps[clickCount].btn + " – paso " + (clickCount + 1) + " de 2");
+        if (giftProgress) giftProgress.innerHTML = steps[clickCount].dots;
         if (steps[clickCount].hint) {
           giftHint.style.display = "block";
-          giftHint.textContent = steps[clickCount].hint;
+          giftHint.innerHTML = steps[clickCount].hint;
         }
       }
     });
@@ -87,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const copyBtn = document.getElementById("copy-iban");
   if (copyBtn) {
     copyBtn.addEventListener("click", function() {
-      navigator.clipboard.writeText("ES12 3456 7890 1234 5678 9012");
+      navigator.clipboard.writeText("ES58 1563 2626 3932 6620 6515");
       this.textContent = "Copiado ✓";
       setTimeout(() => {
         this.textContent = "Copiar IBAN";
